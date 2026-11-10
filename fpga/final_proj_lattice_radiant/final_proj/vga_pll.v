@@ -1,0 +1,76 @@
+// Verilog netlist produced by program LSE 
+// Netlist written on Tue Nov 10 14:53:46 2026
+// Source file index table: 
+// Object locations will have the form @<file_index>(<first_ line>[<left_column>],<last_line>[<right_column>])
+// file 0 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc.v"
+// file 1 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_distributed_ram.v"
+// file 2 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_ecc.v"
+// file 3 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_flag_and_cnts_logic.v"
+// file 4 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_gray_reg.v"
+// file 5 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_gray_synchronizer.v"
+// file 6 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden.v"
+// file 7 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_prim.v"
+// file 8 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_rd_ctrl_logic.v"
+// file 9 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_rd_output_logic.v"
+// file 10 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_ring_counter.v"
+// file 11 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_wr_ctrl_logic.v"
+// file 12 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_prim_gen.v"
+// file 13 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_rd_ctrl_logic.v"
+// file 14 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_wr_ctrl_logic.v"
+// file 15 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp.v"
+// file 16 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp_behavioral.v"
+// file 17 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp_functions.vh"
+// file 18 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp_impl.v"
+// file 19 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp_lut_decode.v"
+// file 20 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dq/rtl/hsiao_ecc_decoder.v"
+// file 21 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dq/rtl/hsiao_ecc_encoder.v"
+// file 22 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dq/rtl/lscc_lfmxo4_ram_dq.v"
+// file 23 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dq/rtl/lscc_lfmxo4_ram_dq_lut_decode.v"
+// file 24 "c:/lscc/radiant/2026.1/ip/common/adder/rtl/lscc_adder.v"
+// file 25 "c:/lscc/radiant/2026.1/ip/common/adder_subtractor/rtl/lscc_add_sub.v"
+// file 26 "c:/lscc/radiant/2026.1/ip/common/complex_mult/rtl/lscc_complex_mult.v"
+// file 27 "c:/lscc/radiant/2026.1/ip/common/counter/rtl/lscc_cntr.v"
+// file 28 "c:/lscc/radiant/2026.1/ip/common/fifo/rtl/lscc_fifo.v"
+// file 29 "c:/lscc/radiant/2026.1/ip/common/fifo_dc/rtl/lscc_fifo_dc.v"
+// file 30 "c:/lscc/radiant/2026.1/ip/common/mult_accumulate/rtl/lscc_mult_accumulate.v"
+// file 31 "c:/lscc/radiant/2026.1/ip/common/mult_add_sub/rtl/lscc_mult_add_sub.v"
+// file 32 "c:/lscc/radiant/2026.1/ip/common/mult_add_sub_sum/rtl/lscc_mult_add_sub_sum.v"
+// file 33 "c:/lscc/radiant/2026.1/ip/common/multiplier/rtl/lscc_multiplier.v"
+// file 34 "c:/lscc/radiant/2026.1/ip/common/ram_dp/rtl/lscc_ram_dp.v"
+// file 35 "c:/lscc/radiant/2026.1/ip/common/ram_dq/rtl/lscc_ram_dq.v"
+// file 36 "c:/lscc/radiant/2026.1/ip/common/rom/rtl/lscc_rom.v"
+// file 37 "c:/lscc/radiant/2026.1/ip/common/subtractor/rtl/lscc_subtractor.v"
+// file 38 "c:/lscc/radiant/2026.1/ip/pmi/pmi_add.v"
+// file 39 "c:/lscc/radiant/2026.1/ip/pmi/pmi_addsub.v"
+// file 40 "c:/lscc/radiant/2026.1/ip/pmi/pmi_complex_mult.v"
+// file 41 "c:/lscc/radiant/2026.1/ip/pmi/pmi_counter.v"
+// file 42 "c:/lscc/radiant/2026.1/ip/pmi/pmi_dsp.v"
+// file 43 "c:/lscc/radiant/2026.1/ip/pmi/pmi_fifo.v"
+// file 44 "c:/lscc/radiant/2026.1/ip/pmi/pmi_fifo_dc.v"
+// file 45 "c:/lscc/radiant/2026.1/ip/pmi/pmi_mac.v"
+// file 46 "c:/lscc/radiant/2026.1/ip/pmi/pmi_mult.v"
+// file 47 "c:/lscc/radiant/2026.1/ip/pmi/pmi_multaddsub.v"
+// file 48 "c:/lscc/radiant/2026.1/ip/pmi/pmi_multaddsubsum.v"
+// file 49 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ram_dp.v"
+// file 50 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ram_dp_be.v"
+// file 51 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ram_dq.v"
+// file 52 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ram_dq_be.v"
+// file 53 "c:/lscc/radiant/2026.1/ip/pmi/pmi_rom.v"
+// file 54 "c:/lscc/radiant/2026.1/ip/pmi/pmi_sub.v"
+
+//
+// Verilog Description of module vga_pll
+// module wrapper written out since it is a black-box. 
+//
+
+//
+
+module vga_pll (ref_clk_i, rst_n_i, outcore_o, outglobal_o) /* synthesis ORIG_MODULE_NAME="vga_pll", LATTICE_IP_GENERATED="1", cpe_box=1 */ ;
+    input ref_clk_i;
+    input rst_n_i;
+    output outcore_o;
+    output outglobal_o;
+    
+    
+    
+endmodule

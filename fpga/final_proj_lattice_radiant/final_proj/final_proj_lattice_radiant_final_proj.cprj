@@ -1,0 +1,8 @@
+-ver "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.v"
+-lib pmi -vhd "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.vhd"
+-sver "C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/src/pattern_generator.sv" "C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/src/top.sv" "C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/src/vga_pll.sv"
+-path "C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj_lattice_radiant" "C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj_lattice_radiant"
+-top vga_pll
+-isTop
+-a "iCE40UP"
+-t "iCE40UP5K"
