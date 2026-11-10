@@ -3,7 +3,7 @@
 // Date of creation: 11/8/2026
 // Summary: Clock divider for the crystal clock.
 
-module vga_pll (
+module clk_divider (
     input  logic clk_12mhz,   // 12 MHz input from the UPduino board
     output logic clk_25mhz    // 25.125 MHz output for the VGA pixel clock
 );
