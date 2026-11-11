@@ -20,10 +20,12 @@ module clk_divider (
 		// According to Lattice Semiconductor's specifications, any PFD frequency that falls between 10 MHz and 17 MHz requires the analog loop filter to be set to 1
     
 	) pll_inst (
+        // Input Ports
         .REFERENCECLK(clk_12mhz), 
-        .PLLOUTCORE(clk_25mhz),
         .RESET_N(1'b1),      // Active low reset, tied to 1 to keep it running
         .BYPASS(1'b0),       // Set to 0 so we use the PLL output, not the bypassed input
+        // Output Ports
+        .OUTGLOBAL(clk_25mhz),
         .LOCK(locked)
     );
 
