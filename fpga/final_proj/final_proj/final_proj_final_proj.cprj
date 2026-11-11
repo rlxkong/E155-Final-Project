@@ -1,8 +1,8 @@
 -ver "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.v"
 -lib pmi -vhd "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.vhd"
--sver "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/clk_divider.sv" "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/pattern_generator.sv" "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/vga_top.sv"
+-sver "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/clk_divider.sv" "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/pattern_generator.sv" "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/vga_window_timing.sv"
 -path "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj" "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj"
--top clk_divider
+-top vga_window_timing
 -isTop
 -a "iCE40UP"
 -t "iCE40UP5K"

@@ -42,9 +42,9 @@
 # Source Files
 -sver "../source/final_proj/clk_divider.sv"
 -sver "../source/final_proj/pattern_generator.sv"
--sver "../source/final_proj/vga_top.sv"
+-sver "../source/final_proj/vga_window_timing.sv"
 -path ".."
--top clk_divider
+-top vga_window_timing
 # Output Configuration
 -udb "final_proj_final_proj_rtl.udb"
 -output_hdl "final_proj_final_proj.vm"

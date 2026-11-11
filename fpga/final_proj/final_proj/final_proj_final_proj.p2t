@@ -1,0 +1,9 @@
+-w
+-gui
+-msgset "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml"
+-n 1
+-t 1
+-s 1
+-cores 1
+-hsp m
+-exp parPathBased=ON

@@ -24,9 +24,31 @@ module clk_divider (
         .REFERENCECLK(clk_12mhz), 
         .RESET_N(1'b1),      // Active low reset, tied to 1 to keep it running
         .BYPASS(1'b0),       // Set to 0 so we use the PLL output, not the bypassed input
+		
+		 // Unused Input Ports
+		.FEEDBACK(1'b0),
+		.DYNAMICDELAY7(1'b0),
+		.DYNAMICDELAY6(1'b0),
+		.DYNAMICDELAY5(1'b0),
+		.DYNAMICDELAY4(1'b0),
+		.DYNAMICDELAY3(1'b0),
+		.DYNAMICDELAY2(1'b0),
+		.DYNAMICDELAY1(1'b0),
+		.DYNAMICDELAY0(1'b0),
+		.SCLK(1'b0),
+		.SDI(1'b0),
+		.LATCH(1'b0),
+		
         // Output Ports
         .OUTGLOBAL(clk_25mhz),
-        .LOCK(locked)
+        .LOCK(locked),
+		
+		// Unused Output Ports
+		.OUTCORE(),
+		.OUTGLOBALB(),
+		.OUTCOREB(),
+		.INTFBOUT(),
+		.SDO()
     );
 
 endmodule
