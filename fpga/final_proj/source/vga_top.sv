@@ -38,3 +38,5 @@ module vga_top(
         .vsync(vs),
         .video_on(video_on)
     );
+	
+endmodule

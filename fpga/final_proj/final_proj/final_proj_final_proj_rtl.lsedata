@@ -1,12 +1,13 @@
-<top name = "vga_window_timing"  library = "work"  arch = ""  entry = "Verilog">
+<top name = "vga_top"  library = "work"  arch = ""  entry = "Verilog">
 
 <clocks>
-    <clockitem name = "clk"  type = "port" />
+    <clockitem name = "clk_12mhz"  type = "port" />
+    <clockitem name = "clk_pixel"  type = "net" />
 </clocks>
 
 <!--
     //=============================================================
-    //  Number of Clocks processed: 1
+    //  Number of Clocks processed: 2
     //
     //  If a clock cannot be found in the top level pins section,
     //  that means it is an internal clock.

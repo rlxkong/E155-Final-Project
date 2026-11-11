@@ -26,7 +26,7 @@
 
 module vga_window_timing(
     input  logic       clk,
-    input  logic       reset,
+    input  logic       reset_n,
     output logic [9:0] x,
     output logic [9:0] y,
     output logic       hsync,
@@ -35,7 +35,7 @@ module vga_window_timing(
 );
 
     always_ff @(posedge clk, posedge reset) begin
-        if (reset) begin
+        if (~reset_n) begin
             x <= 1'b0;
             y <= 1'b0;
         end
@@ -44,10 +44,10 @@ module vga_window_timing(
             if (x == 10'd799) begin
                 x <= 1'b0;
                 // if y reaches the last row then reset
-                y <= (y == 10'd524) ? 0 : y + 1;
+                y <= (y == 10'd524) ? 1'b0 : y + 1'b1;
             end
             else begin
-                x <= x + 1;
+                x <= x + 1'b1;
             end
         end
     end

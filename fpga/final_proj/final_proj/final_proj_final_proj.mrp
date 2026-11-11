@@ -1,14 +1,14 @@
 
                          Lattice Mapping Report File
 
-Design:  vga_window_timing
+Design:  vga_top
 Family:  iCE40UP
 Device:  iCE40UP5K
 Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Wed Nov 11 15:21:12 2026
+Mapped on: Wed Nov 11 15:41:57 2026
 
 Design Information
 ------------------
@@ -21,20 +21,20 @@ Command line:   map -i final_proj_final_proj_syn.udb -o
 Design Summary
 --------------
 
-   Number of slice registers:  20 out of  5280 (<1%)
+   Number of slice registers:   0 out of  5280 (0%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:            59 out of  5280 (1%)
-      Number of logic LUT4s:              35
-      Number of ripple logic:             12 (24 LUT4s)
-   Number of IO sites used:   25 out of 39 (64%)
-      Number of IO sites used for general PIO: 25
+   Number of LUT4s:             1 out of  5280 (<1%)
+      Number of logic LUT4s:               1
+      Number of ripple logic:              0 (0 LUT4s)
+   Number of IO sites used:   5 out of 39 (13%)
+      Number of IO sites used for general PIO: 5
       Number of IO sites used for I3C: 0 out of 2 (0%)
       (note: If I3C is not used, its site can be used as general PIO)
-      Number of IO sites used for PIO+I3C: 25 out of 36 (69%)
+      Number of IO sites used for PIO+I3C: 5 out of 36 (14%)
       Number of IO sites used for OD+RGB IO buffers: 0 out of 3 (0%)
       (note: If RGB LED drivers are not used, sites can be used as OD outputs,
        see TN1288 iCE40 LED Driver Usage Guide)
-      Number of IO sites used for PIO+I3C+OD+RGB: 25 out of 39 (64%)
+      Number of IO sites used for PIO+I3C+OD+RGB: 5 out of 39 (13%)
    Number of DSPs:             0 out of 8 (0%)
    Number of I2Cs:             0 out of 2 (0%)
    Number of High Speed OSCs:  0 out of 1 (0%)
@@ -47,19 +47,20 @@ Design Summary
    Number of SPIs:             0 out of 2 (0%)
    Number of EBRs:             0 out of 30 (0%)
    Number of PLLs:             0 out of 1 (0%)
-   Number of Clocks:  1
-      Net clk_c: 20 loads, 20 rising, 0 falling (Driver: Port clk)
-   Number of Clock Enables:  1
-      Net n19: 10 loads, 10 SLICEs
-   Number of LSRs:  1
-      Pin reset: 20 loads, 20 SLICEs (Net: reset_c)
+   Number of Clocks:  0
+   Number of Clock Enables:  0
+   Number of LSRs:  0
    Top 10 highest fanout non-clock nets:
-      Net n19: 20 loads
-      Net reset_c: 20 loads
-      Net n19_adj_2: 10 loads
-      Net x_c[7]: 5 loads
-      Net x_c[8]: 5 loads
-      Net x_c[9]: 5 loads
+
+
+
+
+
+   Number of warnings:  4
+   Number of criticals: 0
+   Number of errors:    0
+
+
 
                                     Page 1
 
@@ -67,25 +68,17 @@ Design Summary
 
 
 
-Design Summary (cont)
----------------------
-      Net y_c[5]: 5 loads
-      Net y_c[9]: 5 loads
-      Net y_c[1]: 4 loads
-      Net y_c[2]: 4 loads
-
-
-
-
-
-   Number of warnings:  0
-   Number of criticals: 0
-   Number of errors:    0
-
 Design Errors/Criticals/Warnings
 --------------------------------
 
-   No error, critical, or warning presents.
+WARNING <71003020> - map: Top module port 'clk_12mhz' does not connect to
+     anything.
+WARNING <71003020> - map: Top module port 'reset_n' does not connect to
+     anything.
+WARNING <71003020> - map: Top module port 'clk_12mhz' does not connect to
+     anything.
+WARNING <71003020> - map: Top module port 'reset_n' does not connect to
+     anything.
 
 IO (PIO) Attributes
 -------------------
@@ -94,70 +87,21 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| vsync               | OUTPUT    |           |       |       |           |
+| b                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| g                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | hsync               | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| video_on            | OUTPUT    |           |       |       |           |
+| vsync               | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| y[0]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[1]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[2]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[3]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[4]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[5]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[6]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[7]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[8]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| y[9]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[0]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[1]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[2]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[3]                | OUTPUT    |           |       |       |           |
-
-                                    Page 2
-
-
-
-
-
-IO (PIO) Attributes (cont)
---------------------------
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[4]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[5]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[6]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[7]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[8]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| x[9]                | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| reset               | INPUT     |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| clk                 | INPUT     |           |       |       |           |
+| r                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
 Removed logic
 -------------
 
-Block i1 was optimized away.
+Block b_pad.vhi_inst was optimized away.
 
 Constraint Summary
 ------------------
@@ -170,8 +114,8 @@ Run Time and Memory Usage
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 62 MB
-Checksum -- map: d79422d51890fe8f9c4a54172b699246d00ce60
+   Peak Memory Usage: 60 MB
+Checksum -- map: 4dd949b646e7e5c042c60c9c3bdd9061f0639862
 
 
 
@@ -184,17 +128,7 @@ Checksum -- map: d79422d51890fe8f9c4a54172b699246d00ce60
 
 
 
-
-
-
-
-
-
-
-
-
-
-                                    Page 3
+                                    Page 2
 
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.

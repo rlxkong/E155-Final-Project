@@ -1,10 +1,8 @@
 ---------------------------------------------------
-Report for cell vga_window_timing
-   Instance path: vga_window_timing
+Report for cell vga_top
+   Instance path: vga_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         59        100.0
-                               LUTGATE	         35        100.0
-                                LUTCCU	         24        100.0
-                                 IOBUF	         25        100.0
-                                PFUREG	         20        100.0
+                                  LUT4	          1        100.0
+                               LUTGATE	          1        100.0
+                                 IOBUF	          5        100.0

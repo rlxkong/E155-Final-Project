@@ -1,6 +1,6 @@
 Lattice Timing Report -  Setup  and Hold, Version Radiant Software (64-bit) 2026.1.0.37.0
 
-Wed Nov 11 15:21:26 2026
+Wed Nov 11 15:42:01 2026
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -11,7 +11,7 @@ Copyright (c) 2002-2026 Lattice Semiconductor Corporation,  All rights reserved.
 Command line:    timing -sethld -v 10 -u 10 -endpoints 10 -nperend 1 -sp High-Performance_1.2V -hsp m -pwrprd -html -rpt final_proj_final_proj.twr final_proj_final_proj.udb -gui -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml
 
 -----------------------------------------
-Design:          vga_window_timing
+Design:          vga_top
 Family:          iCE40UP
 Device:          iCE40UP5K
 Package:         SG48
@@ -89,36 +89,21 @@ create_generated_clock,
 ...
 
 -------------------------------------------------------------------
-     Listing 10 Start or End Points     |           Type           
+     Listing 2 Start or End Points      |           Type           
 -------------------------------------------------------------------
-reset                                   |                     input
-clk                                     |                     input
-vsync                                   |                    output
-hsync                                   |                    output
-video_on                                |                    output
-y[0]                                    |                    output
-y[1]                                    |                    output
-y[2]                                    |                    output
-y[3]                                    |                    output
-y[4]                                    |                    output
+clk_12mhz                               |                     input
+reset_n                                 |                     input
 -------------------------------------------------------------------
                                         |                          
-Number of I/O ports without constraint  |                        25
+Number of I/O ports without constraint  |                         2
                                         |                          
 -------------------------------------------------------------------
 
 Nets without clock definition
 Define a clock on a top level port or a generated clock on a clock divider pin associated with this net(s).
--------------------------------------------------------------------
-            Listing 1 Net(s)            |        Source pin        
--------------------------------------------------------------------
-clk_c                                   |         clk_pad.bb_inst/O
--------------------------------------------------------------------
-                                        |                          
-Number of clock nets without clock defi |                          
-nition                                  |                         1
-                                        |                          
--------------------------------------------------------------------
+--------------------------------------------------
+There is no instance satisfying reporting criteria
+
 
 
 1.5  Combinational Loop

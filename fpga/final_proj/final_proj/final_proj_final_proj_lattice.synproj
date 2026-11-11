@@ -33,18 +33,20 @@
 -path "C:/lscc/radiant/2026.1/ispfpga/ice40tp/data"
 -path "."
 -path ".."
--path "../source/final_proj"
+-path "../../src"
+-path "../source"
 
 # PMI Library Files
 -ver "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.v"
 -lib pmi -vhd "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.vhd"
 
 # Source Files
--sver "../source/final_proj/clk_divider.sv"
--sver "../source/final_proj/pattern_generator.sv"
--sver "../source/final_proj/vga_window_timing.sv"
+-sver "../source/clk_divider.sv"
+-sver "../source/pattern_generator.sv"
+-sver "../source/vga_top.sv"
+-sver "../source/vga_window_timing.sv"
 -path ".."
--top vga_window_timing
+-top vga_top
 # Output Configuration
 -udb "final_proj_final_proj_rtl.udb"
 -output_hdl "final_proj_final_proj.vm"

@@ -1,12 +1,8 @@
 ----------------------------------------------------------------------
-Report for cell vga_window_timing.TECH
-Register bits:  20 of 5280 (0.379%)
-I/O cells:      25
+Report for cell vga_top.TECH
+Register bits:  0 of 5280 (0.000%)
+I/O cells:      5
                                   Cell usage:
                                cell     count   Res Usage(%)
-                               CCU2        12          100.0
-                            FD1P3XZ        20          100.0
-                                 IB         2          100.0
-                               LUT4        34          100.0
-                                 OB        23          100.0
-                              TOTAL        91
+                                 OB         5          100.0
+                              TOTAL         5
