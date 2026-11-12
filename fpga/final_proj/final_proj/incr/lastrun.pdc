@@ -1,0 +1,1 @@
+ldc_set_location -site {41} [get_ports clk_12mhz]

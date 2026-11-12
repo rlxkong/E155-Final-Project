@@ -23,26 +23,37 @@
         back porch      33 lines
 */
 
-module pattern_generator(
-    input  logic       clk,
-    input  logic       reset_n,
+module vga_color_logic(
+    //input  logic       clk,
+    //input  logic       reset_n,
 	input  logic       video_on, // at display area comparator
- 
+	//input  logic [9:0] x,
+    //input  logic [9:0] y,
 	input  logic [2:0] color_input, // r g b
 	
 	output logic 	   r, g, b
  
 );
 
+	
+	
 //  Write logic to determine the color of the current pixel (like drawing a checkerboard or a bouncing square). If video_active is low, force all RGB outputs to 0 so the monitor's sync signals register correctly.
-
-    always_ff @(posedge clk) begin
+	
+	
+	
+	
+    /*always_ff @(posedge clk) begin
         if (~reset_n) begin
             r <= 1'b0;
             g <= 1'b0;
 			b <= 1'b0;
         end
-     end
+     end */
+	 
+	 // hardcoding colors to test on vga
+	//assign color_input[2] = (x < 320) ? 1'b1 : 1'b0; // red
+    //assign color_input[1] = (y < 160) ? 1'b1 : 1'b0; // green
+	//assign color_input[0] = (y >= 320) ? 1'b1 : 1'b0; // blue
 	 
 	 // black color and deciding what rgb is
 	 always_comb begin

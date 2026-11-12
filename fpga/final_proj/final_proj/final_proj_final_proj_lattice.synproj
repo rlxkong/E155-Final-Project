@@ -41,9 +41,9 @@
 
 # Source Files
 -sver "../source/clk_divider.sv"
--sver "../source/pattern_generator.sv"
 -sver "../source/vga_top.sv"
 -sver "../source/vga_window_timing.sv"
+-sver "../source/vga_color_logic.sv"
 -path ".."
 -top vga_top
 # Output Configuration

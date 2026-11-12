@@ -13,11 +13,13 @@ module vga_top(
     output logic g,
     output logic b
 );
-
+	
+	
     logic       clk_pixel, locked;
     logic       timing_reset;
     logic [9:0] x, y;
-    logic       hs, vs, video_on;
+    logic       hs, vs, video_on;	
+	logic [2:0] color_input;
 
     // instantiate pixel clock (25Mhz)
     clk_divider pll(
@@ -38,5 +40,21 @@ module vga_top(
         .vsync(vs),
         .video_on(video_on)
     );
+	
+	// hardcoding colors to test on vga
+	assign color_input[2] = (x < 320) ? 1'b1 : 1'b0; // red
+    assign color_input[1] = (y < 160) ? 1'b1 : 1'b0; // green
+	assign color_input[0] = (y >= 320) ? 1'b1 : 1'b0; // blue
+	
+	// instantiate color logic module
+	vga_color_logic colorlogic(
+		  //.clk(clk_pixel), 
+		  //.reset_n(reset_n),
+		  .video_on(video_on),
+		  .color_input(color_input),
+		  .r(r),
+		  .g(g),
+		  .b(b)
+	);
 	
 endmodule

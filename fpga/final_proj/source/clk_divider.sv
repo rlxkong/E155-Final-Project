@@ -8,7 +8,9 @@ module clk_divider (
     output logic clk_25mhz,   // 25.125 MHz output for the VGA pixel clock
     output logic locked       // high once the PLL is stable
 );
-
+	
+	logic pll_feedback;
+	
     // Instantiate the Phase-Locked Loop (PLL) primitive
     // 12 MHz x 67 / 2^5 = 25.125 MHz
     PLL_B #(
@@ -19,6 +21,8 @@ module clk_divider (
         .FILTER_RANGE("1")      // 1 is the standard filter range for 10-17 MHz inputs. PFD = Input Clock / (DIVR + 1) = 12 MHz / 1 = 12. 
 		// According to Lattice Semiconductor's specifications, any PFD frequency that falls between 10 MHz and 17 MHz requires the analog loop filter to be set to 1
     
+	
+	
 	) pll_inst (
         // Input Ports
         .REFERENCECLK(clk_12mhz), 
@@ -26,8 +30,8 @@ module clk_divider (
         .BYPASS(1'b0),       // Set to 0 so we use the PLL output, not the bypassed input
 		
 		 // Unused Input Ports
-		.FEEDBACK(1'b0),
-		.DYNAMICDELAY7(1'b0),
+		.FEEDBACK(pll_feedback),
+		/*.DYNAMICDELAY7(1'b0),
 		.DYNAMICDELAY6(1'b0),
 		.DYNAMICDELAY5(1'b0),
 		.DYNAMICDELAY4(1'b0),
@@ -37,7 +41,7 @@ module clk_divider (
 		.DYNAMICDELAY0(1'b0),
 		.SCLK(1'b0),
 		.SDI(1'b0),
-		.LATCH(1'b0),
+		.LATCH(1'b0), */
 		
         // Output Ports
         .OUTGLOBAL(clk_25mhz),
@@ -47,7 +51,7 @@ module clk_divider (
 		.OUTCORE(),
 		.OUTGLOBALB(),
 		.OUTCOREB(),
-		.INTFBOUT(),
+		.INTFBOUT(pll_feedback),
 		.SDO()
     );
 

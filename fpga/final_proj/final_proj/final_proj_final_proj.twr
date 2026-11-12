@@ -1,6 +1,6 @@
 Lattice Timing Report -  Setup  and Hold, Version Radiant Software (64-bit) 2026.1.0.37.0
 
-Wed Nov 11 17:03:29 2026
+Wed Nov 11 17:48:26 2026
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -30,6 +30,7 @@ Package Status:                     Preliminary    Version 1.5
         1.3  Overall Summary
         1.4  Unconstrained Report
         1.5  Combinational Loop
+        1.6  Error/Warning Messages
     2  Setup at Speed Grade High-Performance_1.2V Corner at 100 Degrees
         2.1  Clock Summary
         2.2  Endpoint slacks
@@ -48,6 +49,7 @@ Package Status:                     Preliminary    Version 1.5
 
 1.1  SDC Constraints
 =====================
+[IGNORED:]create_generated_clock -name {clk_pixel} -source [get_pins pll.pll_inst/REFERENCECLK] -divide_by 32 -multiply_by 67 [get_pins pll.pll_inst/OUTGLOBAL]
 
 1.2  Constraint Coverage
 ---------------------------
@@ -71,9 +73,28 @@ There is no start point satisfying reporting criteria
 
 
 Clocked but unconstrained timing end points
---------------------------------------------------
-There is no end point satisfying reporting criteria
-
+-------------------------------------------------------------------
+         Listing 10 End Points          |           Type           
+-------------------------------------------------------------------
+timing/x_53__i8/D                       |    No arrival or required
+timing/x_53__i7/D                       |    No arrival or required
+{timing/x_53__i7/SR   timing/x_53__i8/SR}                           
+                                        |    No arrival or required
+timing/x_53__i6/D                       |    No arrival or required
+timing/x_53__i5/D                       |    No arrival or required
+{timing/x_53__i5/SR   timing/x_53__i6/SR}                           
+                                        |    No arrival or required
+timing/x_53__i4/D                       |    No arrival or required
+timing/x_53__i3/D                       |    No arrival or required
+{timing/x_53__i3/SR   timing/x_53__i4/SR}                           
+                                        |    No arrival or required
+timing/x_53__i0/D                       |    No arrival or required
+-------------------------------------------------------------------
+                                        |                          
+Number of unconstrained timing end poin |                          
+ts                                      |                        38
+                                        |                          
+-------------------------------------------------------------------
 
 1.4.2  Start/End Points Without Timing Constraints
 ---------------------------------------------------
@@ -89,13 +110,16 @@ create_generated_clock,
 ...
 
 -------------------------------------------------------------------
-     Listing 2 Start or End Points      |           Type           
+     Listing 5 Start or End Points      |           Type           
 -------------------------------------------------------------------
-clk_12mhz                               |                     input
 reset_n                                 |                     input
+clk_12mhz                               |                     input
+r                                       |                    output
+g                                       |                    output
+b                                       |                    output
 -------------------------------------------------------------------
                                         |                          
-Number of I/O ports without constraint  |                         2
+Number of I/O ports without constraint  |                         5
                                         |                          
 -------------------------------------------------------------------
 
@@ -110,12 +134,32 @@ There is no instance satisfying reporting criteria
 ========================
 None
 
+
+1.6  Error/Warning Messages
+============================
+WARNING "70001944" - No source clock for
+	generated clock	create_generated_clock -name {clk_pixel} -source [get_pins {pll/pll_inst/REFERENCECLK}] -multiply_by 67 -divide_by 32 [get_pins {pll/pll_inst/OUTGLOBAL }] .
+
 ===============================================================
 2  Setup at Speed Grade High-Performance_1.2V Corner at 100 Degrees
 ===============================================================
 
 2.1  Clock Summary
 =======================
+
+2.1.1 Clock "clk_pixel"
+=======================
+create_generated_clock -name {clk_pixel} -source [get_pins {pll/pll_inst/REFERENCECLK}] -multiply_by 67 -divide_by 32 [get_pins {pll/pll_inst/OUTGLOBAL }] 
+
+Single Clock Domain
+-------------------------------------------------------------------------------------------------------
+            Clock clk_pixel             |                    |       Period       |     Frequency      
+-------------------------------------------------------------------------------------------------------
+ From clk_pixel                         |             Target |               +INF |          0.000 MHz 
+                                        | Actual (all paths) |               ---- |               ---- 
+-------------------------------------------------------------------------------------------------------
+
+Clock Domain Crossing
 
 2.2  Endpoint slacks
 =======================

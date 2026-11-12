@@ -8,14 +8,16 @@ Reading input file 'final_proj_final_proj.vm' ...
 Reading constraint file 'final_proj_final_proj.ldc' ...
 Removing unused logic ...
 Starting design annotation....
+WARNING <70001944> - No source clock for
+	generated clock	create_generated_clock -name {clk_pixel} -source [get_pins {pll/pll_inst/REFERENCECLK}] -multiply_by 67 -divide_by 32 [get_pins {pll/pll_inst/OUTGLOBAL }] .
  
 Constraint Summary:
-   Total number of constraints: 1
+   Total number of constraints: 2
    Total number of constraints dropped: 0
  
 Writing output file 'final_proj_final_proj_syn.udb'.
 POSTSYN finished successfully.
 Total CPU Time: 0 secs 
 Total REAL Time: 0 secs 
-Peak Memory Usage: 40 MB
-Checksum -- postsyn: a8911d9d933afe20e8e760b43a3db78f0c7e54d
+Peak Memory Usage: 42 MB
+Checksum -- postsyn: 729b6f7e5d437e4ebd02290b43f9e2aa5fcb52bd
