@@ -1,0 +1,1 @@
+qrun -clean -f "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/testbenches/vga_frame_tb/vga_frame_tb.f"

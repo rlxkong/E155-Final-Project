@@ -26,7 +26,7 @@ module vga_top(
 	assign led_lock = locked;
 	
 	logic [24:0] cnt;
-	always_ff @(posedge clk_pixel) cnt <= cnt + 1;
+	always_ff @(posedge clk_pixel) cnt <= cnt + 1'b1;
 	assign led_blink = cnt[24];
 	
 	
@@ -66,5 +66,9 @@ module vga_top(
 		  .g(g),
 		  .b(b)
 	);
+	
+	// assign hsync and vsync
+	assign hsync = hs;
+	assign vsync = vs;
 	
 endmodule

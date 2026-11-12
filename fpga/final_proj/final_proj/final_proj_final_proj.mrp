@@ -8,24 +8,24 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Wed Nov 11 22:59:30 2026
+Mapped on: Wed Nov 11 23:46:00 2026
 
 Design Information
 ------------------
 
-Command line:   map -pdc C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
-     final_proj/vga_pins.pdc -i final_proj_final_proj_syn.udb -o
+Command line:   map -pdc C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc -i final_proj_final_proj_syn.udb -o
      final_proj_final_proj_map.udb -mp final_proj_final_proj.mrp -hierrpt -gui
-     -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/p
-     romote.xml
+     -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/
+     promote.xml
 
 Design Summary
 --------------
 
    Number of slice registers:  45 out of  5280 (1%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:            79 out of  5280 (1%)
-      Number of logic LUT4s:              29
+   Number of LUT4s:            84 out of  5280 (2%)
+      Number of logic LUT4s:              34
       Number of ripple logic:             25 (50 LUT4s)
    Number of IO sites used:   9 out of 39 (23%)
       Number of IO sites used for general PIO: 9
@@ -53,12 +53,12 @@ Design Summary
      pll.pll_inst/OUTGLOBAL)
       Net clk_12mhz_c: 1 loads, 1 rising, 0 falling (Driver: Port clk_12mhz)
    Number of Clock Enables:  1
-      Net timing.n168: 10 loads, 10 SLICEs
+      Net timing.n136: 10 loads, 10 SLICEs
    Number of LSRs:  2
       Net timing_reset: 10 loads, 10 SLICEs
-      Net timing.n168: 6 loads, 6 SLICEs
+      Net timing.n136: 6 loads, 6 SLICEs
    Top 10 highest fanout non-clock nets:
-      Net timing.n168: 16 loads
+      Net timing.n136: 16 loads
       Net timing_reset: 11 loads
 
                                     Page 1
@@ -70,13 +70,13 @@ Design Summary
 Design Summary (cont)
 ---------------------
       Net timing.n19: 10 loads
-      Net timing.y[5]: 5 loads
-      Net timing.y[6]: 5 loads
-      Net timing.y[7]: 5 loads
-      Net timing.y[8]: 5 loads
-      Net timing.y[9]: 5 loads
-      Net timing.x[9]: 4 loads
-      Net VCC_net: 4 loads
+      Net timing.y[5]: 6 loads
+      Net timing.y[6]: 6 loads
+      Net timing.y[7]: 6 loads
+      Net timing.y[8]: 6 loads
+      Net timing.y[9]: 6 loads
+      Net timing.x[7]: 5 loads
+      Net timing.x[8]: 5 loads
 
 
 
@@ -98,9 +98,9 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| b                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
 | led_lock            | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| b                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | led_blink           | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -117,16 +117,16 @@ IO (PIO) Attributes
 | clk_12mhz           | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
+Removed logic
+-------------
+
+Block i1 was optimized away.
+
 PLL Summary
 -----------
 
 PLL 1:                                 Pin/Node Value
   PLL Instance Name:                            pll/pll_inst
-  Input Reference Clock:               PIN      clk_12mhz_c
-  Output Clock(CoreA):                          NONE
-  Output Clock(GlobalA):               NODE     clk_pixel
-  Output Clock(CoreB):                          NONE
-  Output Clock(GlobalB):                        NONE
 
                                     Page 2
 
@@ -136,6 +136,11 @@ PLL 1:                                 Pin/Node Value
 
 PLL Summary (cont)
 ------------------
+  Input Reference Clock:               PIN      clk_12mhz_c
+  Output Clock(CoreA):                          NONE
+  Output Clock(GlobalA):               NODE     clk_pixel
+  Output Clock(CoreB):                          NONE
+  Output Clock(GlobalB):                        NONE
   Feedback input:                      NODE     pll.pll_feedback
   Internal Feedback output:            NODE     pll.pll_feedback
   BYPASS signal:                                GND
@@ -176,13 +181,8 @@ Run Time and Memory Usage
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 66 MB
-Checksum -- map: 7216f60bb9b9f2fba58b5356ac3895629f716bb
-
-
-
-
-
+   Peak Memory Usage: 67 MB
+Checksum -- map: ec59063d5753418aa618794054d38b0467aec550
 
 
 

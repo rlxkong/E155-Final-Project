@@ -1,0 +1,12 @@
+<RadiantSimulationProject language="1" name="vga_frame_tb" path="../testbenches" simType="QuestaSim Qrun" stage="0" version="2.0">
+    <Source include="none" langstandard="System Verilog" path="source/clk_divider.sv" type="VERILOG" worklib="work"/>
+    <Source include="none" langstandard="System Verilog" path="source/vga_top.sv" type="VERILOG" worklib="work"/>
+    <Source include="none" langstandard="System Verilog" path="source/vga_window_timing.sv" type="VERILOG" worklib="work"/>
+    <Source include="none" langstandard="System Verilog" path="source/vga_color_logic.sv" type="VERILOG" worklib="work"/>
+    <Source include="none" langstandard="" path="source/vga_frame_tb.sv" type="VERILOG" worklib=""/>
+    <SimLib value="pmi_work ovi_ice40up"/>
+    <GlbInc value=""/>
+    <Macro value=""/>
+    <Udo value=""/>
+    <TopModule instance="" language="VERILOG" name="vga_frame_tb"/>
+</RadiantSimulationProject>

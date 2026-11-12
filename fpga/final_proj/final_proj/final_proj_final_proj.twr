@@ -1,6 +1,6 @@
 Lattice Timing Report -  Setup  and Hold, Version Radiant Software (64-bit) 2026.1.0.37.0
 
-Wed Nov 11 22:59:37 2026
+Wed Nov 11 23:46:08 2026
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -8,7 +8,7 @@ Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2026 Lattice Semiconductor Corporation,  All rights reserved.
 
-Command line:    timing -sethld -v 10 -u 10 -endpoints 10 -nperend 1 -sp High-Performance_1.2V -hsp m -pwrprd -html -rpt final_proj_final_proj.twr final_proj_final_proj.udb -gui -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml
+Command line:    timing -sethld -v 10 -u 10 -endpoints 10 -nperend 1 -sp High-Performance_1.2V -hsp m -pwrprd -html -rpt final_proj_final_proj.twr final_proj_final_proj.udb -gui -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml
 
 -----------------------------------------
 Design:          vga_top
@@ -53,7 +53,7 @@ create_clock -name {clk_12mhz} -period 83.333 [get_ports clk_12mhz]
 
 1.2  Constraint Coverage
 ---------------------------
-Constraint Coverage: 84.4444%
+Constraint Coverage: 78.4247%
 
 
 1.3  Overall Summary
@@ -76,7 +76,7 @@ Clocked but unconstrained timing end points
 -------------------------------------------------------------------
           Listing 5 End Points          |           Type           
 -------------------------------------------------------------------
-{timing/y__i9/SR   timing/y__i8/SR}     |           No arrival time
+{timing/y__i8/SR   timing/y__i9/SR}     |           No arrival time
 {timing/y__i7/SR   timing/y__i6/SR}     |           No arrival time
 {timing/y__i5/SR   timing/y__i4/SR}     |           No arrival time
 {timing/y__i3/SR   timing/y__i2/SR}     |           No arrival time
@@ -102,16 +102,18 @@ create_generated_clock,
 ...
 
 -------------------------------------------------------------------
-     Listing 5 Start or End Points      |           Type           
+     Listing 7 Start or End Points      |           Type           
 -------------------------------------------------------------------
 reset_n                                 |                     input
 b                                       |                    output
 led_blink                               |                    output
 g                                       |                    output
 r                                       |                    output
+vsync                                   |                    output
+hsync                                   |                    output
 -------------------------------------------------------------------
                                         |                          
-Number of I/O ports without constraint  |                         5
+Number of I/O ports without constraint  |                         7
                                         |                          
 -------------------------------------------------------------------
 
@@ -176,16 +178,16 @@ Clock Domain Crossing
 -------------------------------------------------------
           Listing 10 End Points          |    Slack    
 -------------------------------------------------------
-cnt_57__i25/D                            |   26.677 ns 
-cnt_57__i24/D                            |   26.954 ns 
-{timing/y__i3/SP   timing/y__i2/SP}      |   27.324 ns 
-{timing/y__i5/SP   timing/y__i4/SP}      |   27.324 ns 
-{timing/y__i7/SP   timing/y__i6/SP}      |   27.324 ns 
-{timing/x_58__i7/SR   timing/x_58__i8/SR}|   27.575 ns 
-timing/x_58__i9/SR                       |   27.575 ns 
-cnt_57__i23/D                            |   27.786 ns 
-timing/y__i7/D                           |   27.945 ns 
-timing/y__i9/D                           |   27.945 ns 
+cnt_98__i25/D                            |   26.677 ns 
+cnt_98__i24/D                            |   26.954 ns 
+timing/y__i7/D                           |   27.667 ns 
+timing/y__i8/D                           |   27.667 ns 
+timing/y__i6/D                           |   27.720 ns 
+timing/y__i9/D                           |   27.720 ns 
+cnt_98__i23/D                            |   27.786 ns 
+cnt_98__i22/D                            |   28.063 ns 
+{timing/y__i7/SP   timing/y__i6/SP}      |   28.184 ns 
+{timing/y__i8/SP   timing/y__i9/SP}      |   28.184 ns 
 -------------------------------------------------------
                                          |             
 Setup # of endpoints with negative slack:|           0 
@@ -208,8 +210,8 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i1/Q  (SLICE_R11C28A)
-Path End         : cnt_57__i25/D  (SLICE_R11C31A)
+Path Begin       : cnt_98__i1/Q  (SLICE_R9C28A)
+Path End         : cnt_98__i25/D  (SLICE_R9C31A)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 26
@@ -232,65 +234,65 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                  0.660  24      
 pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-cnt_57__i1/CK                                             CLOCK PIN                0.000                  6.159  1       
+cnt_98__i1/CK                                             CLOCK PIN                0.000                  6.159  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-cnt_57__i1/CK->cnt_57__i1/Q               SLICE_R11C28A   CLK_TO_Q1_DELAY          1.388                  7.547  1       
+cnt_98__i1/CK->cnt_98__i1/Q               SLICE_R9C28A    CLK_TO_Q1_DELAY          1.388                  7.547  1       
 n25                                                       NET DELAY                2.022                  9.569  1       
-cnt_57_add_4_1/C1->cnt_57_add_4_1/CO1     SLICE_R11C28A   C1_TO_COUT1_DELAY        0.343                  9.912  2       
-n689                                                      NET DELAY                0.000                  9.912  2       
-cnt_57_add_4_3/CI0->cnt_57_add_4_3/CO0    SLICE_R11C28B   CIN0_TO_COUT0_DELAY      0.277                 10.189  2       
-n1652                                                     NET DELAY                0.000                 10.189  2       
-cnt_57_add_4_3/CI1->cnt_57_add_4_3/CO1    SLICE_R11C28B   CIN1_TO_COUT1_DELAY      0.277                 10.466  2       
-n691                                                      NET DELAY                0.000                 10.466  2       
-cnt_57_add_4_5/CI0->cnt_57_add_4_5/CO0    SLICE_R11C28C   CIN0_TO_COUT0_DELAY      0.277                 10.743  2       
-n1655                                                     NET DELAY                0.000                 10.743  2       
-cnt_57_add_4_5/CI1->cnt_57_add_4_5/CO1    SLICE_R11C28C   CIN1_TO_COUT1_DELAY      0.277                 11.020  2       
-n693                                                      NET DELAY                0.000                 11.020  2       
-cnt_57_add_4_7/CI0->cnt_57_add_4_7/CO0    SLICE_R11C28D   CIN0_TO_COUT0_DELAY      0.277                 11.297  2       
-n1658                                                     NET DELAY                0.000                 11.297  2       
-cnt_57_add_4_7/CI1->cnt_57_add_4_7/CO1    SLICE_R11C28D   CIN1_TO_COUT1_DELAY      0.277                 11.574  2       
-n695                                                      NET DELAY                0.555                 12.129  2       
-cnt_57_add_4_9/CI0->cnt_57_add_4_9/CO0    SLICE_R11C29A   CIN0_TO_COUT0_DELAY      0.277                 12.406  2       
-n1661                                                     NET DELAY                0.000                 12.406  2       
-cnt_57_add_4_9/CI1->cnt_57_add_4_9/CO1    SLICE_R11C29A   CIN1_TO_COUT1_DELAY      0.277                 12.683  2       
-n697                                                      NET DELAY                0.000                 12.683  2       
-cnt_57_add_4_11/CI0->cnt_57_add_4_11/CO0  SLICE_R11C29B   CIN0_TO_COUT0_DELAY      0.277                 12.960  2       
-n1664                                                     NET DELAY                0.000                 12.960  2       
-cnt_57_add_4_11/CI1->cnt_57_add_4_11/CO1  SLICE_R11C29B   CIN1_TO_COUT1_DELAY      0.277                 13.237  2       
-n699                                                      NET DELAY                0.000                 13.237  2       
-cnt_57_add_4_13/CI0->cnt_57_add_4_13/CO0  SLICE_R11C29C   CIN0_TO_COUT0_DELAY      0.277                 13.514  2       
-n1667                                                     NET DELAY                0.000                 13.514  2       
-cnt_57_add_4_13/CI1->cnt_57_add_4_13/CO1  SLICE_R11C29C   CIN1_TO_COUT1_DELAY      0.277                 13.791  2       
-n701                                                      NET DELAY                0.000                 13.791  2       
-cnt_57_add_4_15/CI0->cnt_57_add_4_15/CO0  SLICE_R11C29D   CIN0_TO_COUT0_DELAY      0.277                 14.068  2       
-n1670                                                     NET DELAY                0.000                 14.068  2       
-cnt_57_add_4_15/CI1->cnt_57_add_4_15/CO1  SLICE_R11C29D   CIN1_TO_COUT1_DELAY      0.277                 14.345  2       
-n703                                                      NET DELAY                0.555                 14.900  2       
-cnt_57_add_4_17/CI0->cnt_57_add_4_17/CO0  SLICE_R11C30A   CIN0_TO_COUT0_DELAY      0.277                 15.177  2       
-n1673                                                     NET DELAY                0.000                 15.177  2       
-cnt_57_add_4_17/CI1->cnt_57_add_4_17/CO1  SLICE_R11C30A   CIN1_TO_COUT1_DELAY      0.277                 15.454  2       
-n705                                                      NET DELAY                0.000                 15.454  2       
-cnt_57_add_4_19/CI0->cnt_57_add_4_19/CO0  SLICE_R11C30B   CIN0_TO_COUT0_DELAY      0.277                 15.731  2       
-n1676                                                     NET DELAY                0.000                 15.731  2       
-cnt_57_add_4_19/CI1->cnt_57_add_4_19/CO1  SLICE_R11C30B   CIN1_TO_COUT1_DELAY      0.277                 16.008  2       
-n707                                                      NET DELAY                0.000                 16.008  2       
-cnt_57_add_4_21/CI0->cnt_57_add_4_21/CO0  SLICE_R11C30C   CIN0_TO_COUT0_DELAY      0.277                 16.285  2       
-n1679                                                     NET DELAY                0.000                 16.285  2       
-cnt_57_add_4_21/CI1->cnt_57_add_4_21/CO1  SLICE_R11C30C   CIN1_TO_COUT1_DELAY      0.277                 16.562  2       
-n709                                                      NET DELAY                0.000                 16.562  2       
-cnt_57_add_4_23/CI0->cnt_57_add_4_23/CO0  SLICE_R11C30D   CIN0_TO_COUT0_DELAY      0.277                 16.839  2       
-n1682                                                     NET DELAY                0.000                 16.839  2       
-cnt_57_add_4_23/CI1->cnt_57_add_4_23/CO1  SLICE_R11C30D   CIN1_TO_COUT1_DELAY      0.277                 17.116  2       
-n711                                                      NET DELAY                0.555                 17.671  2       
-cnt_57_add_4_25/CI0->cnt_57_add_4_25/CO0  SLICE_R11C31A   CIN0_TO_COUT0_DELAY      0.277                 17.948  2       
-n1685                                                     NET DELAY                0.661                 18.609  2       
-cnt_57_add_4_25/D1->cnt_57_add_4_25/S1    SLICE_R11C31A   D1_TO_F1_DELAY           0.476                 19.085  1       
-cnt_c_N_26[24]                                            NET DELAY                0.000                 19.085  1       
-cnt_57__i25/D                                             ENDPOINT                 0.000                 19.085  1       
+cnt_98_add_4_1/C1->cnt_98_add_4_1/CO1     SLICE_R9C28A    C1_TO_COUT1_DELAY        0.343                  9.912  2       
+n809                                                      NET DELAY                0.000                  9.912  2       
+cnt_98_add_4_3/CI0->cnt_98_add_4_3/CO0    SLICE_R9C28B    CIN0_TO_COUT0_DELAY      0.277                 10.189  2       
+n1832                                                     NET DELAY                0.000                 10.189  2       
+cnt_98_add_4_3/CI1->cnt_98_add_4_3/CO1    SLICE_R9C28B    CIN1_TO_COUT1_DELAY      0.277                 10.466  2       
+n811                                                      NET DELAY                0.000                 10.466  2       
+cnt_98_add_4_5/CI0->cnt_98_add_4_5/CO0    SLICE_R9C28C    CIN0_TO_COUT0_DELAY      0.277                 10.743  2       
+n1835                                                     NET DELAY                0.000                 10.743  2       
+cnt_98_add_4_5/CI1->cnt_98_add_4_5/CO1    SLICE_R9C28C    CIN1_TO_COUT1_DELAY      0.277                 11.020  2       
+n813                                                      NET DELAY                0.000                 11.020  2       
+cnt_98_add_4_7/CI0->cnt_98_add_4_7/CO0    SLICE_R9C28D    CIN0_TO_COUT0_DELAY      0.277                 11.297  2       
+n1838                                                     NET DELAY                0.000                 11.297  2       
+cnt_98_add_4_7/CI1->cnt_98_add_4_7/CO1    SLICE_R9C28D    CIN1_TO_COUT1_DELAY      0.277                 11.574  2       
+n815                                                      NET DELAY                0.555                 12.129  2       
+cnt_98_add_4_9/CI0->cnt_98_add_4_9/CO0    SLICE_R9C29A    CIN0_TO_COUT0_DELAY      0.277                 12.406  2       
+n1841                                                     NET DELAY                0.000                 12.406  2       
+cnt_98_add_4_9/CI1->cnt_98_add_4_9/CO1    SLICE_R9C29A    CIN1_TO_COUT1_DELAY      0.277                 12.683  2       
+n817                                                      NET DELAY                0.000                 12.683  2       
+cnt_98_add_4_11/CI0->cnt_98_add_4_11/CO0  SLICE_R9C29B    CIN0_TO_COUT0_DELAY      0.277                 12.960  2       
+n1844                                                     NET DELAY                0.000                 12.960  2       
+cnt_98_add_4_11/CI1->cnt_98_add_4_11/CO1  SLICE_R9C29B    CIN1_TO_COUT1_DELAY      0.277                 13.237  2       
+n819                                                      NET DELAY                0.000                 13.237  2       
+cnt_98_add_4_13/CI0->cnt_98_add_4_13/CO0  SLICE_R9C29C    CIN0_TO_COUT0_DELAY      0.277                 13.514  2       
+n1847                                                     NET DELAY                0.000                 13.514  2       
+cnt_98_add_4_13/CI1->cnt_98_add_4_13/CO1  SLICE_R9C29C    CIN1_TO_COUT1_DELAY      0.277                 13.791  2       
+n821                                                      NET DELAY                0.000                 13.791  2       
+cnt_98_add_4_15/CI0->cnt_98_add_4_15/CO0  SLICE_R9C29D    CIN0_TO_COUT0_DELAY      0.277                 14.068  2       
+n1850                                                     NET DELAY                0.000                 14.068  2       
+cnt_98_add_4_15/CI1->cnt_98_add_4_15/CO1  SLICE_R9C29D    CIN1_TO_COUT1_DELAY      0.277                 14.345  2       
+n823                                                      NET DELAY                0.555                 14.900  2       
+cnt_98_add_4_17/CI0->cnt_98_add_4_17/CO0  SLICE_R9C30A    CIN0_TO_COUT0_DELAY      0.277                 15.177  2       
+n1853                                                     NET DELAY                0.000                 15.177  2       
+cnt_98_add_4_17/CI1->cnt_98_add_4_17/CO1  SLICE_R9C30A    CIN1_TO_COUT1_DELAY      0.277                 15.454  2       
+n825                                                      NET DELAY                0.000                 15.454  2       
+cnt_98_add_4_19/CI0->cnt_98_add_4_19/CO0  SLICE_R9C30B    CIN0_TO_COUT0_DELAY      0.277                 15.731  2       
+n1856                                                     NET DELAY                0.000                 15.731  2       
+cnt_98_add_4_19/CI1->cnt_98_add_4_19/CO1  SLICE_R9C30B    CIN1_TO_COUT1_DELAY      0.277                 16.008  2       
+n827                                                      NET DELAY                0.000                 16.008  2       
+cnt_98_add_4_21/CI0->cnt_98_add_4_21/CO0  SLICE_R9C30C    CIN0_TO_COUT0_DELAY      0.277                 16.285  2       
+n1859                                                     NET DELAY                0.000                 16.285  2       
+cnt_98_add_4_21/CI1->cnt_98_add_4_21/CO1  SLICE_R9C30C    CIN1_TO_COUT1_DELAY      0.277                 16.562  2       
+n829                                                      NET DELAY                0.000                 16.562  2       
+cnt_98_add_4_23/CI0->cnt_98_add_4_23/CO0  SLICE_R9C30D    CIN0_TO_COUT0_DELAY      0.277                 16.839  2       
+n1862                                                     NET DELAY                0.000                 16.839  2       
+cnt_98_add_4_23/CI1->cnt_98_add_4_23/CO1  SLICE_R9C30D    CIN1_TO_COUT1_DELAY      0.277                 17.116  2       
+n831                                                      NET DELAY                0.555                 17.671  2       
+cnt_98_add_4_25/CI0->cnt_98_add_4_25/CO0  SLICE_R9C31A    CIN0_TO_COUT0_DELAY      0.277                 17.948  2       
+n1865                                                     NET DELAY                0.661                 18.609  2       
+cnt_98_add_4_25/D1->cnt_98_add_4_25/S1    SLICE_R9C31A    D1_TO_F1_DELAY           0.476                 19.085  1       
+cnt_c_N_28[24]                                            NET DELAY                0.000                 19.085  1       
+cnt_98__i25/D                                             ENDPOINT                 0.000                 19.085  1       
 
 
 Destination Clock Path
@@ -307,7 +309,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                 40.460  24      
 pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
-{cnt_57__i24/CK   cnt_57__i25/CK}                         CLOCK PIN                0.000                 45.959  1       
+{cnt_98__i24/CK   cnt_98__i25/CK}                         CLOCK PIN                0.000                 45.959  1       
                                                           Uncertainty           -(0.000)                 45.959  
                                                           Setup time            -(0.198)                 45.761  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
@@ -321,8 +323,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i1/Q  (SLICE_R11C28A)
-Path End         : cnt_57__i24/D  (SLICE_R11C31A)
+Path Begin       : cnt_98__i1/Q  (SLICE_R9C28A)
+Path End         : cnt_98__i24/D  (SLICE_R9C31A)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 25
@@ -345,63 +347,63 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                  0.660  24      
 pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-cnt_57__i1/CK                                             CLOCK PIN                0.000                  6.159  1       
+cnt_98__i1/CK                                             CLOCK PIN                0.000                  6.159  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-cnt_57__i1/CK->cnt_57__i1/Q               SLICE_R11C28A   CLK_TO_Q1_DELAY          1.388                  7.547  1       
+cnt_98__i1/CK->cnt_98__i1/Q               SLICE_R9C28A    CLK_TO_Q1_DELAY          1.388                  7.547  1       
 n25                                                       NET DELAY                2.022                  9.569  1       
-cnt_57_add_4_1/C1->cnt_57_add_4_1/CO1     SLICE_R11C28A   C1_TO_COUT1_DELAY        0.343                  9.912  2       
-n689                                                      NET DELAY                0.000                  9.912  2       
-cnt_57_add_4_3/CI0->cnt_57_add_4_3/CO0    SLICE_R11C28B   CIN0_TO_COUT0_DELAY      0.277                 10.189  2       
-n1652                                                     NET DELAY                0.000                 10.189  2       
-cnt_57_add_4_3/CI1->cnt_57_add_4_3/CO1    SLICE_R11C28B   CIN1_TO_COUT1_DELAY      0.277                 10.466  2       
-n691                                                      NET DELAY                0.000                 10.466  2       
-cnt_57_add_4_5/CI0->cnt_57_add_4_5/CO0    SLICE_R11C28C   CIN0_TO_COUT0_DELAY      0.277                 10.743  2       
-n1655                                                     NET DELAY                0.000                 10.743  2       
-cnt_57_add_4_5/CI1->cnt_57_add_4_5/CO1    SLICE_R11C28C   CIN1_TO_COUT1_DELAY      0.277                 11.020  2       
-n693                                                      NET DELAY                0.000                 11.020  2       
-cnt_57_add_4_7/CI0->cnt_57_add_4_7/CO0    SLICE_R11C28D   CIN0_TO_COUT0_DELAY      0.277                 11.297  2       
-n1658                                                     NET DELAY                0.000                 11.297  2       
-cnt_57_add_4_7/CI1->cnt_57_add_4_7/CO1    SLICE_R11C28D   CIN1_TO_COUT1_DELAY      0.277                 11.574  2       
-n695                                                      NET DELAY                0.555                 12.129  2       
-cnt_57_add_4_9/CI0->cnt_57_add_4_9/CO0    SLICE_R11C29A   CIN0_TO_COUT0_DELAY      0.277                 12.406  2       
-n1661                                                     NET DELAY                0.000                 12.406  2       
-cnt_57_add_4_9/CI1->cnt_57_add_4_9/CO1    SLICE_R11C29A   CIN1_TO_COUT1_DELAY      0.277                 12.683  2       
-n697                                                      NET DELAY                0.000                 12.683  2       
-cnt_57_add_4_11/CI0->cnt_57_add_4_11/CO0  SLICE_R11C29B   CIN0_TO_COUT0_DELAY      0.277                 12.960  2       
-n1664                                                     NET DELAY                0.000                 12.960  2       
-cnt_57_add_4_11/CI1->cnt_57_add_4_11/CO1  SLICE_R11C29B   CIN1_TO_COUT1_DELAY      0.277                 13.237  2       
-n699                                                      NET DELAY                0.000                 13.237  2       
-cnt_57_add_4_13/CI0->cnt_57_add_4_13/CO0  SLICE_R11C29C   CIN0_TO_COUT0_DELAY      0.277                 13.514  2       
-n1667                                                     NET DELAY                0.000                 13.514  2       
-cnt_57_add_4_13/CI1->cnt_57_add_4_13/CO1  SLICE_R11C29C   CIN1_TO_COUT1_DELAY      0.277                 13.791  2       
-n701                                                      NET DELAY                0.000                 13.791  2       
-cnt_57_add_4_15/CI0->cnt_57_add_4_15/CO0  SLICE_R11C29D   CIN0_TO_COUT0_DELAY      0.277                 14.068  2       
-n1670                                                     NET DELAY                0.000                 14.068  2       
-cnt_57_add_4_15/CI1->cnt_57_add_4_15/CO1  SLICE_R11C29D   CIN1_TO_COUT1_DELAY      0.277                 14.345  2       
-n703                                                      NET DELAY                0.555                 14.900  2       
-cnt_57_add_4_17/CI0->cnt_57_add_4_17/CO0  SLICE_R11C30A   CIN0_TO_COUT0_DELAY      0.277                 15.177  2       
-n1673                                                     NET DELAY                0.000                 15.177  2       
-cnt_57_add_4_17/CI1->cnt_57_add_4_17/CO1  SLICE_R11C30A   CIN1_TO_COUT1_DELAY      0.277                 15.454  2       
-n705                                                      NET DELAY                0.000                 15.454  2       
-cnt_57_add_4_19/CI0->cnt_57_add_4_19/CO0  SLICE_R11C30B   CIN0_TO_COUT0_DELAY      0.277                 15.731  2       
-n1676                                                     NET DELAY                0.000                 15.731  2       
-cnt_57_add_4_19/CI1->cnt_57_add_4_19/CO1  SLICE_R11C30B   CIN1_TO_COUT1_DELAY      0.277                 16.008  2       
-n707                                                      NET DELAY                0.000                 16.008  2       
-cnt_57_add_4_21/CI0->cnt_57_add_4_21/CO0  SLICE_R11C30C   CIN0_TO_COUT0_DELAY      0.277                 16.285  2       
-n1679                                                     NET DELAY                0.000                 16.285  2       
-cnt_57_add_4_21/CI1->cnt_57_add_4_21/CO1  SLICE_R11C30C   CIN1_TO_COUT1_DELAY      0.277                 16.562  2       
-n709                                                      NET DELAY                0.000                 16.562  2       
-cnt_57_add_4_23/CI0->cnt_57_add_4_23/CO0  SLICE_R11C30D   CIN0_TO_COUT0_DELAY      0.277                 16.839  2       
-n1682                                                     NET DELAY                0.000                 16.839  2       
-cnt_57_add_4_23/CI1->cnt_57_add_4_23/CO1  SLICE_R11C30D   CIN1_TO_COUT1_DELAY      0.277                 17.116  2       
-n711                                                      NET DELAY                1.216                 18.332  2       
-cnt_57_add_4_25/D0->cnt_57_add_4_25/S0    SLICE_R11C31A   D0_TO_F0_DELAY           0.476                 18.808  1       
-cnt_c_N_26[23]                                            NET DELAY                0.000                 18.808  1       
-cnt_57__i24/D                                             ENDPOINT                 0.000                 18.808  1       
+cnt_98_add_4_1/C1->cnt_98_add_4_1/CO1     SLICE_R9C28A    C1_TO_COUT1_DELAY        0.343                  9.912  2       
+n809                                                      NET DELAY                0.000                  9.912  2       
+cnt_98_add_4_3/CI0->cnt_98_add_4_3/CO0    SLICE_R9C28B    CIN0_TO_COUT0_DELAY      0.277                 10.189  2       
+n1832                                                     NET DELAY                0.000                 10.189  2       
+cnt_98_add_4_3/CI1->cnt_98_add_4_3/CO1    SLICE_R9C28B    CIN1_TO_COUT1_DELAY      0.277                 10.466  2       
+n811                                                      NET DELAY                0.000                 10.466  2       
+cnt_98_add_4_5/CI0->cnt_98_add_4_5/CO0    SLICE_R9C28C    CIN0_TO_COUT0_DELAY      0.277                 10.743  2       
+n1835                                                     NET DELAY                0.000                 10.743  2       
+cnt_98_add_4_5/CI1->cnt_98_add_4_5/CO1    SLICE_R9C28C    CIN1_TO_COUT1_DELAY      0.277                 11.020  2       
+n813                                                      NET DELAY                0.000                 11.020  2       
+cnt_98_add_4_7/CI0->cnt_98_add_4_7/CO0    SLICE_R9C28D    CIN0_TO_COUT0_DELAY      0.277                 11.297  2       
+n1838                                                     NET DELAY                0.000                 11.297  2       
+cnt_98_add_4_7/CI1->cnt_98_add_4_7/CO1    SLICE_R9C28D    CIN1_TO_COUT1_DELAY      0.277                 11.574  2       
+n815                                                      NET DELAY                0.555                 12.129  2       
+cnt_98_add_4_9/CI0->cnt_98_add_4_9/CO0    SLICE_R9C29A    CIN0_TO_COUT0_DELAY      0.277                 12.406  2       
+n1841                                                     NET DELAY                0.000                 12.406  2       
+cnt_98_add_4_9/CI1->cnt_98_add_4_9/CO1    SLICE_R9C29A    CIN1_TO_COUT1_DELAY      0.277                 12.683  2       
+n817                                                      NET DELAY                0.000                 12.683  2       
+cnt_98_add_4_11/CI0->cnt_98_add_4_11/CO0  SLICE_R9C29B    CIN0_TO_COUT0_DELAY      0.277                 12.960  2       
+n1844                                                     NET DELAY                0.000                 12.960  2       
+cnt_98_add_4_11/CI1->cnt_98_add_4_11/CO1  SLICE_R9C29B    CIN1_TO_COUT1_DELAY      0.277                 13.237  2       
+n819                                                      NET DELAY                0.000                 13.237  2       
+cnt_98_add_4_13/CI0->cnt_98_add_4_13/CO0  SLICE_R9C29C    CIN0_TO_COUT0_DELAY      0.277                 13.514  2       
+n1847                                                     NET DELAY                0.000                 13.514  2       
+cnt_98_add_4_13/CI1->cnt_98_add_4_13/CO1  SLICE_R9C29C    CIN1_TO_COUT1_DELAY      0.277                 13.791  2       
+n821                                                      NET DELAY                0.000                 13.791  2       
+cnt_98_add_4_15/CI0->cnt_98_add_4_15/CO0  SLICE_R9C29D    CIN0_TO_COUT0_DELAY      0.277                 14.068  2       
+n1850                                                     NET DELAY                0.000                 14.068  2       
+cnt_98_add_4_15/CI1->cnt_98_add_4_15/CO1  SLICE_R9C29D    CIN1_TO_COUT1_DELAY      0.277                 14.345  2       
+n823                                                      NET DELAY                0.555                 14.900  2       
+cnt_98_add_4_17/CI0->cnt_98_add_4_17/CO0  SLICE_R9C30A    CIN0_TO_COUT0_DELAY      0.277                 15.177  2       
+n1853                                                     NET DELAY                0.000                 15.177  2       
+cnt_98_add_4_17/CI1->cnt_98_add_4_17/CO1  SLICE_R9C30A    CIN1_TO_COUT1_DELAY      0.277                 15.454  2       
+n825                                                      NET DELAY                0.000                 15.454  2       
+cnt_98_add_4_19/CI0->cnt_98_add_4_19/CO0  SLICE_R9C30B    CIN0_TO_COUT0_DELAY      0.277                 15.731  2       
+n1856                                                     NET DELAY                0.000                 15.731  2       
+cnt_98_add_4_19/CI1->cnt_98_add_4_19/CO1  SLICE_R9C30B    CIN1_TO_COUT1_DELAY      0.277                 16.008  2       
+n827                                                      NET DELAY                0.000                 16.008  2       
+cnt_98_add_4_21/CI0->cnt_98_add_4_21/CO0  SLICE_R9C30C    CIN0_TO_COUT0_DELAY      0.277                 16.285  2       
+n1859                                                     NET DELAY                0.000                 16.285  2       
+cnt_98_add_4_21/CI1->cnt_98_add_4_21/CO1  SLICE_R9C30C    CIN1_TO_COUT1_DELAY      0.277                 16.562  2       
+n829                                                      NET DELAY                0.000                 16.562  2       
+cnt_98_add_4_23/CI0->cnt_98_add_4_23/CO0  SLICE_R9C30D    CIN0_TO_COUT0_DELAY      0.277                 16.839  2       
+n1862                                                     NET DELAY                0.000                 16.839  2       
+cnt_98_add_4_23/CI1->cnt_98_add_4_23/CO1  SLICE_R9C30D    CIN1_TO_COUT1_DELAY      0.277                 17.116  2       
+n831                                                      NET DELAY                1.216                 18.332  2       
+cnt_98_add_4_25/D0->cnt_98_add_4_25/S0    SLICE_R9C31A    D0_TO_F0_DELAY           0.476                 18.808  1       
+cnt_c_N_28[23]                                            NET DELAY                0.000                 18.808  1       
+cnt_98__i24/D                                             ENDPOINT                 0.000                 18.808  1       
 
 
 Destination Clock Path
@@ -418,7 +420,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                 40.460  24      
 pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
-{cnt_57__i24/CK   cnt_57__i25/CK}                         CLOCK PIN                0.000                 45.959  1       
+{cnt_98__i24/CK   cnt_98__i25/CK}                         CLOCK PIN                0.000                 45.959  1       
                                                           Uncertainty           -(0.000)                 45.959  
                                                           Setup time            -(0.198)                 45.761  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
@@ -432,15 +434,15 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/x_58__i2/Q  (SLICE_R15C8B)
-Path End         : {timing/y__i3/SP   timing/y__i2/SP}  (SLICE_R17C8B)
+Path Begin       : timing/y__i6/Q  (SLICE_R16C6D)
+Path End         : timing/y__i7/D  (SLICE_R16C6D)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 4
-Delay Ratio      : 77.5% (route), 22.5% (logic)
+Delay Ratio      : 76.9% (route), 23.1% (logic)
 Clock Skew       : 0.000 ns 
 Setup Constraint : 39.800 ns 
-Path Slack       : 27.323 ns  (Passed)
+Path Slack       : 27.666 ns  (Passed)
 
 
 Source Clock Path
@@ -456,165 +458,23 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                  0.660  24      
 pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-{timing/x_58__i1/CK   timing/x_58__i2/CK}
-                                                          CLOCK PIN                0.000                  6.159  1       
+{timing/y__i7/CK   timing/y__i6/CK}                       CLOCK PIN                0.000                  6.159  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-timing/x_58__i2/CK->timing/x_58__i2/Q     SLICE_R15C8B    CLK_TO_Q1_DELAY          1.388                  7.547  2       
-timing/x[2]                                               NET DELAY                2.617                 10.164  2       
-timing/i1_2_lut/A->timing/i1_2_lut/Z      SLICE_R15C7A    C0_TO_F0_DELAY           0.476                 10.640  1       
-timing/n1050                                              NET DELAY                0.304                 10.944  1       
-timing/i1_4_lut_adj_5/C->timing/i1_4_lut_adj_5/Z
-                                          SLICE_R15C7A    C1_TO_F1_DELAY           0.449                 11.393  1       
-timing/n1054                                              NET DELAY                2.168                 13.561  1       
-timing/i30_4_lut/A->timing/i30_4_lut/Z    SLICE_R15C7B    D1_TO_F1_DELAY           0.449                 14.010  11      
-timing/n168                                               NET DELAY                4.428                 18.438  11      
-{timing/y__i3/SP   timing/y__i2/SP}                       ENDPOINT                 0.000                 18.438  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-                                                          CONSTRAINT               0.000                 39.800  1       
-clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                 39.800  1       
-clk_12mhz                                                 NET DELAY                0.000                 39.800  1       
-clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
-                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                 40.310  1       
-pll/clk_12mhz_c                                           NET DELAY                0.000                 40.310  1       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                           0.000                 40.310  24      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                           0.150                 40.460  24      
-pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
-{timing/y__i3/CK   timing/y__i2/CK}                       CLOCK PIN                0.000                 45.959  1       
-                                                          Uncertainty           -(0.000)                 45.959  
-                                                          Setup time            -(0.198)                 45.761  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Required Time                                                                                            45.761  
-Arrival Time                                                                                          -(18.438)  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Path Slack  (Passed)                                                                                     27.323  
-
-
-
-
-++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : timing/x_58__i2/Q  (SLICE_R15C8B)
-Path End         : {timing/y__i5/SP   timing/y__i4/SP}  (SLICE_R17C8A)
-Source Clock     : clk_pixel (R)
-Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 77.5% (route), 22.5% (logic)
-Clock Skew       : 0.000 ns 
-Setup Constraint : 39.800 ns 
-Path Slack       : 27.323 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                  0.000  1       
-clk_12mhz                                                 NET DELAY                0.000                  0.000  1       
-clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
-                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                  0.510  1       
-pll/clk_12mhz_c                                           NET DELAY                0.000                  0.510  1       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                           0.000                  0.510  24      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                           0.150                  0.660  24      
-pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-{timing/x_58__i1/CK   timing/x_58__i2/CK}
-                                                          CLOCK PIN                0.000                  6.159  1       
-
-
-Data Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-timing/x_58__i2/CK->timing/x_58__i2/Q     SLICE_R15C8B    CLK_TO_Q1_DELAY          1.388                  7.547  2       
-timing/x[2]                                               NET DELAY                2.617                 10.164  2       
-timing/i1_2_lut/A->timing/i1_2_lut/Z      SLICE_R15C7A    C0_TO_F0_DELAY           0.476                 10.640  1       
-timing/n1050                                              NET DELAY                0.304                 10.944  1       
-timing/i1_4_lut_adj_5/C->timing/i1_4_lut_adj_5/Z
-                                          SLICE_R15C7A    C1_TO_F1_DELAY           0.449                 11.393  1       
-timing/n1054                                              NET DELAY                2.168                 13.561  1       
-timing/i30_4_lut/A->timing/i30_4_lut/Z    SLICE_R15C7B    D1_TO_F1_DELAY           0.449                 14.010  11      
-timing/n168                                               NET DELAY                4.428                 18.438  11      
-{timing/y__i5/SP   timing/y__i4/SP}                       ENDPOINT                 0.000                 18.438  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-                                                          CONSTRAINT               0.000                 39.800  1       
-clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                 39.800  1       
-clk_12mhz                                                 NET DELAY                0.000                 39.800  1       
-clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
-                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                 40.310  1       
-pll/clk_12mhz_c                                           NET DELAY                0.000                 40.310  1       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                           0.000                 40.310  24      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                           0.150                 40.460  24      
-pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
-{timing/y__i5/CK   timing/y__i4/CK}                       CLOCK PIN                0.000                 45.959  1       
-                                                          Uncertainty           -(0.000)                 45.959  
-                                                          Setup time            -(0.198)                 45.761  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Required Time                                                                                            45.761  
-Arrival Time                                                                                          -(18.438)  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Path Slack  (Passed)                                                                                     27.323  
-
-
-
-
-++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : timing/x_58__i2/Q  (SLICE_R15C8B)
-Path End         : {timing/y__i7/SP   timing/y__i6/SP}  (SLICE_R17C8C)
-Source Clock     : clk_pixel (R)
-Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 77.5% (route), 22.5% (logic)
-Clock Skew       : 0.000 ns 
-Setup Constraint : 39.800 ns 
-Path Slack       : 27.323 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                  0.000  1       
-clk_12mhz                                                 NET DELAY                0.000                  0.000  1       
-clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
-                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                  0.510  1       
-pll/clk_12mhz_c                                           NET DELAY                0.000                  0.510  1       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                           0.000                  0.510  24      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                           0.150                  0.660  24      
-pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-{timing/x_58__i1/CK   timing/x_58__i2/CK}
-                                                          CLOCK PIN                0.000                  6.159  1       
-
-
-Data Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-timing/x_58__i2/CK->timing/x_58__i2/Q     SLICE_R15C8B    CLK_TO_Q1_DELAY          1.388                  7.547  2       
-timing/x[2]                                               NET DELAY                2.617                 10.164  2       
-timing/i1_2_lut/A->timing/i1_2_lut/Z      SLICE_R15C7A    C0_TO_F0_DELAY           0.476                 10.640  1       
-timing/n1050                                              NET DELAY                0.304                 10.944  1       
-timing/i1_4_lut_adj_5/C->timing/i1_4_lut_adj_5/Z
-                                          SLICE_R15C7A    C1_TO_F1_DELAY           0.449                 11.393  1       
-timing/n1054                                              NET DELAY                2.168                 13.561  1       
-timing/i30_4_lut/A->timing/i30_4_lut/Z    SLICE_R15C7B    D1_TO_F1_DELAY           0.449                 14.010  11      
-timing/n168                                               NET DELAY                4.428                 18.438  11      
-{timing/y__i7/SP   timing/y__i6/SP}                       ENDPOINT                 0.000                 18.438  1       
+timing/y__i6/CK->timing/y__i6/Q           SLICE_R16C6D    CLK_TO_Q1_DELAY          1.388                  7.547  6       
+timing/y[6]                                               NET DELAY                3.331                 10.878  6       
+timing/i1_3_lut_4_lut/A->timing/i1_3_lut_4_lut/Z
+                                          SLICE_R18C5B    A0_TO_F0_DELAY           0.449                 11.327  1       
+timing/n1172                                              NET DELAY                2.168                 13.495  1       
+timing/i1_4_lut_adj_3/C->timing/i1_4_lut_adj_3/Z
+                                          SLICE_R18C5C    D1_TO_F1_DELAY           0.449                 13.944  10      
+timing/n19                                                NET DELAY                3.675                 17.619  10      
+timing/i386_2_lut/B->timing/i386_2_lut/Z  SLICE_R16C6D    B0_TO_F0_DELAY           0.476                 18.095  1       
+timing/n18[7]                                             NET DELAY                0.000                 18.095  1       
+timing/y__i7/D                                            ENDPOINT                 0.000                 18.095  1       
 
 
 Destination Clock Path
@@ -636,24 +496,166 @@ pll/clk_pixel                                             NET DELAY             
                                                           Setup time            -(0.198)                 45.761  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
 Required Time                                                                                            45.761  
-Arrival Time                                                                                          -(18.438)  
+Arrival Time                                                                                          -(18.095)  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Path Slack  (Passed)                                                                                     27.323  
+Path Slack  (Passed)                                                                                     27.666  
+
+
+
+
+++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/y__i6/Q  (SLICE_R16C6D)
+Path End         : timing/y__i8/D  (SLICE_R16C6C)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 4
+Delay Ratio      : 76.9% (route), 23.1% (logic)
+Clock Skew       : 0.000 ns 
+Setup Constraint : 39.800 ns 
+Path Slack       : 27.666 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                  0.000  1       
+clk_12mhz                                                 NET DELAY                0.000                  0.000  1       
+clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
+                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                  0.510  1       
+pll/clk_12mhz_c                                           NET DELAY                0.000                  0.510  1       
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
+                                          PLL_PLL_R13C32                           0.000                  0.510  24      
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                           0.150                  0.660  24      
+pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
+{timing/y__i7/CK   timing/y__i6/CK}                       CLOCK PIN                0.000                  6.159  1       
+
+
+Data Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+timing/y__i6/CK->timing/y__i6/Q           SLICE_R16C6D    CLK_TO_Q1_DELAY          1.388                  7.547  6       
+timing/y[6]                                               NET DELAY                3.331                 10.878  6       
+timing/i1_3_lut_4_lut/A->timing/i1_3_lut_4_lut/Z
+                                          SLICE_R18C5B    A0_TO_F0_DELAY           0.449                 11.327  1       
+timing/n1172                                              NET DELAY                2.168                 13.495  1       
+timing/i1_4_lut_adj_3/C->timing/i1_4_lut_adj_3/Z
+                                          SLICE_R18C5C    D1_TO_F1_DELAY           0.449                 13.944  10      
+timing/n19                                                NET DELAY                3.675                 17.619  10      
+timing/i385_2_lut/B->timing/i385_2_lut/Z  SLICE_R16C6C    B0_TO_F0_DELAY           0.476                 18.095  1       
+timing/n18[8]                                             NET DELAY                0.000                 18.095  1       
+timing/y__i8/D                                            ENDPOINT                 0.000                 18.095  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+                                                          CONSTRAINT               0.000                 39.800  1       
+clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                 39.800  1       
+clk_12mhz                                                 NET DELAY                0.000                 39.800  1       
+clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
+                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                 40.310  1       
+pll/clk_12mhz_c                                           NET DELAY                0.000                 40.310  1       
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
+                                          PLL_PLL_R13C32                           0.000                 40.310  24      
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                           0.150                 40.460  24      
+pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
+{timing/y__i8/CK   timing/y__i9/CK}                       CLOCK PIN                0.000                 45.959  1       
+                                                          Uncertainty           -(0.000)                 45.959  
+                                                          Setup time            -(0.198)                 45.761  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+Required Time                                                                                            45.761  
+Arrival Time                                                                                          -(18.095)  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+Path Slack  (Passed)                                                                                     27.666  
+
+
+
+
+++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/y__i6/Q  (SLICE_R16C6D)
+Path End         : timing/y__i6/D  (SLICE_R16C6D)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 4
+Delay Ratio      : 76.8% (route), 23.2% (logic)
+Clock Skew       : 0.000 ns 
+Setup Constraint : 39.800 ns 
+Path Slack       : 27.719 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                  0.000  1       
+clk_12mhz                                                 NET DELAY                0.000                  0.000  1       
+clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
+                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                  0.510  1       
+pll/clk_12mhz_c                                           NET DELAY                0.000                  0.510  1       
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
+                                          PLL_PLL_R13C32                           0.000                  0.510  24      
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                           0.150                  0.660  24      
+pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
+{timing/y__i7/CK   timing/y__i6/CK}                       CLOCK PIN                0.000                  6.159  1       
+
+
+Data Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+timing/y__i6/CK->timing/y__i6/Q           SLICE_R16C6D    CLK_TO_Q1_DELAY          1.388                  7.547  6       
+timing/y[6]                                               NET DELAY                3.331                 10.878  6       
+timing/i1_3_lut_4_lut/A->timing/i1_3_lut_4_lut/Z
+                                          SLICE_R18C5B    A0_TO_F0_DELAY           0.449                 11.327  1       
+timing/n1172                                              NET DELAY                2.168                 13.495  1       
+timing/i1_4_lut_adj_3/C->timing/i1_4_lut_adj_3/Z
+                                          SLICE_R18C5C    D1_TO_F1_DELAY           0.449                 13.944  10      
+timing/n19                                                NET DELAY                3.622                 17.566  10      
+timing/i387_2_lut/B->timing/i387_2_lut/Z  SLICE_R16C6D    C1_TO_F1_DELAY           0.476                 18.042  1       
+timing/n18[6]                                             NET DELAY                0.000                 18.042  1       
+timing/y__i6/D                                            ENDPOINT                 0.000                 18.042  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+                                                          CONSTRAINT               0.000                 39.800  1       
+clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                 39.800  1       
+clk_12mhz                                                 NET DELAY                0.000                 39.800  1       
+clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
+                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                 40.310  1       
+pll/clk_12mhz_c                                           NET DELAY                0.000                 40.310  1       
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
+                                          PLL_PLL_R13C32                           0.000                 40.310  24      
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                           0.150                 40.460  24      
+pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
+{timing/y__i7/CK   timing/y__i6/CK}                       CLOCK PIN                0.000                 45.959  1       
+                                                          Uncertainty           -(0.000)                 45.959  
+                                                          Setup time            -(0.198)                 45.761  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+Required Time                                                                                            45.761  
+Arrival Time                                                                                          -(18.042)  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+Path Slack  (Passed)                                                                                     27.719  
 
 
 
 
 ++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/x_58__i2/Q  (SLICE_R15C8B)
-Path End         : {timing/x_58__i7/SR   timing/x_58__i8/SR}  (SLICE_R15C9A)
+Path Begin       : timing/y__i6/Q  (SLICE_R16C6D)
+Path End         : timing/y__i9/D  (SLICE_R16C6C)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 4
-Delay Ratio      : 76.4% (route), 23.6% (logic)
+Delay Ratio      : 76.8% (route), 23.2% (logic)
 Clock Skew       : 0.000 ns 
 Setup Constraint : 39.800 ns 
-Path Slack       : 27.574 ns  (Passed)
+Path Slack       : 27.719 ns  (Passed)
 
 
 Source Clock Path
@@ -669,24 +671,23 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                  0.660  24      
 pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-{timing/x_58__i1/CK   timing/x_58__i2/CK}
-                                                          CLOCK PIN                0.000                  6.159  1       
+{timing/y__i7/CK   timing/y__i6/CK}                       CLOCK PIN                0.000                  6.159  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-timing/x_58__i2/CK->timing/x_58__i2/Q     SLICE_R15C8B    CLK_TO_Q1_DELAY          1.388                  7.547  2       
-timing/x[2]                                               NET DELAY                2.617                 10.164  2       
-timing/i1_2_lut/A->timing/i1_2_lut/Z      SLICE_R15C7A    C0_TO_F0_DELAY           0.476                 10.640  1       
-timing/n1050                                              NET DELAY                0.304                 10.944  1       
-timing/i1_4_lut_adj_5/C->timing/i1_4_lut_adj_5/Z
-                                          SLICE_R15C7A    C1_TO_F1_DELAY           0.449                 11.393  1       
-timing/n1054                                              NET DELAY                2.168                 13.561  1       
-timing/i30_4_lut/A->timing/i30_4_lut/Z    SLICE_R15C7B    D1_TO_F1_DELAY           0.449                 14.010  11      
-timing/n168                                               NET DELAY                3.846                 17.856  11      
-{timing/x_58__i7/SR   timing/x_58__i8/SR}
-                                                          ENDPOINT                 0.000                 17.856  1       
+timing/y__i6/CK->timing/y__i6/Q           SLICE_R16C6D    CLK_TO_Q1_DELAY          1.388                  7.547  6       
+timing/y[6]                                               NET DELAY                3.331                 10.878  6       
+timing/i1_3_lut_4_lut/A->timing/i1_3_lut_4_lut/Z
+                                          SLICE_R18C5B    A0_TO_F0_DELAY           0.449                 11.327  1       
+timing/n1172                                              NET DELAY                2.168                 13.495  1       
+timing/i1_4_lut_adj_3/C->timing/i1_4_lut_adj_3/Z
+                                          SLICE_R18C5C    D1_TO_F1_DELAY           0.449                 13.944  10      
+timing/n19                                                NET DELAY                3.622                 17.566  10      
+timing/i384_2_lut/B->timing/i384_2_lut/Z  SLICE_R16C6C    C1_TO_F1_DELAY           0.476                 18.042  1       
+timing/n18[9]                                             NET DELAY                0.000                 18.042  1       
+timing/y__i9/D                                            ENDPOINT                 0.000                 18.042  1       
 
 
 Destination Clock Path
@@ -703,94 +704,22 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                 40.460  24      
 pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
-{timing/x_58__i7/CK   timing/x_58__i8/CK}
-                                                          CLOCK PIN                0.000                 45.959  1       
+{timing/y__i8/CK   timing/y__i9/CK}                       CLOCK PIN                0.000                 45.959  1       
                                                           Uncertainty           -(0.000)                 45.959  
-                                                          Setup time            -(0.529)                 45.430  
+                                                          Setup time            -(0.198)                 45.761  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Required Time                                                                                            45.430  
-Arrival Time                                                                                          -(17.856)  
+Required Time                                                                                            45.761  
+Arrival Time                                                                                          -(18.042)  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Path Slack  (Passed)                                                                                     27.574  
+Path Slack  (Passed)                                                                                     27.719  
 
 
 
 
 ++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/x_58__i2/Q  (SLICE_R15C8B)
-Path End         : timing/x_58__i9/SR  (SLICE_R15C9B)
-Source Clock     : clk_pixel (R)
-Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 76.4% (route), 23.6% (logic)
-Clock Skew       : 0.000 ns 
-Setup Constraint : 39.800 ns 
-Path Slack       : 27.574 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                  0.000  1       
-clk_12mhz                                                 NET DELAY                0.000                  0.000  1       
-clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
-                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                  0.510  1       
-pll/clk_12mhz_c                                           NET DELAY                0.000                  0.510  1       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                           0.000                  0.510  24      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                           0.150                  0.660  24      
-pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-{timing/x_58__i1/CK   timing/x_58__i2/CK}
-                                                          CLOCK PIN                0.000                  6.159  1       
-
-
-Data Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-timing/x_58__i2/CK->timing/x_58__i2/Q     SLICE_R15C8B    CLK_TO_Q1_DELAY          1.388                  7.547  2       
-timing/x[2]                                               NET DELAY                2.617                 10.164  2       
-timing/i1_2_lut/A->timing/i1_2_lut/Z      SLICE_R15C7A    C0_TO_F0_DELAY           0.476                 10.640  1       
-timing/n1050                                              NET DELAY                0.304                 10.944  1       
-timing/i1_4_lut_adj_5/C->timing/i1_4_lut_adj_5/Z
-                                          SLICE_R15C7A    C1_TO_F1_DELAY           0.449                 11.393  1       
-timing/n1054                                              NET DELAY                2.168                 13.561  1       
-timing/i30_4_lut/A->timing/i30_4_lut/Z    SLICE_R15C7B    D1_TO_F1_DELAY           0.449                 14.010  11      
-timing/n168                                               NET DELAY                3.846                 17.856  11      
-timing/x_58__i9/SR                                        ENDPOINT                 0.000                 17.856  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-                                                          CONSTRAINT               0.000                 39.800  1       
-clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                 39.800  1       
-clk_12mhz                                                 NET DELAY                0.000                 39.800  1       
-clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
-                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                 40.310  1       
-pll/clk_12mhz_c                                           NET DELAY                0.000                 40.310  1       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                           0.000                 40.310  24      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                           0.150                 40.460  24      
-pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
-timing/x_58__i9/CK                                        CLOCK PIN                0.000                 45.959  1       
-                                                          Uncertainty           -(0.000)                 45.959  
-                                                          Setup time            -(0.529)                 45.430  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Required Time                                                                                            45.430  
-Arrival Time                                                                                          -(17.856)  
-----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Path Slack  (Passed)                                                                                     27.574  
-
-
-
-
-++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : cnt_57__i1/Q  (SLICE_R11C28A)
-Path End         : cnt_57__i23/D  (SLICE_R11C30D)
+Path Begin       : cnt_98__i1/Q  (SLICE_R9C28A)
+Path End         : cnt_98__i23/D  (SLICE_R9C30D)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 24
@@ -813,61 +742,61 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                  0.660  24      
 pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-cnt_57__i1/CK                                             CLOCK PIN                0.000                  6.159  1       
+cnt_98__i1/CK                                             CLOCK PIN                0.000                  6.159  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-cnt_57__i1/CK->cnt_57__i1/Q               SLICE_R11C28A   CLK_TO_Q1_DELAY          1.388                  7.547  1       
+cnt_98__i1/CK->cnt_98__i1/Q               SLICE_R9C28A    CLK_TO_Q1_DELAY          1.388                  7.547  1       
 n25                                                       NET DELAY                2.022                  9.569  1       
-cnt_57_add_4_1/C1->cnt_57_add_4_1/CO1     SLICE_R11C28A   C1_TO_COUT1_DELAY        0.343                  9.912  2       
-n689                                                      NET DELAY                0.000                  9.912  2       
-cnt_57_add_4_3/CI0->cnt_57_add_4_3/CO0    SLICE_R11C28B   CIN0_TO_COUT0_DELAY      0.277                 10.189  2       
-n1652                                                     NET DELAY                0.000                 10.189  2       
-cnt_57_add_4_3/CI1->cnt_57_add_4_3/CO1    SLICE_R11C28B   CIN1_TO_COUT1_DELAY      0.277                 10.466  2       
-n691                                                      NET DELAY                0.000                 10.466  2       
-cnt_57_add_4_5/CI0->cnt_57_add_4_5/CO0    SLICE_R11C28C   CIN0_TO_COUT0_DELAY      0.277                 10.743  2       
-n1655                                                     NET DELAY                0.000                 10.743  2       
-cnt_57_add_4_5/CI1->cnt_57_add_4_5/CO1    SLICE_R11C28C   CIN1_TO_COUT1_DELAY      0.277                 11.020  2       
-n693                                                      NET DELAY                0.000                 11.020  2       
-cnt_57_add_4_7/CI0->cnt_57_add_4_7/CO0    SLICE_R11C28D   CIN0_TO_COUT0_DELAY      0.277                 11.297  2       
-n1658                                                     NET DELAY                0.000                 11.297  2       
-cnt_57_add_4_7/CI1->cnt_57_add_4_7/CO1    SLICE_R11C28D   CIN1_TO_COUT1_DELAY      0.277                 11.574  2       
-n695                                                      NET DELAY                0.555                 12.129  2       
-cnt_57_add_4_9/CI0->cnt_57_add_4_9/CO0    SLICE_R11C29A   CIN0_TO_COUT0_DELAY      0.277                 12.406  2       
-n1661                                                     NET DELAY                0.000                 12.406  2       
-cnt_57_add_4_9/CI1->cnt_57_add_4_9/CO1    SLICE_R11C29A   CIN1_TO_COUT1_DELAY      0.277                 12.683  2       
-n697                                                      NET DELAY                0.000                 12.683  2       
-cnt_57_add_4_11/CI0->cnt_57_add_4_11/CO0  SLICE_R11C29B   CIN0_TO_COUT0_DELAY      0.277                 12.960  2       
-n1664                                                     NET DELAY                0.000                 12.960  2       
-cnt_57_add_4_11/CI1->cnt_57_add_4_11/CO1  SLICE_R11C29B   CIN1_TO_COUT1_DELAY      0.277                 13.237  2       
-n699                                                      NET DELAY                0.000                 13.237  2       
-cnt_57_add_4_13/CI0->cnt_57_add_4_13/CO0  SLICE_R11C29C   CIN0_TO_COUT0_DELAY      0.277                 13.514  2       
-n1667                                                     NET DELAY                0.000                 13.514  2       
-cnt_57_add_4_13/CI1->cnt_57_add_4_13/CO1  SLICE_R11C29C   CIN1_TO_COUT1_DELAY      0.277                 13.791  2       
-n701                                                      NET DELAY                0.000                 13.791  2       
-cnt_57_add_4_15/CI0->cnt_57_add_4_15/CO0  SLICE_R11C29D   CIN0_TO_COUT0_DELAY      0.277                 14.068  2       
-n1670                                                     NET DELAY                0.000                 14.068  2       
-cnt_57_add_4_15/CI1->cnt_57_add_4_15/CO1  SLICE_R11C29D   CIN1_TO_COUT1_DELAY      0.277                 14.345  2       
-n703                                                      NET DELAY                0.555                 14.900  2       
-cnt_57_add_4_17/CI0->cnt_57_add_4_17/CO0  SLICE_R11C30A   CIN0_TO_COUT0_DELAY      0.277                 15.177  2       
-n1673                                                     NET DELAY                0.000                 15.177  2       
-cnt_57_add_4_17/CI1->cnt_57_add_4_17/CO1  SLICE_R11C30A   CIN1_TO_COUT1_DELAY      0.277                 15.454  2       
-n705                                                      NET DELAY                0.000                 15.454  2       
-cnt_57_add_4_19/CI0->cnt_57_add_4_19/CO0  SLICE_R11C30B   CIN0_TO_COUT0_DELAY      0.277                 15.731  2       
-n1676                                                     NET DELAY                0.000                 15.731  2       
-cnt_57_add_4_19/CI1->cnt_57_add_4_19/CO1  SLICE_R11C30B   CIN1_TO_COUT1_DELAY      0.277                 16.008  2       
-n707                                                      NET DELAY                0.000                 16.008  2       
-cnt_57_add_4_21/CI0->cnt_57_add_4_21/CO0  SLICE_R11C30C   CIN0_TO_COUT0_DELAY      0.277                 16.285  2       
-n1679                                                     NET DELAY                0.000                 16.285  2       
-cnt_57_add_4_21/CI1->cnt_57_add_4_21/CO1  SLICE_R11C30C   CIN1_TO_COUT1_DELAY      0.277                 16.562  2       
-n709                                                      NET DELAY                0.000                 16.562  2       
-cnt_57_add_4_23/CI0->cnt_57_add_4_23/CO0  SLICE_R11C30D   CIN0_TO_COUT0_DELAY      0.277                 16.839  2       
-n1682                                                     NET DELAY                0.661                 17.500  2       
-cnt_57_add_4_23/D1->cnt_57_add_4_23/S1    SLICE_R11C30D   D1_TO_F1_DELAY           0.476                 17.976  1       
-cnt_c_N_26[22]                                            NET DELAY                0.000                 17.976  1       
-cnt_57__i23/D                                             ENDPOINT                 0.000                 17.976  1       
+cnt_98_add_4_1/C1->cnt_98_add_4_1/CO1     SLICE_R9C28A    C1_TO_COUT1_DELAY        0.343                  9.912  2       
+n809                                                      NET DELAY                0.000                  9.912  2       
+cnt_98_add_4_3/CI0->cnt_98_add_4_3/CO0    SLICE_R9C28B    CIN0_TO_COUT0_DELAY      0.277                 10.189  2       
+n1832                                                     NET DELAY                0.000                 10.189  2       
+cnt_98_add_4_3/CI1->cnt_98_add_4_3/CO1    SLICE_R9C28B    CIN1_TO_COUT1_DELAY      0.277                 10.466  2       
+n811                                                      NET DELAY                0.000                 10.466  2       
+cnt_98_add_4_5/CI0->cnt_98_add_4_5/CO0    SLICE_R9C28C    CIN0_TO_COUT0_DELAY      0.277                 10.743  2       
+n1835                                                     NET DELAY                0.000                 10.743  2       
+cnt_98_add_4_5/CI1->cnt_98_add_4_5/CO1    SLICE_R9C28C    CIN1_TO_COUT1_DELAY      0.277                 11.020  2       
+n813                                                      NET DELAY                0.000                 11.020  2       
+cnt_98_add_4_7/CI0->cnt_98_add_4_7/CO0    SLICE_R9C28D    CIN0_TO_COUT0_DELAY      0.277                 11.297  2       
+n1838                                                     NET DELAY                0.000                 11.297  2       
+cnt_98_add_4_7/CI1->cnt_98_add_4_7/CO1    SLICE_R9C28D    CIN1_TO_COUT1_DELAY      0.277                 11.574  2       
+n815                                                      NET DELAY                0.555                 12.129  2       
+cnt_98_add_4_9/CI0->cnt_98_add_4_9/CO0    SLICE_R9C29A    CIN0_TO_COUT0_DELAY      0.277                 12.406  2       
+n1841                                                     NET DELAY                0.000                 12.406  2       
+cnt_98_add_4_9/CI1->cnt_98_add_4_9/CO1    SLICE_R9C29A    CIN1_TO_COUT1_DELAY      0.277                 12.683  2       
+n817                                                      NET DELAY                0.000                 12.683  2       
+cnt_98_add_4_11/CI0->cnt_98_add_4_11/CO0  SLICE_R9C29B    CIN0_TO_COUT0_DELAY      0.277                 12.960  2       
+n1844                                                     NET DELAY                0.000                 12.960  2       
+cnt_98_add_4_11/CI1->cnt_98_add_4_11/CO1  SLICE_R9C29B    CIN1_TO_COUT1_DELAY      0.277                 13.237  2       
+n819                                                      NET DELAY                0.000                 13.237  2       
+cnt_98_add_4_13/CI0->cnt_98_add_4_13/CO0  SLICE_R9C29C    CIN0_TO_COUT0_DELAY      0.277                 13.514  2       
+n1847                                                     NET DELAY                0.000                 13.514  2       
+cnt_98_add_4_13/CI1->cnt_98_add_4_13/CO1  SLICE_R9C29C    CIN1_TO_COUT1_DELAY      0.277                 13.791  2       
+n821                                                      NET DELAY                0.000                 13.791  2       
+cnt_98_add_4_15/CI0->cnt_98_add_4_15/CO0  SLICE_R9C29D    CIN0_TO_COUT0_DELAY      0.277                 14.068  2       
+n1850                                                     NET DELAY                0.000                 14.068  2       
+cnt_98_add_4_15/CI1->cnt_98_add_4_15/CO1  SLICE_R9C29D    CIN1_TO_COUT1_DELAY      0.277                 14.345  2       
+n823                                                      NET DELAY                0.555                 14.900  2       
+cnt_98_add_4_17/CI0->cnt_98_add_4_17/CO0  SLICE_R9C30A    CIN0_TO_COUT0_DELAY      0.277                 15.177  2       
+n1853                                                     NET DELAY                0.000                 15.177  2       
+cnt_98_add_4_17/CI1->cnt_98_add_4_17/CO1  SLICE_R9C30A    CIN1_TO_COUT1_DELAY      0.277                 15.454  2       
+n825                                                      NET DELAY                0.000                 15.454  2       
+cnt_98_add_4_19/CI0->cnt_98_add_4_19/CO0  SLICE_R9C30B    CIN0_TO_COUT0_DELAY      0.277                 15.731  2       
+n1856                                                     NET DELAY                0.000                 15.731  2       
+cnt_98_add_4_19/CI1->cnt_98_add_4_19/CO1  SLICE_R9C30B    CIN1_TO_COUT1_DELAY      0.277                 16.008  2       
+n827                                                      NET DELAY                0.000                 16.008  2       
+cnt_98_add_4_21/CI0->cnt_98_add_4_21/CO0  SLICE_R9C30C    CIN0_TO_COUT0_DELAY      0.277                 16.285  2       
+n1859                                                     NET DELAY                0.000                 16.285  2       
+cnt_98_add_4_21/CI1->cnt_98_add_4_21/CO1  SLICE_R9C30C    CIN1_TO_COUT1_DELAY      0.277                 16.562  2       
+n829                                                      NET DELAY                0.000                 16.562  2       
+cnt_98_add_4_23/CI0->cnt_98_add_4_23/CO0  SLICE_R9C30D    CIN0_TO_COUT0_DELAY      0.277                 16.839  2       
+n1862                                                     NET DELAY                0.661                 17.500  2       
+cnt_98_add_4_23/D1->cnt_98_add_4_23/S1    SLICE_R9C30D    D1_TO_F1_DELAY           0.476                 17.976  1       
+cnt_c_N_28[22]                                            NET DELAY                0.000                 17.976  1       
+cnt_98__i23/D                                             ENDPOINT                 0.000                 17.976  1       
 
 
 Destination Clock Path
@@ -884,7 +813,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                 40.460  24      
 pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
-{cnt_57__i22/CK   cnt_57__i23/CK}                         CLOCK PIN                0.000                 45.959  1       
+{cnt_98__i22/CK   cnt_98__i23/CK}                         CLOCK PIN                0.000                 45.959  1       
                                                           Uncertainty           -(0.000)                 45.959  
                                                           Setup time            -(0.198)                 45.761  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
@@ -896,17 +825,17 @@ Path Slack  (Passed)                                                            
 
 
 
-++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/y__i0/Q  (SLICE_R16C9D)
-Path End         : timing/y__i7/D  (SLICE_R17C8C)
+Path Begin       : cnt_98__i1/Q  (SLICE_R9C28A)
+Path End         : cnt_98__i22/D  (SLICE_R9C30D)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 76.3% (route), 23.7% (logic)
+Logic Level      : 23
+Delay Ratio      : 32.9% (route), 67.1% (logic)
 Clock Skew       : 0.000 ns 
 Setup Constraint : 39.800 ns 
-Path Slack       : 27.944 ns  (Passed)
+Path Slack       : 28.062 ns  (Passed)
 
 
 Source Clock Path
@@ -922,23 +851,127 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                  0.660  24      
 pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-{timing/y__i1/CK   timing/y__i0/CK}                       CLOCK PIN                0.000                  6.159  1       
+cnt_98__i1/CK                                             CLOCK PIN                0.000                  6.159  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-timing/y__i0/CK->timing/y__i0/Q           SLICE_R16C9D    CLK_TO_Q1_DELAY          1.388                  7.547  2       
-timing/y[0]                                               NET DELAY                2.670                 10.217  2       
-timing/i1_4_lut_adj_2/D->timing/i1_4_lut_adj_2/Z
-                                          SLICE_R16C7B    B0_TO_F0_DELAY           0.449                 10.666  1       
-timing/n1042                                              NET DELAY                3.741                 14.407  1       
-timing/i1_4_lut_adj_3/A->timing/i1_4_lut_adj_3/Z
-                                          SLICE_R17C9A    A1_TO_F1_DELAY           0.449                 14.856  10      
-timing/n19                                                NET DELAY                2.485                 17.341  10      
-timing/i259_2_lut/B->timing/i259_2_lut/Z  SLICE_R17C8C    B0_TO_F0_DELAY           0.476                 17.817  1       
-timing/n18[7]                                             NET DELAY                0.000                 17.817  1       
-timing/y__i7/D                                            ENDPOINT                 0.000                 17.817  1       
+cnt_98__i1/CK->cnt_98__i1/Q               SLICE_R9C28A    CLK_TO_Q1_DELAY          1.388                  7.547  1       
+n25                                                       NET DELAY                2.022                  9.569  1       
+cnt_98_add_4_1/C1->cnt_98_add_4_1/CO1     SLICE_R9C28A    C1_TO_COUT1_DELAY        0.343                  9.912  2       
+n809                                                      NET DELAY                0.000                  9.912  2       
+cnt_98_add_4_3/CI0->cnt_98_add_4_3/CO0    SLICE_R9C28B    CIN0_TO_COUT0_DELAY      0.277                 10.189  2       
+n1832                                                     NET DELAY                0.000                 10.189  2       
+cnt_98_add_4_3/CI1->cnt_98_add_4_3/CO1    SLICE_R9C28B    CIN1_TO_COUT1_DELAY      0.277                 10.466  2       
+n811                                                      NET DELAY                0.000                 10.466  2       
+cnt_98_add_4_5/CI0->cnt_98_add_4_5/CO0    SLICE_R9C28C    CIN0_TO_COUT0_DELAY      0.277                 10.743  2       
+n1835                                                     NET DELAY                0.000                 10.743  2       
+cnt_98_add_4_5/CI1->cnt_98_add_4_5/CO1    SLICE_R9C28C    CIN1_TO_COUT1_DELAY      0.277                 11.020  2       
+n813                                                      NET DELAY                0.000                 11.020  2       
+cnt_98_add_4_7/CI0->cnt_98_add_4_7/CO0    SLICE_R9C28D    CIN0_TO_COUT0_DELAY      0.277                 11.297  2       
+n1838                                                     NET DELAY                0.000                 11.297  2       
+cnt_98_add_4_7/CI1->cnt_98_add_4_7/CO1    SLICE_R9C28D    CIN1_TO_COUT1_DELAY      0.277                 11.574  2       
+n815                                                      NET DELAY                0.555                 12.129  2       
+cnt_98_add_4_9/CI0->cnt_98_add_4_9/CO0    SLICE_R9C29A    CIN0_TO_COUT0_DELAY      0.277                 12.406  2       
+n1841                                                     NET DELAY                0.000                 12.406  2       
+cnt_98_add_4_9/CI1->cnt_98_add_4_9/CO1    SLICE_R9C29A    CIN1_TO_COUT1_DELAY      0.277                 12.683  2       
+n817                                                      NET DELAY                0.000                 12.683  2       
+cnt_98_add_4_11/CI0->cnt_98_add_4_11/CO0  SLICE_R9C29B    CIN0_TO_COUT0_DELAY      0.277                 12.960  2       
+n1844                                                     NET DELAY                0.000                 12.960  2       
+cnt_98_add_4_11/CI1->cnt_98_add_4_11/CO1  SLICE_R9C29B    CIN1_TO_COUT1_DELAY      0.277                 13.237  2       
+n819                                                      NET DELAY                0.000                 13.237  2       
+cnt_98_add_4_13/CI0->cnt_98_add_4_13/CO0  SLICE_R9C29C    CIN0_TO_COUT0_DELAY      0.277                 13.514  2       
+n1847                                                     NET DELAY                0.000                 13.514  2       
+cnt_98_add_4_13/CI1->cnt_98_add_4_13/CO1  SLICE_R9C29C    CIN1_TO_COUT1_DELAY      0.277                 13.791  2       
+n821                                                      NET DELAY                0.000                 13.791  2       
+cnt_98_add_4_15/CI0->cnt_98_add_4_15/CO0  SLICE_R9C29D    CIN0_TO_COUT0_DELAY      0.277                 14.068  2       
+n1850                                                     NET DELAY                0.000                 14.068  2       
+cnt_98_add_4_15/CI1->cnt_98_add_4_15/CO1  SLICE_R9C29D    CIN1_TO_COUT1_DELAY      0.277                 14.345  2       
+n823                                                      NET DELAY                0.555                 14.900  2       
+cnt_98_add_4_17/CI0->cnt_98_add_4_17/CO0  SLICE_R9C30A    CIN0_TO_COUT0_DELAY      0.277                 15.177  2       
+n1853                                                     NET DELAY                0.000                 15.177  2       
+cnt_98_add_4_17/CI1->cnt_98_add_4_17/CO1  SLICE_R9C30A    CIN1_TO_COUT1_DELAY      0.277                 15.454  2       
+n825                                                      NET DELAY                0.000                 15.454  2       
+cnt_98_add_4_19/CI0->cnt_98_add_4_19/CO0  SLICE_R9C30B    CIN0_TO_COUT0_DELAY      0.277                 15.731  2       
+n1856                                                     NET DELAY                0.000                 15.731  2       
+cnt_98_add_4_19/CI1->cnt_98_add_4_19/CO1  SLICE_R9C30B    CIN1_TO_COUT1_DELAY      0.277                 16.008  2       
+n827                                                      NET DELAY                0.000                 16.008  2       
+cnt_98_add_4_21/CI0->cnt_98_add_4_21/CO0  SLICE_R9C30C    CIN0_TO_COUT0_DELAY      0.277                 16.285  2       
+n1859                                                     NET DELAY                0.000                 16.285  2       
+cnt_98_add_4_21/CI1->cnt_98_add_4_21/CO1  SLICE_R9C30C    CIN1_TO_COUT1_DELAY      0.277                 16.562  2       
+n829                                                      NET DELAY                0.661                 17.223  2       
+cnt_98_add_4_23/D0->cnt_98_add_4_23/S0    SLICE_R9C30D    D0_TO_F0_DELAY           0.476                 17.699  1       
+cnt_c_N_28[21]                                            NET DELAY                0.000                 17.699  1       
+cnt_98__i22/D                                             ENDPOINT                 0.000                 17.699  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+                                                          CONSTRAINT               0.000                 39.800  1       
+clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                 39.800  1       
+clk_12mhz                                                 NET DELAY                0.000                 39.800  1       
+clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
+                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                 40.310  1       
+pll/clk_12mhz_c                                           NET DELAY                0.000                 40.310  1       
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
+                                          PLL_PLL_R13C32                           0.000                 40.310  24      
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                           0.150                 40.460  24      
+pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
+{cnt_98__i22/CK   cnt_98__i23/CK}                         CLOCK PIN                0.000                 45.959  1       
+                                                          Uncertainty           -(0.000)                 45.959  
+                                                          Setup time            -(0.198)                 45.761  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+Required Time                                                                                            45.761  
+Arrival Time                                                                                          -(17.699)  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+Path Slack  (Passed)                                                                                     28.062  
+
+
+
+
+++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_99__i9/Q  (SLICE_R17C4B)
+Path End         : {timing/y__i7/SP   timing/y__i6/SP}  (SLICE_R16C6D)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 3
+Delay Ratio      : 80.0% (route), 20.0% (logic)
+Clock Skew       : 0.000 ns 
+Setup Constraint : 39.800 ns 
+Path Slack       : 28.183 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+clk_12mhz                                 vga_top         CLOCK LATENCY            0.000                  0.000  1       
+clk_12mhz                                                 NET DELAY                0.000                  0.000  1       
+clk_12mhz_pad.bb_inst/B->clk_12mhz_pad.bb_inst/O
+                                          PIO_35          IOPAD_TO_PADDI_DELAY     0.510                  0.510  1       
+pll/clk_12mhz_c                                           NET DELAY                0.000                  0.510  1       
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
+                                          PLL_PLL_R13C32                           0.000                  0.510  24      
+pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                           0.150                  0.660  24      
+pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
+timing/x_99__i9/CK                                        CLOCK PIN                0.000                  6.159  1       
+
+
+Data Path
+Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
+----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
+timing/x_99__i9/CK->timing/x_99__i9/Q     SLICE_R17C4B    CLK_TO_Q0_DELAY          1.388                  7.547  5       
+timing/x[9]                                               NET DELAY                2.141                  9.688  5       
+timing/i1_4_lut_adj_5/D->timing/i1_4_lut_adj_5/Z
+                                          SLICE_R18C3B    A1_TO_F1_DELAY           0.449                 10.137  1       
+timing/n1157                                              NET DELAY                2.485                 12.622  1       
+timing/i31_4_lut/C->timing/i31_4_lut/Z    SLICE_R18C3A    B1_TO_F1_DELAY           0.449                 13.071  11      
+timing/n136                                               NET DELAY                4.507                 17.578  11      
+{timing/y__i7/SP   timing/y__i6/SP}                       ENDPOINT                 0.000                 17.578  1       
 
 
 Destination Clock Path
@@ -960,24 +993,24 @@ pll/clk_pixel                                             NET DELAY             
                                                           Setup time            -(0.198)                 45.761  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
 Required Time                                                                                            45.761  
-Arrival Time                                                                                          -(17.817)  
+Arrival Time                                                                                          -(17.578)  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Path Slack  (Passed)                                                                                     27.944  
+Path Slack  (Passed)                                                                                     28.183  
 
 
 
 
 ++++ Path 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/y__i0/Q  (SLICE_R16C9D)
-Path End         : timing/y__i9/D  (SLICE_R16C9C)
+Path Begin       : timing/x_99__i9/Q  (SLICE_R17C4B)
+Path End         : {timing/y__i8/SP   timing/y__i9/SP}  (SLICE_R16C6C)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 76.3% (route), 23.7% (logic)
+Logic Level      : 3
+Delay Ratio      : 80.0% (route), 20.0% (logic)
 Clock Skew       : 0.000 ns 
 Setup Constraint : 39.800 ns 
-Path Slack       : 27.944 ns  (Passed)
+Path Slack       : 28.183 ns  (Passed)
 
 
 Source Clock Path
@@ -993,23 +1026,20 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                  0.660  24      
 pll/clk_pixel                                             NET DELAY                5.499                  6.159  24      
-{timing/y__i1/CK   timing/y__i0/CK}                       CLOCK PIN                0.000                  6.159  1       
+timing/x_99__i9/CK                                        CLOCK PIN                0.000                  6.159  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-timing/y__i0/CK->timing/y__i0/Q           SLICE_R16C9D    CLK_TO_Q1_DELAY          1.388                  7.547  2       
-timing/y[0]                                               NET DELAY                2.670                 10.217  2       
-timing/i1_4_lut_adj_2/D->timing/i1_4_lut_adj_2/Z
-                                          SLICE_R16C7B    B0_TO_F0_DELAY           0.449                 10.666  1       
-timing/n1042                                              NET DELAY                3.741                 14.407  1       
-timing/i1_4_lut_adj_3/A->timing/i1_4_lut_adj_3/Z
-                                          SLICE_R17C9A    A1_TO_F1_DELAY           0.449                 14.856  10      
-timing/n19                                                NET DELAY                2.485                 17.341  10      
-timing/i257_2_lut/B->timing/i257_2_lut/Z  SLICE_R16C9C    B0_TO_F0_DELAY           0.476                 17.817  1       
-timing/n18[9]                                             NET DELAY                0.000                 17.817  1       
-timing/y__i9/D                                            ENDPOINT                 0.000                 17.817  1       
+timing/x_99__i9/CK->timing/x_99__i9/Q     SLICE_R17C4B    CLK_TO_Q0_DELAY          1.388                  7.547  5       
+timing/x[9]                                               NET DELAY                2.141                  9.688  5       
+timing/i1_4_lut_adj_5/D->timing/i1_4_lut_adj_5/Z
+                                          SLICE_R18C3B    A1_TO_F1_DELAY           0.449                 10.137  1       
+timing/n1157                                              NET DELAY                2.485                 12.622  1       
+timing/i31_4_lut/C->timing/i31_4_lut/Z    SLICE_R18C3A    B1_TO_F1_DELAY           0.449                 13.071  11      
+timing/n136                                               NET DELAY                4.507                 17.578  11      
+{timing/y__i8/SP   timing/y__i9/SP}                       ENDPOINT                 0.000                 17.578  1       
 
 
 Destination Clock Path
@@ -1026,14 +1056,14 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                           0.150                 40.460  24      
 pll/clk_pixel                                             NET DELAY                5.499                 45.959  24      
-{timing/y__i9/CK   timing/y__i8/CK}                       CLOCK PIN                0.000                 45.959  1       
+{timing/y__i8/CK   timing/y__i9/CK}                       CLOCK PIN                0.000                 45.959  1       
                                                           Uncertainty           -(0.000)                 45.959  
                                                           Setup time            -(0.198)                 45.761  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
 Required Time                                                                                            45.761  
-Arrival Time                                                                                          -(17.817)  
+Arrival Time                                                                                          -(17.578)  
 ----------------------------------------  --------------  --------------------  --------  ---------------------  ------  
-Path Slack  (Passed)                                                                                     27.944  
+Path Slack  (Passed)                                                                                     28.183  
 
 
 
@@ -1055,16 +1085,16 @@ Path Slack  (Passed)                                                            
 -------------------------------------------------------
           Listing 10 End Points          |    Slack    
 -------------------------------------------------------
-cnt_57__i22/D                            |    1.913 ns 
-cnt_57__i23/D                            |    1.913 ns 
-cnt_57__i24/D                            |    1.913 ns 
-cnt_57__i25/D                            |    1.913 ns 
-cnt_57__i14/D                            |    1.913 ns 
-cnt_57__i15/D                            |    1.913 ns 
-cnt_57__i8/D                             |    1.913 ns 
-cnt_57__i9/D                             |    1.913 ns 
-cnt_57__i16/D                            |    1.913 ns 
-cnt_57__i17/D                            |    1.913 ns 
+cnt_98__i2/D                             |    1.913 ns 
+cnt_98__i3/D                             |    1.913 ns 
+cnt_98__i14/D                            |    1.913 ns 
+cnt_98__i15/D                            |    1.913 ns 
+cnt_98__i24/D                            |    1.913 ns 
+cnt_98__i25/D                            |    1.913 ns 
+cnt_98__i16/D                            |    1.913 ns 
+cnt_98__i17/D                            |    1.913 ns 
+cnt_98__i18/D                            |    1.913 ns 
+cnt_98__i19/D                            |    1.913 ns 
 -------------------------------------------------------
                                          |             
 Hold # of endpoints with negative slack: |           0 
@@ -1087,8 +1117,8 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i22/Q  (SLICE_R11C30D)
-Path End         : cnt_57__i22/D  (SLICE_R11C30D)
+Path Begin       : cnt_98__i2/Q  (SLICE_R9C28B)
+Path End         : cnt_98__i2/D  (SLICE_R9C28B)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1111,17 +1141,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i22/CK   cnt_57__i23/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i2/CK   cnt_98__i3/CK}                           CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i22/CK->cnt_57__i22/Q             SLICE_R11C30D   CLK_TO_Q0_DELAY       0.779                  4.295  1       
-n4                                                        NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_23/C0->cnt_57_add_4_23/S0    SLICE_R11C30D   C0_TO_F0_DELAY        0.252                  5.429  1       
-cnt_c_N_26[21]                                            NET DELAY             0.000                  5.429  1       
-cnt_57__i22/D                                             ENDPOINT              0.000                  5.429  1       
+cnt_98__i2/CK->cnt_98__i2/Q               SLICE_R9C28B    CLK_TO_Q0_DELAY       0.779                  4.295  1       
+n24                                                       NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_3/C0->cnt_98_add_4_3/S0      SLICE_R9C28B    C0_TO_F0_DELAY        0.252                  5.429  1       
+cnt_c_N_28[1]                                             NET DELAY             0.000                  5.429  1       
+cnt_98__i2/D                                              ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1138,7 +1168,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i22/CK   cnt_57__i23/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i2/CK   cnt_98__i3/CK}                           CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1152,8 +1182,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i23/Q  (SLICE_R11C30D)
-Path End         : cnt_57__i23/D  (SLICE_R11C30D)
+Path Begin       : cnt_98__i3/Q  (SLICE_R9C28B)
+Path End         : cnt_98__i3/D  (SLICE_R9C28B)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1176,17 +1206,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i22/CK   cnt_57__i23/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i2/CK   cnt_98__i3/CK}                           CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i23/CK->cnt_57__i23/Q             SLICE_R11C30D   CLK_TO_Q1_DELAY       0.779                  4.295  1       
-n3                                                        NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_23/C1->cnt_57_add_4_23/S1    SLICE_R11C30D   C1_TO_F1_DELAY        0.252                  5.429  1       
-cnt_c_N_26[22]                                            NET DELAY             0.000                  5.429  1       
-cnt_57__i23/D                                             ENDPOINT              0.000                  5.429  1       
+cnt_98__i3/CK->cnt_98__i3/Q               SLICE_R9C28B    CLK_TO_Q1_DELAY       0.779                  4.295  1       
+n23                                                       NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_3/C1->cnt_98_add_4_3/S1      SLICE_R9C28B    C1_TO_F1_DELAY        0.252                  5.429  1       
+cnt_c_N_28[2]                                             NET DELAY             0.000                  5.429  1       
+cnt_98__i3/D                                              ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1203,7 +1233,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i22/CK   cnt_57__i23/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i2/CK   cnt_98__i3/CK}                           CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1217,8 +1247,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i24/Q  (SLICE_R11C31A)
-Path End         : cnt_57__i24/D  (SLICE_R11C31A)
+Path Begin       : cnt_98__i14/Q  (SLICE_R9C29D)
+Path End         : cnt_98__i14/D  (SLICE_R9C29D)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1241,17 +1271,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i24/CK   cnt_57__i25/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i14/CK   cnt_98__i15/CK}                         CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i24/CK->cnt_57__i24/Q             SLICE_R11C31A   CLK_TO_Q0_DELAY       0.779                  4.295  1       
-n2                                                        NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_25/C0->cnt_57_add_4_25/S0    SLICE_R11C31A   C0_TO_F0_DELAY        0.252                  5.429  1       
-cnt_c_N_26[23]                                            NET DELAY             0.000                  5.429  1       
-cnt_57__i24/D                                             ENDPOINT              0.000                  5.429  1       
+cnt_98__i14/CK->cnt_98__i14/Q             SLICE_R9C29D    CLK_TO_Q0_DELAY       0.779                  4.295  1       
+n12                                                       NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_15/C0->cnt_98_add_4_15/S0    SLICE_R9C29D    C0_TO_F0_DELAY        0.252                  5.429  1       
+cnt_c_N_28[13]                                            NET DELAY             0.000                  5.429  1       
+cnt_98__i14/D                                             ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1268,7 +1298,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i24/CK   cnt_57__i25/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i14/CK   cnt_98__i15/CK}                         CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1282,8 +1312,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i25/Q  (SLICE_R11C31A)
-Path End         : cnt_57__i25/D  (SLICE_R11C31A)
+Path Begin       : cnt_98__i15/Q  (SLICE_R9C29D)
+Path End         : cnt_98__i15/D  (SLICE_R9C29D)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1306,17 +1336,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i24/CK   cnt_57__i25/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i14/CK   cnt_98__i15/CK}                         CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i25/CK->cnt_57__i25/Q             SLICE_R11C31A   CLK_TO_Q1_DELAY       0.779                  4.295  2       
-cnt_c                                                     NET DELAY             0.882                  5.177  2       
-cnt_57_add_4_25/C1->cnt_57_add_4_25/S1    SLICE_R11C31A   C1_TO_F1_DELAY        0.252                  5.429  1       
-cnt_c_N_26[24]                                            NET DELAY             0.000                  5.429  1       
-cnt_57__i25/D                                             ENDPOINT              0.000                  5.429  1       
+cnt_98__i15/CK->cnt_98__i15/Q             SLICE_R9C29D    CLK_TO_Q1_DELAY       0.779                  4.295  1       
+n11                                                       NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_15/C1->cnt_98_add_4_15/S1    SLICE_R9C29D    C1_TO_F1_DELAY        0.252                  5.429  1       
+cnt_c_N_28[14]                                            NET DELAY             0.000                  5.429  1       
+cnt_98__i15/D                                             ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1333,7 +1363,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i24/CK   cnt_57__i25/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i14/CK   cnt_98__i15/CK}                         CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1347,8 +1377,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i14/Q  (SLICE_R11C29D)
-Path End         : cnt_57__i14/D  (SLICE_R11C29D)
+Path Begin       : cnt_98__i24/Q  (SLICE_R9C31A)
+Path End         : cnt_98__i24/D  (SLICE_R9C31A)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1371,17 +1401,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i14/CK   cnt_57__i15/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i24/CK   cnt_98__i25/CK}                         CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i14/CK->cnt_57__i14/Q             SLICE_R11C29D   CLK_TO_Q0_DELAY       0.779                  4.295  1       
-n12                                                       NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_15/C0->cnt_57_add_4_15/S0    SLICE_R11C29D   C0_TO_F0_DELAY        0.252                  5.429  1       
-cnt_c_N_26[13]                                            NET DELAY             0.000                  5.429  1       
-cnt_57__i14/D                                             ENDPOINT              0.000                  5.429  1       
+cnt_98__i24/CK->cnt_98__i24/Q             SLICE_R9C31A    CLK_TO_Q0_DELAY       0.779                  4.295  1       
+n2                                                        NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_25/C0->cnt_98_add_4_25/S0    SLICE_R9C31A    C0_TO_F0_DELAY        0.252                  5.429  1       
+cnt_c_N_28[23]                                            NET DELAY             0.000                  5.429  1       
+cnt_98__i24/D                                             ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1398,7 +1428,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i14/CK   cnt_57__i15/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i24/CK   cnt_98__i25/CK}                         CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1412,8 +1442,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i15/Q  (SLICE_R11C29D)
-Path End         : cnt_57__i15/D  (SLICE_R11C29D)
+Path Begin       : cnt_98__i25/Q  (SLICE_R9C31A)
+Path End         : cnt_98__i25/D  (SLICE_R9C31A)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1436,17 +1466,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i14/CK   cnt_57__i15/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i24/CK   cnt_98__i25/CK}                         CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i15/CK->cnt_57__i15/Q             SLICE_R11C29D   CLK_TO_Q1_DELAY       0.779                  4.295  1       
-n11                                                       NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_15/C1->cnt_57_add_4_15/S1    SLICE_R11C29D   C1_TO_F1_DELAY        0.252                  5.429  1       
-cnt_c_N_26[14]                                            NET DELAY             0.000                  5.429  1       
-cnt_57__i15/D                                             ENDPOINT              0.000                  5.429  1       
+cnt_98__i25/CK->cnt_98__i25/Q             SLICE_R9C31A    CLK_TO_Q1_DELAY       0.779                  4.295  2       
+cnt_c                                                     NET DELAY             0.882                  5.177  2       
+cnt_98_add_4_25/C1->cnt_98_add_4_25/S1    SLICE_R9C31A    C1_TO_F1_DELAY        0.252                  5.429  1       
+cnt_c_N_28[24]                                            NET DELAY             0.000                  5.429  1       
+cnt_98__i25/D                                             ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1463,7 +1493,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i14/CK   cnt_57__i15/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i24/CK   cnt_98__i25/CK}                         CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1477,8 +1507,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i8/Q  (SLICE_R11C29A)
-Path End         : cnt_57__i8/D  (SLICE_R11C29A)
+Path Begin       : cnt_98__i16/Q  (SLICE_R9C30A)
+Path End         : cnt_98__i16/D  (SLICE_R9C30A)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1501,17 +1531,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i8/CK   cnt_57__i9/CK}                           CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i16/CK   cnt_98__i17/CK}                         CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i8/CK->cnt_57__i8/Q               SLICE_R11C29A   CLK_TO_Q0_DELAY       0.779                  4.295  1       
-n18_2                                                     NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_9/C0->cnt_57_add_4_9/S0      SLICE_R11C29A   C0_TO_F0_DELAY        0.252                  5.429  1       
-cnt_c_N_26[7]                                             NET DELAY             0.000                  5.429  1       
-cnt_57__i8/D                                              ENDPOINT              0.000                  5.429  1       
+cnt_98__i16/CK->cnt_98__i16/Q             SLICE_R9C30A    CLK_TO_Q0_DELAY       0.779                  4.295  1       
+n10                                                       NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_17/C0->cnt_98_add_4_17/S0    SLICE_R9C30A    C0_TO_F0_DELAY        0.252                  5.429  1       
+cnt_c_N_28[15]                                            NET DELAY             0.000                  5.429  1       
+cnt_98__i16/D                                             ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1528,7 +1558,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i8/CK   cnt_57__i9/CK}                           CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i16/CK   cnt_98__i17/CK}                         CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1542,8 +1572,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i9/Q  (SLICE_R11C29A)
-Path End         : cnt_57__i9/D  (SLICE_R11C29A)
+Path Begin       : cnt_98__i17/Q  (SLICE_R9C30A)
+Path End         : cnt_98__i17/D  (SLICE_R9C30A)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1566,17 +1596,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i8/CK   cnt_57__i9/CK}                           CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i16/CK   cnt_98__i17/CK}                         CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i9/CK->cnt_57__i9/Q               SLICE_R11C29A   CLK_TO_Q1_DELAY       0.779                  4.295  1       
-n17                                                       NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_9/C1->cnt_57_add_4_9/S1      SLICE_R11C29A   C1_TO_F1_DELAY        0.252                  5.429  1       
-cnt_c_N_26[8]                                             NET DELAY             0.000                  5.429  1       
-cnt_57__i9/D                                              ENDPOINT              0.000                  5.429  1       
+cnt_98__i17/CK->cnt_98__i17/Q             SLICE_R9C30A    CLK_TO_Q1_DELAY       0.779                  4.295  1       
+n9                                                        NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_17/C1->cnt_98_add_4_17/S1    SLICE_R9C30A    C1_TO_F1_DELAY        0.252                  5.429  1       
+cnt_c_N_28[16]                                            NET DELAY             0.000                  5.429  1       
+cnt_98__i17/D                                             ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1593,7 +1623,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i8/CK   cnt_57__i9/CK}                           CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i16/CK   cnt_98__i17/CK}                         CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1607,8 +1637,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i16/Q  (SLICE_R11C30A)
-Path End         : cnt_57__i16/D  (SLICE_R11C30A)
+Path Begin       : cnt_98__i18/Q  (SLICE_R9C30B)
+Path End         : cnt_98__i18/D  (SLICE_R9C30B)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1631,17 +1661,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i16/CK   cnt_57__i17/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i18/CK   cnt_98__i19/CK}                         CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i16/CK->cnt_57__i16/Q             SLICE_R11C30A   CLK_TO_Q0_DELAY       0.779                  4.295  1       
-n10                                                       NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_17/C0->cnt_57_add_4_17/S0    SLICE_R11C30A   C0_TO_F0_DELAY        0.252                  5.429  1       
-cnt_c_N_26[15]                                            NET DELAY             0.000                  5.429  1       
-cnt_57__i16/D                                             ENDPOINT              0.000                  5.429  1       
+cnt_98__i18/CK->cnt_98__i18/Q             SLICE_R9C30B    CLK_TO_Q0_DELAY       0.779                  4.295  1       
+n8                                                        NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_19/C0->cnt_98_add_4_19/S0    SLICE_R9C30B    C0_TO_F0_DELAY        0.252                  5.429  1       
+cnt_c_N_28[17]                                            NET DELAY             0.000                  5.429  1       
+cnt_98__i18/D                                             ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1658,7 +1688,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i16/CK   cnt_57__i17/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i18/CK   cnt_98__i19/CK}                         CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
@@ -1672,8 +1702,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : cnt_57__i17/Q  (SLICE_R11C30A)
-Path End         : cnt_57__i17/D  (SLICE_R11C30A)
+Path Begin       : cnt_98__i19/Q  (SLICE_R9C30B)
+Path End         : cnt_98__i19/D  (SLICE_R9C30B)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1696,17 +1726,17 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i16/CK   cnt_57__i17/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i18/CK   cnt_98__i19/CK}                         CLOCK PIN             0.000                  3.516  1       
 
 
 Data Path
 Name                                      Cell/Site Name  Delay Name            Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
-cnt_57__i17/CK->cnt_57__i17/Q             SLICE_R11C30A   CLK_TO_Q1_DELAY       0.779                  4.295  1       
-n9                                                        NET DELAY             0.882                  5.177  1       
-cnt_57_add_4_17/C1->cnt_57_add_4_17/S1    SLICE_R11C30A   C1_TO_F1_DELAY        0.252                  5.429  1       
-cnt_c_N_26[16]                                            NET DELAY             0.000                  5.429  1       
-cnt_57__i17/D                                             ENDPOINT              0.000                  5.429  1       
+cnt_98__i19/CK->cnt_98__i19/Q             SLICE_R9C30B    CLK_TO_Q1_DELAY       0.779                  4.295  1       
+n7                                                        NET DELAY             0.882                  5.177  1       
+cnt_98_add_4_19/C1->cnt_98_add_4_19/S1    SLICE_R9C30B    C1_TO_F1_DELAY        0.252                  5.429  1       
+cnt_c_N_28[18]                                            NET DELAY             0.000                  5.429  1       
+cnt_98__i19/D                                             ENDPOINT              0.000                  5.429  1       
 
 
 Destination Clock Path
@@ -1723,7 +1753,7 @@ pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
 pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
                                           PLL_PLL_R13C32                        0.150                  0.432  24      
 pll/clk_pixel                                             NET DELAY             3.084                  3.516  24      
-{cnt_57__i16/CK   cnt_57__i17/CK}                         CLOCK PIN             0.000                  3.516  1       
+{cnt_98__i18/CK   cnt_98__i19/CK}                         CLOCK PIN             0.000                  3.516  1       
                                                           Uncertainty           0.000                  3.516  
                                                           Hold time             0.000                  3.516  
 ----------------------------------------  --------------  --------------------  -----  ---------------------  ------  
