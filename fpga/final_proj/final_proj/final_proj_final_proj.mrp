@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Wed Nov 11 23:46:00 2026
+Mapped on: Thu Nov 12 02:19:33 2026
 
 Design Information
 ------------------
@@ -22,11 +22,11 @@ Command line:   map -pdc C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
 Design Summary
 --------------
 
-   Number of slice registers:  45 out of  5280 (1%)
+   Number of slice registers:  28 out of  5280 (1%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:            84 out of  5280 (2%)
-      Number of logic LUT4s:              34
-      Number of ripple logic:             25 (50 LUT4s)
+   Number of LUT4s:            64 out of  5280 (1%)
+      Number of logic LUT4s:              40
+      Number of ripple logic:             12 (24 LUT4s)
    Number of IO sites used:   9 out of 39 (23%)
       Number of IO sites used for general PIO: 9
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -38,7 +38,7 @@ Design Summary
       Number of IO sites used for PIO+I3C+OD+RGB: 9 out of 39 (23%)
    Number of DSPs:             0 out of 8 (0%)
    Number of I2Cs:             0 out of 2 (0%)
-   Number of High Speed OSCs:  0 out of 1 (0%)
+   Number of High Speed OSCs:  1 out of 1 (100%)
    Number of Low Speed OSCs:   0 out of 1 (0%)
    Number of RGB PWM:          0 out of 1 (0%)
    Number of RGB Drivers:      0 out of 1 (0%)
@@ -49,17 +49,17 @@ Design Summary
    Number of EBRs:             0 out of 30 (0%)
    Number of PLLs:             1 out of 1 (100%)
    Number of Clocks:  2
-      Net clk_pixel: 29 loads, 29 rising, 0 falling (Driver: Pin
+      Net clk_12mhz: 5 loads, 5 rising, 0 falling (Driver: Pin pll.hf_osc/CLKHF)
+      Net clk_pixel: 20 loads, 20 rising, 0 falling (Driver: Pin
      pll.pll_inst/OUTGLOBAL)
-      Net clk_12mhz_c: 1 loads, 1 rising, 0 falling (Driver: Port clk_12mhz)
-   Number of Clock Enables:  1
-      Net timing.n136: 10 loads, 10 SLICEs
+   Number of Clock Enables:  2
+      Net VCC_net: 1 loads, 0 SLICEs
+      Net timing.n92: 10 loads, 10 SLICEs
    Number of LSRs:  2
       Net timing_reset: 10 loads, 10 SLICEs
-      Net timing.n136: 6 loads, 6 SLICEs
+      Net timing.n92: 6 loads, 6 SLICEs
    Top 10 highest fanout non-clock nets:
-      Net timing.n136: 16 loads
-      Net timing_reset: 11 loads
+      Net timing.n92: 16 loads
 
                                     Page 1
 
@@ -69,27 +69,35 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net timing.n19: 10 loads
-      Net timing.y[5]: 6 loads
-      Net timing.y[6]: 6 loads
-      Net timing.y[7]: 6 loads
-      Net timing.y[8]: 6 loads
+      Net timing_reset: 11 loads
+      Net timing.n19_adj_30: 10 loads
       Net timing.y[9]: 6 loads
       Net timing.x[7]: 5 loads
       Net timing.x[8]: 5 loads
+      Net timing.x[9]: 5 loads
+      Net timing.y[7]: 5 loads
+      Net timing.y[8]: 5 loads
+      Net VCC_net: 5 loads
 
 
 
 
 
-   Number of warnings:  0
+   Number of warnings:  4
    Number of criticals: 0
    Number of errors:    0
 
 Design Errors/Criticals/Warnings
 --------------------------------
 
-   No error, critical, or warning presents.
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (9) : No port matched 'clk_12mhz'.
+WARNING <1027013> - map: No port matched 'clk_12mhz'.
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (9) : Can't resolve object 'clk_12mhz' in
+     constraint 'ldc_set_location -site {35} [get_ports clk_12mhz]'.
+WARNING <1011001> - map: Remove invalid constraint 'ldc_set_location -site {35}
+     [get_ports clk_12mhz]'.
 
 IO (PIO) Attributes
 -------------------
@@ -98,35 +106,27 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| led_lock            | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| b                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| led_blink           | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| g                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| r                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| vsync               | OUTPUT    |           |       |       |           |
+| reset_n             | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | hsync               | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| reset_n             | INPUT     |           |       |       |           |
+| vsync               | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| clk_12mhz           | INPUT     |           |       |       |           |
+| r                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| g                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| b                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| led_lock            | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| dbg_osc             | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| dbg_pix             | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
-Removed logic
--------------
 
-Block i1 was optimized away.
 
-PLL Summary
------------
-
-PLL 1:                                 Pin/Node Value
-  PLL Instance Name:                            pll/pll_inst
 
                                     Page 2
 
@@ -134,9 +134,12 @@ PLL 1:                                 Pin/Node Value
 
 
 
-PLL Summary (cont)
-------------------
-  Input Reference Clock:               PIN      clk_12mhz_c
+PLL Summary
+-----------
+
+PLL 1:                                 Pin/Node Value
+  PLL Instance Name:                            pll/pll_inst
+  Input Reference Clock:               NODE     clk_12mhz
   Output Clock(CoreA):                          NONE
   Output Clock(GlobalA):               NODE     clk_pixel
   Output Clock(CoreB):                          NONE
@@ -145,11 +148,11 @@ PLL Summary (cont)
   Internal Feedback output:            NODE     pll.pll_feedback
   BYPASS signal:                                GND
   LATCH signal:                                 GND
-  Lock Signal:                         NODE     sig_000.FeedThruLUT
+  Lock Signal:                         NODE     locked
   Input Clock Frequency (MHz):                  NA
   Reference Divider:                            0
   Feedback Divider:                             66
-  VCO Divider:                                  5
+  VCO Divider:                                  3
   ENABLE_ICEGATE_PORTA:                         0
   ENABLE_ICEGATE_PORTB:                         0
   PLLOUT_SELECT_PORTA:                          SHIFTREG_0deg
@@ -164,25 +167,46 @@ PLL Summary (cont)
   EXTERNAL_DIVIDE_FACTOR:                       NONE
   TEST Mode:                                    0
 
+OSC Summary
+-----------
+
+OSC 1:                                 Pin/Node Value
+  OSC Instance Name:                            pll/hf_osc
+  Power UP:                            NODE     VCC_net
+  Enable Signal:                       NODE     VCC_net
+  OSC Output:                          NODE     clk_12mhz
+  DIV Setting:                                  10
+
 ASIC Components
 ---------------
 
 Instance Name: pll/pll_inst
          Type: PLL
+Instance Name: pll/hf_osc
+         Type: HFOSC
 
 Constraint Summary
 ------------------
 
-   Total number of constraints: 12
-   Total number of constraints dropped: 0
+   Total number of constraints: 13
+   Total number of constraints dropped: 1
+   Dropped constraint is:
+     ldc_set_location -site {35} [get_ports clk_12mhz]
+
+
+                                    Page 3
+
+
+
+
 
 Run Time and Memory Usage
 -------------------------
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 67 MB
-Checksum -- map: ec59063d5753418aa618794054d38b0467aec550
+   Peak Memory Usage: 66 MB
+Checksum -- map: 3584b2873b1ea21d198e915d6effd2dcac34c1
 
 
 
@@ -194,7 +218,49 @@ Checksum -- map: ec59063d5753418aa618794054d38b0467aec550
 
 
 
-                                    Page 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 4
 
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.

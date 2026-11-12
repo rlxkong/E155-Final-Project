@@ -52,6 +52,7 @@ module vga_window_timing(
         end
     end
 
+	// hsync and vsync are active low
     // hsync start is after visible + fp
     // hsync end is after hsync start + hsync length
     assign hsync = ~(x >= 656 && x < 752);

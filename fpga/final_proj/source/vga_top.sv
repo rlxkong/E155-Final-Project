@@ -5,31 +5,22 @@
 //          and drives the VGA connector pins.
 
 module vga_top(
-    input logic clk_12mhz,
+    //input logic clk_12mhz,
     input logic reset_n,
     output logic hsync,
     output logic vsync,
     output logic r,
     output logic g,
     output logic b,
-	output logic led_lock, led_blink
+	output logic led_lock, dbg_osc, dbg_pix
 );
 	
 	
-    logic       clk_pixel, locked;
+    logic       clk_12mhz, clk_pixel, locked;
     logic       timing_reset;
     logic [9:0] x, y;
     logic       hs, vs, video_on;	
 	logic [2:0] color_input;
-	
-	// testing claude's feedback
-	assign led_lock = locked;
-	
-	logic [24:0] cnt;
-	always_ff @(posedge clk_pixel) cnt <= cnt + 1'b1;
-	assign led_blink = cnt[24];
-	
-	
 	
     // instantiate pixel clock (25Mhz)
     clk_divider pll(
@@ -70,5 +61,14 @@ module vga_top(
 	// assign hsync and vsync
 	assign hsync = hs;
 	assign vsync = vs;
+	
+	// testing claude's feedback - debugging to verify if pll works
+	assign led_lock = 1'b0;
+	
+	logic [3:0] osc_cnt, pix_cnt;
+	always_ff @(posedge clk_12mhz) osc_cnt <= osc_cnt + 1'b1;
+	always_ff @(posedge clk_pixel) pix_cnt <= pix_cnt + 1'b1;
+	assign dbg_osc = osc_cnt[3];
+	assign dbg_pix = pix_cnt[3];
 	
 endmodule

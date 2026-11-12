@@ -1,32 +1,34 @@
 ----------------------------------------------------------------------
 Report for cell vga_top.TECH
-Register bits:  45 of 5280 (0.852%)
+Register bits:  28 of 5280 (0.530%)
 I/O cells:      9
                                   Cell usage:
                                cell     count   Res Usage(%)
-                               CCU2        25          100.0
-                            FD1P3XZ        45          100.0
-                                 IB         2          100.0
-                               LUT4        32          100.0
-                                 OB         7          100.0
+                               CCU2        12          100.0
+                            FD1P3XZ        28          100.0
+                         HSOSC_CORE         1          100.0
+                                 IB         1          100.0
+                               LUT4        38          100.0
+                                 OB         8          100.0
                               PLL_B         1          100.0
 SUB MODULES
                         clk_divider         1
                   vga_window_timing         1
-                              TOTAL       114
+                              TOTAL        91
 ----------------------------------------------------------------------
 Report for cell vga_window_timing.v1
 Instance Path : timing
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2        12           48.0
-                            FD1P3XZ        20           44.4
-                               LUT4        31           96.9
-                              TOTAL        63
+                                FA2        12          100.0
+                            FD1P3XZ        20           71.4
+                               LUT4        29           76.3
+                              TOTAL        61
 ----------------------------------------------------------------------
 Report for cell clk_divider.v1
 Instance Path : pll
                                   Cell usage:
                                cell     count   Res Usage(%)
+                         HSOSC_CORE         1          100.0
                               PLL_B         1          100.0
-                              TOTAL         1
+                              TOTAL         2
