@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Wed Nov 11 20:26:51 2026
+Mapped on: Wed Nov 11 22:33:52 2026
 
 Design Information
 ------------------
@@ -175,8 +175,8 @@ Run Time and Memory Usage
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 66 MB
-Checksum -- map: 2ae3865f1ed25482b666bb2f52cb61a8ed50850a
+   Peak Memory Usage: 65 MB
+Checksum -- map: 61fd96fcc1929df2b6203082c82c7a6acde7f691
 
 
 

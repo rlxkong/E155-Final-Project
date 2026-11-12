@@ -27,6 +27,7 @@ module clk_divider (
         // Input Ports
         .REFERENCECLK(clk_12mhz), 
         .RESET_N(1'b1),      // Active low reset, tied to 1 to keep it running
+		//.STDBY(1'b0),        // Add this to keep the PLL awake
         .BYPASS(1'b0),       // Set to 0 so we use the PLL output, not the bypassed input
 		
 		 // Unused Input Ports

@@ -6,7 +6,7 @@ Performance Grade:      High-Performance_1.2V
 PACKAGE:          SG48
 Package Status:                     Preliminary    Version 1.5
 
-Wed Nov 11 20:26:55 2026
+Wed Nov 11 22:33:55 2026
 
 Pinout by Port Name:
 +-----------+----------+--------------+-------+------------------------------------------+
@@ -15,10 +15,10 @@ Pinout by Port Name:
 | b         | 19/1     | LVCMOS33_OUT | PL22B | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 | clk_12mhz | 41/0     | OPENDRAIN_IN | PR7A  | DRIVE:NAmA                               |
 | g         | 21/1     | LVCMOS33_OUT | PL19B | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
-| hsync     | 12/1     | LVCMOS33_OUT | PL19A | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
+| hsync     | 13/1     | LVCMOS33_OUT | PL20A | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 | r         | 10/1     | LVCMOS33_OUT | PL17A | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 | reset_n   | 43/0     | LVCMOS33_IN  | PR10A | DRIVE:NA IO_TYPE:LVCMOS33 PULLMODE:100K  |
-| vsync     | 18/1     | LVCMOS33_OUT | PL23B | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
+| vsync     | 12/1     | LVCMOS33_OUT | PL19A | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 +-----------+----------+--------------+-------+------------------------------------------+
 
 Vccio by Bank:
@@ -40,13 +40,13 @@ Pinout by Pin Number:
 | 9/1      |     unused, PULL:UP |            |              | PL16A |                  |
 | 10/1     | r                   | LOCATED    | LVCMOS33_OUT | PL17A |                  |
 | 11/1     |     unused, PULL:UP |            |              | PL18A |                  |
-| 12/1     | hsync               | LOCATED    | LVCMOS33_OUT | PL19A |                  |
-| 13/1     |     unused, PULL:UP |            |              | PL20A |                  |
+| 12/1     | vsync               | LOCATED    | LVCMOS33_OUT | PL19A |                  |
+| 13/1     | hsync               | LOCATED    | LVCMOS33_OUT | PL20A |                  |
 | 14/1     |     unused, PULL:UP |            |              | PL24A | SPI_SO           |
 | 15/1     |     unused, PULL:UP |            |              | PL25A | SPISCK           |
 | 16/1     |     unused, PULL:UP |            |              | PL25B | SPI_SS           |
 | 17/1     |     unused, PULL:UP |            |              | PL24B | SPI_SI           |
-| 18/1     | vsync               | LOCATED    | LVCMOS33_OUT | PL23B |                  |
+| 18/1     |     unused, PULL:UP |            |              | PL23B |                  |
 | 19/1     | b                   | LOCATED    | LVCMOS33_OUT | PL22B |                  |
 | 20/1     |     unused, PULL:UP |            |              | PL20B | PCLKT1_0         |
 | 21/1     | g                   | LOCATED    | LVCMOS33_OUT | PL19B |                  |
@@ -96,10 +96,10 @@ Locate Constraints for each Pin:
 
 ldc_set_location -site {19} [ get_ports {b} ]
 ldc_set_location -site {21} [ get_ports {g} ]
-ldc_set_location -site {12} [ get_ports {hsync} ]
+ldc_set_location -site {13} [ get_ports {hsync} ]
 ldc_set_location -site {10} [ get_ports {r} ]
 ldc_set_location -site {43} [ get_ports {reset_n} ]
-ldc_set_location -site {18} [ get_ports {vsync} ]
+ldc_set_location -site {12} [ get_ports {vsync} ]
 
 
 
@@ -107,5 +107,5 @@ ldc_set_location -site {18} [ get_ports {vsync} ]
 
 Copyright (c) 2002-2024 Lattice Semiconductor Corporation,  All rights reserved.
 
-Wed Nov 11 20:26:55 2026
+Wed Nov 11 22:33:55 2026
 
