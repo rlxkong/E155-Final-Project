@@ -16,13 +16,13 @@ module vga_window_timing_tb();
     logic           vid_on;
 
     vga_window_timing dut (
-.clk(clk),
-.reset(reset),
-.x(x),
-.y(y),
-.hsync(hs),
-.vsync(vs),
-.video_on(vid_on)
+		.clk(clk),
+		.reset(reset),
+		.x(x),
+		.y(y),
+		.hsync(hs),
+		.vsync(vs),
+		.video_on(vid_on)
     );
 
     // generate clock
@@ -31,12 +31,13 @@ module vga_window_timing_tb();
         clk = 1; #10;
     end
 
-    // initial begin
-// initialize
-reset = 0;
-#5
-reset = 1;
-#5
+    initial begin
+	// initialize
+	reset = 0;
+	#10
+	reset = 1;
+	#10
+
 
    
 endmodule

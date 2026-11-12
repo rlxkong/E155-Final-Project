@@ -31,7 +31,7 @@ module vga_top(
     // instantiate pixel coordinates of scan
     vga_window_timing timing(
         .clk(clk_pixel),
-        .reset(timing_reset),
+        .reset_n(timing_reset),
         .x(x),
         .y(y),
         .hsync(hs),

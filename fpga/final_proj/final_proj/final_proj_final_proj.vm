@@ -1,5 +1,5 @@
 // Verilog netlist produced by program LSE :  version Radiant Software (64-bit) 2026.1.0.37.0
-// Netlist written on Wed Nov 11 15:41:56 2026
+// Netlist written on Wed Nov 11 15:59:25 2026
 // Source file index table: 
 // Object locations will have the form @<file_index>(<first_ line>[<left_column>],<last_line>[<right_column>])
 // file 0 "c:/users/rkong/documents/github/e155-final-project/fpga/final_proj/source/clk_divider.sv"

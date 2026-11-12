@@ -34,7 +34,7 @@ module vga_window_timing(
     output logic       video_on
 );
 
-    always_ff @(posedge clk, posedge reset) begin
+    always_ff @(posedge clk) begin
         if (~reset_n) begin
             x <= 1'b0;
             y <= 1'b0;
