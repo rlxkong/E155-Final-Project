@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Thu Nov 12 02:19:33 2026
+Mapped on: Thu Nov 12 02:51:00 2026
 
 Design Information
 ------------------
@@ -22,10 +22,10 @@ Command line:   map -pdc C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
 Design Summary
 --------------
 
-   Number of slice registers:  28 out of  5280 (1%)
+   Number of slice registers:  20 out of  5280 (<1%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:            64 out of  5280 (1%)
-      Number of logic LUT4s:              40
+   Number of LUT4s:            57 out of  5280 (1%)
+      Number of logic LUT4s:              33
       Number of ripple logic:             12 (24 LUT4s)
    Number of IO sites used:   9 out of 39 (23%)
       Number of IO sites used for general PIO: 9
@@ -49,17 +49,17 @@ Design Summary
    Number of EBRs:             0 out of 30 (0%)
    Number of PLLs:             1 out of 1 (100%)
    Number of Clocks:  2
-      Net clk_12mhz: 5 loads, 5 rising, 0 falling (Driver: Pin pll.hf_osc/CLKHF)
-      Net clk_pixel: 20 loads, 20 rising, 0 falling (Driver: Pin
-     pll.pll_inst/OUTGLOBAL)
+      Net clk_pixel: 16 loads, 16 rising, 0 falling (Driver: Pin
+     pll.pll_ip.lscc_pll_inst.u_PLL_B/OUTGLOBAL)
+      Net pll.clk_12mhz: 1 loads, 1 rising, 0 falling (Driver: Pin
+     pll.hf_osc/CLKHF)
    Number of Clock Enables:  2
-      Net VCC_net: 1 loads, 0 SLICEs
-      Net timing.n92: 10 loads, 10 SLICEs
+      Net timing.n56: 10 loads, 10 SLICEs
+      Net dbg_osc_pad.vcc: 1 loads, 0 SLICEs
    Number of LSRs:  2
       Net timing_reset: 10 loads, 10 SLICEs
-      Net timing.n92: 6 loads, 6 SLICEs
+      Net timing.n56: 6 loads, 6 SLICEs
    Top 10 highest fanout non-clock nets:
-      Net timing.n92: 16 loads
 
                                     Page 1
 
@@ -69,35 +69,29 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
+      Net timing.n56: 16 loads
       Net timing_reset: 11 loads
-      Net timing.n19_adj_30: 10 loads
+      Net timing.n19_adj_28: 10 loads
       Net timing.y[9]: 6 loads
       Net timing.x[7]: 5 loads
       Net timing.x[8]: 5 loads
       Net timing.x[9]: 5 loads
+      Net timing.y[6]: 5 loads
       Net timing.y[7]: 5 loads
       Net timing.y[8]: 5 loads
-      Net VCC_net: 5 loads
 
 
 
 
 
-   Number of warnings:  4
+   Number of warnings:  0
    Number of criticals: 0
    Number of errors:    0
 
 Design Errors/Criticals/Warnings
 --------------------------------
 
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (9) : No port matched 'clk_12mhz'.
-WARNING <1027013> - map: No port matched 'clk_12mhz'.
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (9) : Can't resolve object 'clk_12mhz' in
-     constraint 'ldc_set_location -site {35} [get_ports clk_12mhz]'.
-WARNING <1011001> - map: Remove invalid constraint 'ldc_set_location -site {35}
-     [get_ports clk_12mhz]'.
+   No error, critical, or warning presents.
 
 IO (PIO) Attributes
 -------------------
@@ -105,6 +99,10 @@ IO (PIO) Attributes
 +---------------------+-----------+-----------+-------+-------+-----------+
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
++---------------------+-----------+-----------+-------+-------+-----------+
+| dbg_osc             | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| dbg_pix             | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | reset_n             | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -120,13 +118,15 @@ IO (PIO) Attributes
 +---------------------+-----------+-----------+-------+-------+-----------+
 | led_lock            | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| dbg_osc             | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| dbg_pix             | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
 
+PLL Summary
+-----------
 
-
+PLL 1:                                 Pin/Node Value
+  PLL Instance Name:                            pll/pll_ip/lscc_pll_inst/u_PLL_B
+  Input Reference Clock:               NODE     pll.clk_12mhz
+  Output Clock(CoreA):                          NONE
+  Output Clock(GlobalA):               NODE     clk_pixel
 
                                     Page 2
 
@@ -134,29 +134,25 @@ IO (PIO) Attributes
 
 
 
-PLL Summary
------------
-
-PLL 1:                                 Pin/Node Value
-  PLL Instance Name:                            pll/pll_inst
-  Input Reference Clock:               NODE     clk_12mhz
-  Output Clock(CoreA):                          NONE
-  Output Clock(GlobalA):               NODE     clk_pixel
+PLL Summary (cont)
+------------------
   Output Clock(CoreB):                          NONE
   Output Clock(GlobalB):                        NONE
-  Feedback input:                      NODE     pll.pll_feedback
-  Internal Feedback output:            NODE     pll.pll_feedback
+  Feedback input:                      NODE
+       pll.pll_ip.lscc_pll_inst.feedback_w
+  Internal Feedback output:            NODE
+       pll.pll_ip.lscc_pll_inst.feedback_w
   BYPASS signal:                                GND
   LATCH signal:                                 GND
-  Lock Signal:                         NODE     locked
+  Lock Signal:                         NODE     sig_000.FeedThruLUT
   Input Clock Frequency (MHz):                  NA
   Reference Divider:                            0
   Feedback Divider:                             66
-  VCO Divider:                                  3
+  VCO Divider:                                  5
   ENABLE_ICEGATE_PORTA:                         0
   ENABLE_ICEGATE_PORTB:                         0
-  PLLOUT_SELECT_PORTA:                          SHIFTREG_0deg
-  PLLOUT_SELECT_PORTB:                          SHIFTREG_0deg
+  PLLOUT_SELECT_PORTA:                          GENCLK
+  PLLOUT_SELECT_PORTB:                          GENCLK
   SHIFTREG_DIV_MODE:                            0
   DELAY_ADJUSTMENT_MODE_RELATIVE:               FIXED
   FDA_RELATIVE:                                 0
@@ -172,15 +168,15 @@ OSC Summary
 
 OSC 1:                                 Pin/Node Value
   OSC Instance Name:                            pll/hf_osc
-  Power UP:                            NODE     VCC_net
-  Enable Signal:                       NODE     VCC_net
-  OSC Output:                          NODE     clk_12mhz
+  Power UP:                            NODE     dbg_osc_pad.vcc
+  Enable Signal:                       NODE     dbg_osc_pad.vcc
+  OSC Output:                          NODE     pll.clk_12mhz
   DIV Setting:                                  10
 
 ASIC Components
 ---------------
 
-Instance Name: pll/pll_inst
+Instance Name: pll/pll_ip/lscc_pll_inst/u_PLL_B
          Type: PLL
 Instance Name: pll/hf_osc
          Type: HFOSC
@@ -188,11 +184,15 @@ Instance Name: pll/hf_osc
 Constraint Summary
 ------------------
 
-   Total number of constraints: 13
-   Total number of constraints dropped: 1
-   Dropped constraint is:
-     ldc_set_location -site {35} [get_ports clk_12mhz]
+   Total number of constraints: 12
+   Total number of constraints dropped: 0
 
+Run Time and Memory Usage
+-------------------------
+
+   Total CPU Time: 0 secs
+   Total REAL Time: 0 secs
+   Peak Memory Usage: 65 MB
 
                                     Page 3
 
@@ -200,13 +200,13 @@ Constraint Summary
 
 
 
-Run Time and Memory Usage
--------------------------
+Run Time and Memory Usage (cont)
+--------------------------------
+Checksum -- map: e061e609e6a2ed7d8dd3485663357dae98b1f023
 
-   Total CPU Time: 0 secs
-   Total REAL Time: 0 secs
-   Peak Memory Usage: 66 MB
-Checksum -- map: 3584b2873b1ea21d198e915d6effd2dcac34c1
+
+
+
 
 
 

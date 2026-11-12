@@ -1,0 +1,8 @@
+-ver "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.v"
+-lib pmi -vhd "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.vhd"
+-ver "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/pll_25/rtl/pll_25.v"
+-path "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/pll_25" "C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj"
+-top pll_25
+-isIP
+-a "iCE40UP"
+-t "iCE40UP5K"

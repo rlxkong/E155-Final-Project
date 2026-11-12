@@ -30,10 +30,12 @@
 -sdc "final_proj_final_proj_cpe.ldc"
 
 # Search Paths
+-path "../pll_25"
 -path "C:/lscc/radiant/2026.1/ispfpga/ice40tp/data"
 -path "."
 -path ".."
 -path "../source"
+-path "../pll_25"
 
 # PMI Library Files
 -ver "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.v"
@@ -44,6 +46,7 @@
 -sver "../source/vga_top.sv"
 -sver "../source/vga_window_timing.sv"
 -sver "../source/vga_color_logic.sv"
+-ver "../pll_25/rtl/pll_25.v"
 -path ".."
 -top vga_top
 # Output Configuration

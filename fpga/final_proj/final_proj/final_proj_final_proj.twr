@@ -1,6 +1,6 @@
 Lattice Timing Report -  Setup  and Hold, Version Radiant Software (64-bit) 2026.1.0.37.0
 
-Thu Nov 12 02:19:42 2026
+Thu Nov 12 02:51:07 2026
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -48,17 +48,17 @@ Package Status:                     Preliminary    Version 1.5
 
 1.1  SDC Constraints
 =====================
-create_clock -name {clk_12mhz} -period 83.3333 [get_pins {pll/hf_osc/CLKHF }] 
-create_generated_clock -name {clk_pixel} -source [get_pins {pll/pll_inst/REFERENCECLK}] -multiply_by 67 -divide_by 8 [get_pins {pll/pll_inst/OUTGLOBAL }] 
+create_clock -name {pll/clk_12mhz} -period 83.3333 [get_pins {pll/hf_osc/CLKHF }] 
+create_generated_clock -name {clk_pixel} -source [get_pins {pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK}] -multiply_by 67 -divide_by 32 [get_pins {pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL }] 
 
 1.2  Constraint Coverage
 ---------------------------
-Constraint Coverage: 71.9457%
+Constraint Coverage: 69.3122%
 
 
 1.3  Overall Summary
 ---------------------------
- Setup at Speed Grade High-Performance_1.2V Corner at 100 Degrees     Timing Errors: 15 endpoints;  Total Negative Slack: 14.533 ns 
+ Setup at Speed Grade High-Performance_1.2V Corner at 100 Degrees     Timing Errors: 0 endpoints;  Total Negative Slack: 0.000 ns 
  Hold at Speed Grade m Corner at -40 Degrees                          Timing Errors: 0 endpoints;  Total Negative Slack: 0.000 ns 
 
 1.4  Unconstrained Report
@@ -102,7 +102,7 @@ create_generated_clock,
 ...
 
 -------------------------------------------------------------------
-     Listing 8 Start or End Points      |           Type           
+     Listing 6 Start or End Points      |           Type           
 -------------------------------------------------------------------
 reset_n                                 |                     input
 hsync                                   |                    output
@@ -110,11 +110,9 @@ vsync                                   |                    output
 r                                       |                    output
 g                                       |                    output
 b                                       |                    output
-dbg_osc                                 |                    output
-dbg_pix                                 |                    output
 -------------------------------------------------------------------
                                         |                          
-Number of I/O ports without constraint  |                         8
+Number of I/O ports without constraint  |                         6
                                         |                          
 -------------------------------------------------------------------
 
@@ -138,39 +136,39 @@ None
 
 2.1.1 Clock "clk_pixel"
 =======================
-create_generated_clock -name {clk_pixel} -source [get_pins {pll/pll_inst/REFERENCECLK}] -multiply_by 67 -divide_by 8 [get_pins {pll/pll_inst/OUTGLOBAL }] 
+create_generated_clock -name {clk_pixel} -source [get_pins {pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK}] -multiply_by 67 -divide_by 32 [get_pins {pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL }] 
 
 Single Clock Domain
 -------------------------------------------------------------------------------------------------------
             Clock clk_pixel             |                    |       Period       |     Frequency      
 -------------------------------------------------------------------------------------------------------
- From clk_pixel                         |             Target |           9.950 ns |        100.500 MHz 
-                                        | Actual (all paths) |          11.273 ns |         88.708 MHz 
+ From clk_pixel                         |             Target |          39.801 ns |         25.125 MHz 
+                                        | Actual (all paths) |          12.147 ns |         82.325 MHz 
 -------------------------------------------------------------------------------------------------------
 
 Clock Domain Crossing
 ------------------------------------------------------------------------------------------------------
             Clock clk_pixel             |   Worst Time Between Edges   |           Comment            
 ------------------------------------------------------------------------------------------------------
- From clk_12mhz                         |                         ---- |                      No path 
+ From pll/clk_12mhz                     |                         ---- |                      No path 
 ------------------------------------------------------------------------------------------------------
 
-2.1.2 Clock "clk_12mhz"
+2.1.2 Clock "pll/clk_12mhz"
 =======================
-create_clock -name {clk_12mhz} -period 83.3333 [get_pins {pll/hf_osc/CLKHF }] 
+create_clock -name {pll/clk_12mhz} -period 83.3333 [get_pins {pll/hf_osc/CLKHF }] 
 
 Single Clock Domain
 -------------------------------------------------------------------------------------------------------
-            Clock clk_12mhz             |                    |       Period       |     Frequency      
+          Clock pll/clk_12mhz           |                    |       Period       |     Frequency      
 -------------------------------------------------------------------------------------------------------
- From clk_12mhz                         |             Target |          83.333 ns |         12.000 MHz 
+ From pll/clk_12mhz                     |             Target |          83.333 ns |         12.000 MHz 
                                         | Actual (all paths) |          20.792 ns |         48.095 MHz 
 pll/hf_osc/CLKHF (MPW)                  |   (50% duty cycle) |          20.792 ns |         48.095 MHz 
 -------------------------------------------------------------------------------------------------------
 
 Clock Domain Crossing
 ------------------------------------------------------------------------------------------------------
-            Clock clk_12mhz             |   Worst Time Between Edges   |           Comment            
+          Clock pll/clk_12mhz           |   Worst Time Between Edges   |           Comment            
 ------------------------------------------------------------------------------------------------------
  From clk_pixel                         |                         ---- |                      No path 
 ------------------------------------------------------------------------------------------------------
@@ -180,22 +178,19 @@ Clock Domain Crossing
 -------------------------------------------------------
           Listing 10 End Points          |    Slack    
 -------------------------------------------------------
-timing/y__i9/D                           |   -1.324 ns 
-timing/x_104__i0/SR                      |   -1.258 ns 
-{timing/x_104__i3/SR   timing/x_104__i4/SR}              
-                                         |   -1.258 ns 
-{timing/x_104__i5/SR   timing/x_104__i6/SR}              
-                                         |   -1.258 ns 
-{timing/x_104__i1/SR   timing/x_104__i2/SR}              
-                                         |   -1.258 ns 
-timing/y__i7/D                           |   -1.060 ns 
-timing/y__i6/D                           |   -1.060 ns 
-timing/y__i8/D                           |   -1.060 ns 
-timing/y__i0/D                           |   -1.060 ns 
-timing/y__i1/D                           |   -1.060 ns 
+{timing/y__i7/SP   timing/y__i6/SP}      |   27.654 ns 
+{timing/y__i9/SP   timing/y__i8/SP}      |   27.654 ns 
+timing/x_94__i9/SR                       |   27.984 ns 
+{timing/x_94__i7/SR   timing/x_94__i8/SR}|   27.984 ns 
+{timing/y__i3/SP   timing/y__i2/SP}      |   28.765 ns 
+{timing/y__i5/SP   timing/y__i4/SP}      |   28.765 ns 
+{timing/y__i0/SP   timing/y__i1/SP}      |   28.765 ns 
+{timing/x_94__i3/SR   timing/x_94__i4/SR}|   29.095 ns 
+{timing/x_94__i5/SR   timing/x_94__i6/SR}|   29.095 ns 
+{timing/x_94__i1/SR   timing/x_94__i2/SR}|   29.095 ns 
 -------------------------------------------------------
                                          |             
-Setup # of endpoints with negative slack:|          15 
+Setup # of endpoints with negative slack:|           0 
                                          |             
 -------------------------------------------------------
 
@@ -215,632 +210,618 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/y__i4/Q  (SLICE_R16C4A)
-Path End         : timing/y__i9/D  (SLICE_R16C5C)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/y__i7/SP   timing/y__i6/SP}  (SLICE_R18C6C)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 75.1% (route), 24.9% (logic)
+Logic Level      : 3
+Delay Ratio      : 80.9% (route), 19.1% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.323 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 27.653 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/y__i5/CK   timing/y__i4/CK}                          CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/y__i4/CK->timing/y__i4/Q           SLICE_R16C4A       CLK_TO_Q1_DELAY     1.388                 12.390  3       
-timing/y[4]                                                  NET DELAY           2.736                 15.126  3       
-timing/i6_4_lut/B->timing/i6_4_lut/Z      SLICE_R17C3B       A0_TO_F0_DELAY      0.449                 15.575  1       
-timing/n15                                                   NET DELAY           2.551                 18.126  1       
-timing/i8_4_lut/A->timing/i8_4_lut/Z      SLICE_R16C3D       A1_TO_F1_DELAY      0.449                 18.575  10      
-timing/n19_adj_30                                            NET DELAY           3.027                 21.602  10      
-timing/i358_2_lut/B->timing/i358_2_lut/Z  SLICE_R16C5C       C0_TO_F0_DELAY      0.476                 22.078  1       
-timing/n18[9]                                                NET DELAY           0.000                 22.078  1       
-timing/y__i9/D                                               ENDPOINT            0.000                 22.078  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           3.913                 22.555  11      
+{timing/y__i7/SP   timing/y__i6/SP}                          ENDPOINT            0.000                 22.555  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/y__i9/CK   timing/y__i8/CK}                          CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.198)                 20.754  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/y__i7/CK   timing/y__i6/CK}                          CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.198)                 50.208  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.754  
-Arrival Time                                                                                        -(22.077)  
+Required Time                                                                                          50.208  
+Arrival Time                                                                                        -(22.554)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.323  
+Path Slack  (Passed)                                                                                   27.653  
 
 
 
 
 ++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/x_104__i8/Q  (SLICE_R14C5A)
-Path End         : timing/x_104__i0/SR  (SLICE_R14C4A)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/y__i9/SP   timing/y__i8/SP}  (SLICE_R18C6D)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 3
-Delay Ratio      : 78.6% (route), 21.4% (logic)
+Delay Ratio      : 80.9% (route), 19.1% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.257 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 27.653 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/x_104__i7/CK   timing/x_104__i8/CK}
-                                                             CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/x_104__i8/CK->timing/x_104__i8/Q   SLICE_R14C5A       CLK_TO_Q1_DELAY     1.388                 12.390  5       
-timing/x[8]                                                  NET DELAY           2.141                 14.531  5       
-timing/i5_4_lut/A->timing/i5_4_lut/Z      SLICE_R15C4A       A1_TO_F1_DELAY      0.449                 14.980  1       
-timing/n13                                                   NET DELAY           2.485                 17.465  1       
-timing/i35_4_lut/A->timing/i35_4_lut/Z    SLICE_R15C4D       B1_TO_F1_DELAY      0.449                 17.914  11      
-timing/n92                                                   NET DELAY           3.767                 21.681  11      
-timing/x_104__i0/SR                                          ENDPOINT            0.000                 21.681  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           3.913                 22.555  11      
+{timing/y__i9/SP   timing/y__i8/SP}                          ENDPOINT            0.000                 22.555  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-timing/x_104__i0/CK                                          CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.529)                 20.423  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/y__i9/CK   timing/y__i8/CK}                          CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.198)                 50.208  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.423  
-Arrival Time                                                                                        -(21.680)  
+Required Time                                                                                          50.208  
+Arrival Time                                                                                        -(22.554)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.257  
+Path Slack  (Passed)                                                                                   27.653  
 
 
 
 
 ++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/x_104__i8/Q  (SLICE_R14C5A)
-Path End         : {timing/x_104__i3/SR   timing/x_104__i4/SR}  (SLICE_R14C4C)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : timing/x_94__i9/SR  (SLICE_R19C7B)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 3
-Delay Ratio      : 78.6% (route), 21.4% (logic)
+Delay Ratio      : 79.7% (route), 20.3% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.257 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 27.983 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/x_104__i7/CK   timing/x_104__i8/CK}
-                                                             CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/x_104__i8/CK->timing/x_104__i8/Q   SLICE_R14C5A       CLK_TO_Q1_DELAY     1.388                 12.390  5       
-timing/x[8]                                                  NET DELAY           2.141                 14.531  5       
-timing/i5_4_lut/A->timing/i5_4_lut/Z      SLICE_R15C4A       A1_TO_F1_DELAY      0.449                 14.980  1       
-timing/n13                                                   NET DELAY           2.485                 17.465  1       
-timing/i35_4_lut/A->timing/i35_4_lut/Z    SLICE_R15C4D       B1_TO_F1_DELAY      0.449                 17.914  11      
-timing/n92                                                   NET DELAY           3.767                 21.681  11      
-{timing/x_104__i3/SR   timing/x_104__i4/SR}
-                                                             ENDPOINT            0.000                 21.681  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           3.252                 21.894  11      
+timing/x_94__i9/SR                                           ENDPOINT            0.000                 21.894  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/x_104__i3/CK   timing/x_104__i4/CK}
-                                                             CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.529)                 20.423  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+timing/x_94__i9/CK                                           CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.529)                 49.877  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.423  
-Arrival Time                                                                                        -(21.680)  
+Required Time                                                                                          49.877  
+Arrival Time                                                                                        -(21.893)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.257  
+Path Slack  (Passed)                                                                                   27.983  
 
 
 
 
 ++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/x_104__i8/Q  (SLICE_R14C5A)
-Path End         : {timing/x_104__i5/SR   timing/x_104__i6/SR}  (SLICE_R14C4D)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/x_94__i7/SR   timing/x_94__i8/SR}  (SLICE_R19C7A)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 3
-Delay Ratio      : 78.6% (route), 21.4% (logic)
+Delay Ratio      : 79.7% (route), 20.3% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.257 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 27.983 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/x_104__i7/CK   timing/x_104__i8/CK}
-                                                             CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/x_104__i8/CK->timing/x_104__i8/Q   SLICE_R14C5A       CLK_TO_Q1_DELAY     1.388                 12.390  5       
-timing/x[8]                                                  NET DELAY           2.141                 14.531  5       
-timing/i5_4_lut/A->timing/i5_4_lut/Z      SLICE_R15C4A       A1_TO_F1_DELAY      0.449                 14.980  1       
-timing/n13                                                   NET DELAY           2.485                 17.465  1       
-timing/i35_4_lut/A->timing/i35_4_lut/Z    SLICE_R15C4D       B1_TO_F1_DELAY      0.449                 17.914  11      
-timing/n92                                                   NET DELAY           3.767                 21.681  11      
-{timing/x_104__i5/SR   timing/x_104__i6/SR}
-                                                             ENDPOINT            0.000                 21.681  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           3.252                 21.894  11      
+{timing/x_94__i7/SR   timing/x_94__i8/SR}
+                                                             ENDPOINT            0.000                 21.894  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/x_104__i5/CK   timing/x_104__i6/CK}
-                                                             CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.529)                 20.423  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/x_94__i7/CK   timing/x_94__i8/CK}
+                                                             CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.529)                 49.877  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.423  
-Arrival Time                                                                                        -(21.680)  
+Required Time                                                                                          49.877  
+Arrival Time                                                                                        -(21.893)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.257  
+Path Slack  (Passed)                                                                                   27.983  
 
 
 
 
 ++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/x_104__i8/Q  (SLICE_R14C5A)
-Path End         : {timing/x_104__i1/SR   timing/x_104__i2/SR}  (SLICE_R14C4B)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/y__i3/SP   timing/y__i2/SP}  (SLICE_R17C5C)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 3
-Delay Ratio      : 78.6% (route), 21.4% (logic)
+Delay Ratio      : 78.9% (route), 21.1% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.257 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 28.764 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/x_104__i7/CK   timing/x_104__i8/CK}
-                                                             CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/x_104__i8/CK->timing/x_104__i8/Q   SLICE_R14C5A       CLK_TO_Q1_DELAY     1.388                 12.390  5       
-timing/x[8]                                                  NET DELAY           2.141                 14.531  5       
-timing/i5_4_lut/A->timing/i5_4_lut/Z      SLICE_R15C4A       A1_TO_F1_DELAY      0.449                 14.980  1       
-timing/n13                                                   NET DELAY           2.485                 17.465  1       
-timing/i35_4_lut/A->timing/i35_4_lut/Z    SLICE_R15C4D       B1_TO_F1_DELAY      0.449                 17.914  11      
-timing/n92                                                   NET DELAY           3.767                 21.681  11      
-{timing/x_104__i1/SR   timing/x_104__i2/SR}
-                                                             ENDPOINT            0.000                 21.681  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           2.802                 21.444  11      
+{timing/y__i3/SP   timing/y__i2/SP}                          ENDPOINT            0.000                 21.444  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/x_104__i1/CK   timing/x_104__i2/CK}
-                                                             CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.529)                 20.423  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/y__i3/CK   timing/y__i2/CK}                          CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.198)                 50.208  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.423  
-Arrival Time                                                                                        -(21.680)  
+Required Time                                                                                          50.208  
+Arrival Time                                                                                        -(21.443)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.257  
+Path Slack  (Passed)                                                                                   28.764  
 
 
 
 
 ++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/y__i4/Q  (SLICE_R16C4A)
-Path End         : timing/y__i7/D  (SLICE_R16C5B)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/y__i5/SP   timing/y__i4/SP}  (SLICE_R17C5D)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 74.5% (route), 25.5% (logic)
+Logic Level      : 3
+Delay Ratio      : 78.9% (route), 21.1% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.059 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 28.764 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/y__i5/CK   timing/y__i4/CK}                          CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/y__i4/CK->timing/y__i4/Q           SLICE_R16C4A       CLK_TO_Q1_DELAY     1.388                 12.390  3       
-timing/y[4]                                                  NET DELAY           2.736                 15.126  3       
-timing/i6_4_lut/B->timing/i6_4_lut/Z      SLICE_R17C3B       A0_TO_F0_DELAY      0.449                 15.575  1       
-timing/n15                                                   NET DELAY           2.551                 18.126  1       
-timing/i8_4_lut/A->timing/i8_4_lut/Z      SLICE_R16C3D       A1_TO_F1_DELAY      0.449                 18.575  10      
-timing/n19_adj_30                                            NET DELAY           2.763                 21.338  10      
-timing/i360_2_lut/B->timing/i360_2_lut/Z  SLICE_R16C5B       D0_TO_F0_DELAY      0.476                 21.814  1       
-timing/n18[7]                                                NET DELAY           0.000                 21.814  1       
-timing/y__i7/D                                               ENDPOINT            0.000                 21.814  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           2.802                 21.444  11      
+{timing/y__i5/SP   timing/y__i4/SP}                          ENDPOINT            0.000                 21.444  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/y__i7/CK   timing/y__i6/CK}                          CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.198)                 20.754  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/y__i5/CK   timing/y__i4/CK}                          CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.198)                 50.208  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.754  
-Arrival Time                                                                                        -(21.813)  
+Required Time                                                                                          50.208  
+Arrival Time                                                                                        -(21.443)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.059  
+Path Slack  (Passed)                                                                                   28.764  
 
 
 
 
 ++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/y__i4/Q  (SLICE_R16C4A)
-Path End         : timing/y__i6/D  (SLICE_R16C5B)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/y__i0/SP   timing/y__i1/SP}  (SLICE_R17C5A)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 74.5% (route), 25.5% (logic)
+Logic Level      : 3
+Delay Ratio      : 78.9% (route), 21.1% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.059 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 28.764 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/y__i5/CK   timing/y__i4/CK}                          CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/y__i4/CK->timing/y__i4/Q           SLICE_R16C4A       CLK_TO_Q1_DELAY     1.388                 12.390  3       
-timing/y[4]                                                  NET DELAY           2.736                 15.126  3       
-timing/i6_4_lut/B->timing/i6_4_lut/Z      SLICE_R17C3B       A0_TO_F0_DELAY      0.449                 15.575  1       
-timing/n15                                                   NET DELAY           2.551                 18.126  1       
-timing/i8_4_lut/A->timing/i8_4_lut/Z      SLICE_R16C3D       A1_TO_F1_DELAY      0.449                 18.575  10      
-timing/n19_adj_30                                            NET DELAY           2.763                 21.338  10      
-timing/i361_2_lut/B->timing/i361_2_lut/Z  SLICE_R16C5B       D1_TO_F1_DELAY      0.476                 21.814  1       
-timing/n18[6]                                                NET DELAY           0.000                 21.814  1       
-timing/y__i6/D                                               ENDPOINT            0.000                 21.814  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           2.802                 21.444  11      
+{timing/y__i0/SP   timing/y__i1/SP}                          ENDPOINT            0.000                 21.444  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/y__i7/CK   timing/y__i6/CK}                          CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.198)                 20.754  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/y__i0/CK   timing/y__i1/CK}                          CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.198)                 50.208  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.754  
-Arrival Time                                                                                        -(21.813)  
+Required Time                                                                                          50.208  
+Arrival Time                                                                                        -(21.443)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.059  
+Path Slack  (Passed)                                                                                   28.764  
 
 
 
 
 ++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/y__i4/Q  (SLICE_R16C4A)
-Path End         : timing/y__i8/D  (SLICE_R16C5C)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/x_94__i3/SR   timing/x_94__i4/SR}  (SLICE_R19C6C)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 74.5% (route), 25.5% (logic)
+Logic Level      : 3
+Delay Ratio      : 77.5% (route), 22.5% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.059 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 29.094 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/y__i5/CK   timing/y__i4/CK}                          CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/y__i4/CK->timing/y__i4/Q           SLICE_R16C4A       CLK_TO_Q1_DELAY     1.388                 12.390  3       
-timing/y[4]                                                  NET DELAY           2.736                 15.126  3       
-timing/i6_4_lut/B->timing/i6_4_lut/Z      SLICE_R17C3B       A0_TO_F0_DELAY      0.449                 15.575  1       
-timing/n15                                                   NET DELAY           2.551                 18.126  1       
-timing/i8_4_lut/A->timing/i8_4_lut/Z      SLICE_R16C3D       A1_TO_F1_DELAY      0.449                 18.575  10      
-timing/n19_adj_30                                            NET DELAY           2.763                 21.338  10      
-timing/i359_2_lut/B->timing/i359_2_lut/Z  SLICE_R16C5C       D1_TO_F1_DELAY      0.476                 21.814  1       
-timing/n18[8]                                                NET DELAY           0.000                 21.814  1       
-timing/y__i8/D                                               ENDPOINT            0.000                 21.814  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           2.141                 20.783  11      
+{timing/x_94__i3/SR   timing/x_94__i4/SR}
+                                                             ENDPOINT            0.000                 20.783  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/y__i9/CK   timing/y__i8/CK}                          CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.198)                 20.754  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/x_94__i3/CK   timing/x_94__i4/CK}
+                                                             CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.529)                 49.877  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.754  
-Arrival Time                                                                                        -(21.813)  
+Required Time                                                                                          49.877  
+Arrival Time                                                                                        -(20.782)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.059  
+Path Slack  (Passed)                                                                                   29.094  
 
 
 
 
 ++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/y__i4/Q  (SLICE_R16C4A)
-Path End         : timing/y__i0/D  (SLICE_R16C5A)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/x_94__i5/SR   timing/x_94__i6/SR}  (SLICE_R19C6D)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 74.5% (route), 25.5% (logic)
+Logic Level      : 3
+Delay Ratio      : 77.5% (route), 22.5% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.059 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 29.094 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/y__i5/CK   timing/y__i4/CK}                          CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/y__i4/CK->timing/y__i4/Q           SLICE_R16C4A       CLK_TO_Q1_DELAY     1.388                 12.390  3       
-timing/y[4]                                                  NET DELAY           2.736                 15.126  3       
-timing/i6_4_lut/B->timing/i6_4_lut/Z      SLICE_R17C3B       A0_TO_F0_DELAY      0.449                 15.575  1       
-timing/n15                                                   NET DELAY           2.551                 18.126  1       
-timing/i8_4_lut/A->timing/i8_4_lut/Z      SLICE_R16C3D       A1_TO_F1_DELAY      0.449                 18.575  10      
-timing/n19_adj_30                                            NET DELAY           2.763                 21.338  10      
-timing/i353_2_lut/B->timing/i353_2_lut/Z  SLICE_R16C5A       D0_TO_F0_DELAY      0.476                 21.814  1       
-timing/n18[0]                                                NET DELAY           0.000                 21.814  1       
-timing/y__i0/D                                               ENDPOINT            0.000                 21.814  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           2.141                 20.783  11      
+{timing/x_94__i5/SR   timing/x_94__i6/SR}
+                                                             ENDPOINT            0.000                 20.783  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/y__i0/CK   timing/y__i1/CK}                          CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.198)                 20.754  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/x_94__i5/CK   timing/x_94__i6/CK}
+                                                             CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.529)                 49.877  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.754  
-Arrival Time                                                                                        -(21.813)  
+Required Time                                                                                          49.877  
+Arrival Time                                                                                        -(20.782)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.059  
+Path Slack  (Passed)                                                                                   29.094  
 
 
 
 
 ++++ Path 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/y__i4/Q  (SLICE_R16C4A)
-Path End         : timing/y__i1/D  (SLICE_R16C5A)
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : {timing/x_94__i1/SR   timing/x_94__i2/SR}  (SLICE_R19C6B)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
-Logic Level      : 4
-Delay Ratio      : 74.5% (route), 25.5% (logic)
+Logic Level      : 3
+Delay Ratio      : 77.5% (route), 22.5% (logic)
 Clock Skew       : 0.000 ns 
-Setup Constraint : 9.950 ns 
-Path Slack       : -1.059 ns  (Failed)
+Setup Constraint : 39.800 ns 
+Path Slack       : 29.094 ns  (Passed)
 
 
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  4       
-pll/clk_12mhz                                                NET DELAY           5.353                  5.353  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                  5.353  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                  5.503  13      
-pll/clk_pixel                                                NET DELAY           5.499                 11.002  13      
-{timing/y__i5/CK   timing/y__i4/CK}                          CLOCK PIN           0.000                 11.002  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  0.000  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                  4.957  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                  4.957  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                  5.107  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 10.606  11      
+timing/x_94__i0/CK                                           CLOCK PIN           0.000                 10.606  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-timing/y__i4/CK->timing/y__i4/Q           SLICE_R16C4A       CLK_TO_Q1_DELAY     1.388                 12.390  3       
-timing/y[4]                                                  NET DELAY           2.736                 15.126  3       
-timing/i6_4_lut/B->timing/i6_4_lut/Z      SLICE_R17C3B       A0_TO_F0_DELAY      0.449                 15.575  1       
-timing/n15                                                   NET DELAY           2.551                 18.126  1       
-timing/i8_4_lut/A->timing/i8_4_lut/Z      SLICE_R16C3D       A1_TO_F1_DELAY      0.449                 18.575  10      
-timing/n19_adj_30                                            NET DELAY           2.763                 21.338  10      
-timing/i354_2_lut/B->timing/i354_2_lut/Z  SLICE_R16C5A       D1_TO_F1_DELAY      0.476                 21.814  1       
-timing/n18[1]                                                NET DELAY           0.000                 21.814  1       
-timing/y__i1/D                                               ENDPOINT            0.000                 21.814  1       
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY     1.388                 11.994  2       
+timing/x[0]                                                  NET DELAY           2.670                 14.664  2       
+timing/i3_2_lut/A->timing/i3_2_lut/Z      SLICE_R19C4B       B1_TO_F1_DELAY      0.449                 15.113  1       
+timing/n11                                                   NET DELAY           3.080                 18.193  1       
+timing/i27_4_lut/C->timing/i27_4_lut/Z    SLICE_R19C5C       B1_TO_F1_DELAY      0.449                 18.642  11      
+timing/n56                                                   NET DELAY           2.141                 20.783  11      
+{timing/x_94__i1/SR   timing/x_94__i2/SR}
+                                                             ENDPOINT            0.000                 20.783  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr      Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-                                                             CONSTRAINT          0.000                  9.950  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                  9.950  4       
-pll/clk_12mhz                                                NET DELAY           5.353                 15.303  4       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                         0.000                 15.303  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                         0.150                 15.453  13      
-pll/clk_pixel                                                NET DELAY           5.499                 20.952  13      
-{timing/y__i0/CK   timing/y__i1/CK}                          CLOCK PIN           0.000                 20.952  1       
-                                                             Uncertainty      -(0.000)                 20.952  
-                                                             Setup time       -(0.198)                 20.754  
+                                                             CONSTRAINT          0.000                 39.800  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY       0.000                 39.800  2       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY           4.957                 44.757  2       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                         0.000                 44.757  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                         0.150                 44.907  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY           5.499                 50.406  11      
+{timing/x_94__i1/CK   timing/x_94__i2/CK}
+                                                             CLOCK PIN           0.000                 50.406  1       
+                                                             Uncertainty      -(0.000)                 50.406  
+                                                             Setup time       -(0.529)                 49.877  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Required Time                                                                                          20.754  
-Arrival Time                                                                                        -(21.813)  
+Required Time                                                                                          49.877  
+Arrival Time                                                                                        -(20.782)  
 ----------------------------------------  -----------------  ---------------  --------  ---------------------  ------  
-Path Slack  (Failed)                                                                                   -1.059  
+Path Slack  (Passed)                                                                                   29.094  
 
 
 
@@ -862,16 +843,16 @@ Path Slack  (Failed)                                                            
 -------------------------------------------------------
           Listing 10 End Points          |    Slack    
 -------------------------------------------------------
-pix_cnt_103__i3/D                        |    1.743 ns 
-pix_cnt_103__i2/D                        |    1.743 ns 
-pix_cnt_103__i4/D                        |    1.743 ns 
-pix_cnt_103__i1/D                        |    1.743 ns 
-osc_cnt_102__i2/D                        |    1.743 ns 
-osc_cnt_102__i1/D                        |    1.743 ns 
-osc_cnt_102__i4/D                        |    1.743 ns 
-osc_cnt_102__i3/D                        |    1.743 ns 
-timing/x_104__i1/D                       |    1.913 ns 
-timing/x_104__i2/D                       |    1.913 ns 
+timing/x_94__i9/D                        |    1.913 ns 
+timing/x_94__i0/D                        |    1.913 ns 
+timing/x_94__i3/D                        |    1.913 ns 
+timing/x_94__i4/D                        |    1.913 ns 
+timing/x_94__i5/D                        |    1.913 ns 
+timing/x_94__i6/D                        |    1.913 ns 
+timing/x_94__i7/D                        |    1.913 ns 
+timing/x_94__i8/D                        |    1.913 ns 
+timing/x_94__i1/D                        |    1.913 ns 
+timing/x_94__i2/D                        |    1.913 ns 
 -------------------------------------------------------
                                          |             
 Hold # of endpoints with negative slack: |           0 
@@ -894,456 +875,8 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : pix_cnt_103__i3/Q  (SLICE_R6C2B)
-Path End         : pix_cnt_103__i3/D  (SLICE_R6C2B)
-Source Clock     : clk_pixel (R)
-Destination Clock: clk_pixel (R)
-Logic Level      : 2
-Delay Ratio      : 40.8% (route), 59.2% (logic)
-Clock Skew       : 0.000 ns 
-Hold Constraint  : 0.000 ns 
-Path Slack       : 1.743 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{pix_cnt_103__i3/CK   pix_cnt_103__i2/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-
-
-Data Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pix_cnt_103__i3/CK->pix_cnt_103__i3/Q     SLICE_R6C2B        CLK_TO_Q0_DELAY  0.779                  7.015  2       
-n2                                                           NET DELAY        0.712                  7.727  2       
-i606_2_lut_3_lut/C->i606_2_lut_3_lut/Z    SLICE_R6C2B        D0_TO_F0_DELAY   0.252                  7.979  1       
-pix_cnt_c_N_29[2]                                            NET DELAY        0.000                  7.979  1       
-pix_cnt_103__i3/D                                            ENDPOINT         0.000                  7.979  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-                                                             CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{pix_cnt_103__i3/CK   pix_cnt_103__i2/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-                                                             Uncertainty      0.000                  6.236  
-                                                             Hold time        0.000                  6.236  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -6.236  
-Arrival Time                                                                                         7.979  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Path Slack  (Passed)                                                                                 1.743  
-
-
-
-
-++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : pix_cnt_103__i1/Q  (SLICE_R6C2C)
-Path End         : pix_cnt_103__i2/D  (SLICE_R6C2B)
-Source Clock     : clk_pixel (R)
-Destination Clock: clk_pixel (R)
-Logic Level      : 2
-Delay Ratio      : 40.8% (route), 59.2% (logic)
-Clock Skew       : 0.000 ns 
-Hold Constraint  : 0.000 ns 
-Path Slack       : 1.743 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{pix_cnt_103__i4/CK   pix_cnt_103__i1/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-
-
-Data Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pix_cnt_103__i1/CK->pix_cnt_103__i1/Q     SLICE_R6C2C        CLK_TO_Q1_DELAY  0.779                  7.015  4       
-n4                                                           NET DELAY        0.712                  7.727  4       
-i599_2_lut/B->i599_2_lut/Z                SLICE_R6C2B        D1_TO_F1_DELAY   0.252                  7.979  1       
-pix_cnt_c_N_29[1]                                            NET DELAY        0.000                  7.979  1       
-pix_cnt_103__i2/D                                            ENDPOINT         0.000                  7.979  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-                                                             CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{pix_cnt_103__i3/CK   pix_cnt_103__i2/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-                                                             Uncertainty      0.000                  6.236  
-                                                             Hold time        0.000                  6.236  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -6.236  
-Arrival Time                                                                                         7.979  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Path Slack  (Passed)                                                                                 1.743  
-
-
-
-
-++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : pix_cnt_103__i3/Q  (SLICE_R6C2B)
-Path End         : pix_cnt_103__i4/D  (SLICE_R6C2C)
-Source Clock     : clk_pixel (R)
-Destination Clock: clk_pixel (R)
-Logic Level      : 2
-Delay Ratio      : 40.8% (route), 59.2% (logic)
-Clock Skew       : 0.000 ns 
-Hold Constraint  : 0.000 ns 
-Path Slack       : 1.743 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{pix_cnt_103__i3/CK   pix_cnt_103__i2/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-
-
-Data Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pix_cnt_103__i3/CK->pix_cnt_103__i3/Q     SLICE_R6C2B        CLK_TO_Q0_DELAY  0.779                  7.015  2       
-n2                                                           NET DELAY        0.712                  7.727  2       
-i613_3_lut_4_lut/C->i613_3_lut_4_lut/Z    SLICE_R6C2C        D0_TO_F0_DELAY   0.252                  7.979  1       
-pix_cnt_c_N_29[3]                                            NET DELAY        0.000                  7.979  1       
-pix_cnt_103__i4/D                                            ENDPOINT         0.000                  7.979  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-                                                             CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{pix_cnt_103__i4/CK   pix_cnt_103__i1/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-                                                             Uncertainty      0.000                  6.236  
-                                                             Hold time        0.000                  6.236  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -6.236  
-Arrival Time                                                                                         7.979  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Path Slack  (Passed)                                                                                 1.743  
-
-
-
-
-++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : pix_cnt_103__i1/Q  (SLICE_R6C2C)
-Path End         : pix_cnt_103__i1/D  (SLICE_R6C2C)
-Source Clock     : clk_pixel (R)
-Destination Clock: clk_pixel (R)
-Logic Level      : 2
-Delay Ratio      : 40.8% (route), 59.2% (logic)
-Clock Skew       : 0.000 ns 
-Hold Constraint  : 0.000 ns 
-Path Slack       : 1.743 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{pix_cnt_103__i4/CK   pix_cnt_103__i1/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-
-
-Data Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pix_cnt_103__i1/CK->pix_cnt_103__i1/Q     SLICE_R6C2C        CLK_TO_Q1_DELAY  0.779                  7.015  4       
-n4                                                           NET DELAY        0.712                  7.727  4       
-i597_1_lut/A->i597_1_lut/Z                SLICE_R6C2C        D1_TO_F1_DELAY   0.252                  7.979  1       
-pix_cnt_c_N_29[0]                                            NET DELAY        0.000                  7.979  1       
-pix_cnt_103__i1/D                                            ENDPOINT         0.000                  7.979  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-                                                             CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{pix_cnt_103__i4/CK   pix_cnt_103__i1/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-                                                             Uncertainty      0.000                  6.236  
-                                                             Hold time        0.000                  6.236  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -6.236  
-Arrival Time                                                                                         7.979  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Path Slack  (Passed)                                                                                 1.743  
-
-
-
-
-++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : osc_cnt_102__i2/Q  (SLICE_R8C2A)
-Path End         : osc_cnt_102__i2/D  (SLICE_R8C2A)
-Source Clock     : clk_12mhz (R)
-Destination Clock: clk_12mhz (R)
-Logic Level      : 2
-Delay Ratio      : 40.8% (route), 59.2% (logic)
-Clock Skew       : 0.000 ns 
-Hold Constraint  : 0.000 ns 
-Path Slack       : 1.743 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.084                  3.084  5       
-{osc_cnt_102__i2/CK   osc_cnt_102__i1/CK}
-                                                             CLOCK PIN        0.000                  3.084  1       
-
-
-Data Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-osc_cnt_102__i2/CK->osc_cnt_102__i2/Q     SLICE_R8C2A        CLK_TO_Q0_DELAY  0.779                  3.863  3       
-n3_adj_32                                                    NET DELAY        0.712                  4.575  3       
-i570_2_lut/A->i570_2_lut/Z                SLICE_R8C2A        D0_TO_F0_DELAY   0.252                  4.827  1       
-osc_cnt_c_N_28[1]                                            NET DELAY        0.000                  4.827  1       
-osc_cnt_102__i2/D                                            ENDPOINT         0.000                  4.827  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-                                                             CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.084                  3.084  5       
-{osc_cnt_102__i2/CK   osc_cnt_102__i1/CK}
-                                                             CLOCK PIN        0.000                  3.084  1       
-                                                             Uncertainty      0.000                  3.084  
-                                                             Hold time        0.000                  3.084  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -3.084  
-Arrival Time                                                                                         4.827  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Path Slack  (Passed)                                                                                 1.743  
-
-
-
-
-++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : osc_cnt_102__i1/Q  (SLICE_R8C2A)
-Path End         : osc_cnt_102__i1/D  (SLICE_R8C2A)
-Source Clock     : clk_12mhz (R)
-Destination Clock: clk_12mhz (R)
-Logic Level      : 2
-Delay Ratio      : 40.8% (route), 59.2% (logic)
-Clock Skew       : 0.000 ns 
-Hold Constraint  : 0.000 ns 
-Path Slack       : 1.743 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.084                  3.084  5       
-{osc_cnt_102__i2/CK   osc_cnt_102__i1/CK}
-                                                             CLOCK PIN        0.000                  3.084  1       
-
-
-Data Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-osc_cnt_102__i1/CK->osc_cnt_102__i1/Q     SLICE_R8C2A        CLK_TO_Q1_DELAY  0.779                  3.863  4       
-n4_adj_31                                                    NET DELAY        0.712                  4.575  4       
-i568_1_lut/A->i568_1_lut/Z                SLICE_R8C2A        D1_TO_F1_DELAY   0.252                  4.827  1       
-osc_cnt_c_N_28[0]                                            NET DELAY        0.000                  4.827  1       
-osc_cnt_102__i1/D                                            ENDPOINT         0.000                  4.827  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-                                                             CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.084                  3.084  5       
-{osc_cnt_102__i2/CK   osc_cnt_102__i1/CK}
-                                                             CLOCK PIN        0.000                  3.084  1       
-                                                             Uncertainty      0.000                  3.084  
-                                                             Hold time        0.000                  3.084  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -3.084  
-Arrival Time                                                                                         4.827  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Path Slack  (Passed)                                                                                 1.743  
-
-
-
-
-++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : osc_cnt_102__i4/Q  (SLICE_R8C2B)
-Path End         : osc_cnt_102__i4/D  (SLICE_R8C2B)
-Source Clock     : clk_12mhz (R)
-Destination Clock: clk_12mhz (R)
-Logic Level      : 2
-Delay Ratio      : 40.8% (route), 59.2% (logic)
-Clock Skew       : 0.000 ns 
-Hold Constraint  : 0.000 ns 
-Path Slack       : 1.743 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.084                  3.084  5       
-{osc_cnt_102__i4/CK   osc_cnt_102__i3/CK}
-                                                             CLOCK PIN        0.000                  3.084  1       
-
-
-Data Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-osc_cnt_102__i4/CK->osc_cnt_102__i4/Q     SLICE_R8C2B        CLK_TO_Q0_DELAY  0.779                  3.863  2       
-osc_cnt_c                                                    NET DELAY        0.712                  4.575  2       
-i584_3_lut_4_lut/D->i584_3_lut_4_lut/Z    SLICE_R8C2B        D0_TO_F0_DELAY   0.252                  4.827  1       
-osc_cnt_c_N_28[3]                                            NET DELAY        0.000                  4.827  1       
-osc_cnt_102__i4/D                                            ENDPOINT         0.000                  4.827  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-                                                             CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.084                  3.084  5       
-{osc_cnt_102__i4/CK   osc_cnt_102__i3/CK}
-                                                             CLOCK PIN        0.000                  3.084  1       
-                                                             Uncertainty      0.000                  3.084  
-                                                             Hold time        0.000                  3.084  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -3.084  
-Arrival Time                                                                                         4.827  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Path Slack  (Passed)                                                                                 1.743  
-
-
-
-
-++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : osc_cnt_102__i3/Q  (SLICE_R8C2B)
-Path End         : osc_cnt_102__i3/D  (SLICE_R8C2B)
-Source Clock     : clk_12mhz (R)
-Destination Clock: clk_12mhz (R)
-Logic Level      : 2
-Delay Ratio      : 40.8% (route), 59.2% (logic)
-Clock Skew       : 0.000 ns 
-Hold Constraint  : 0.000 ns 
-Path Slack       : 1.743 ns  (Passed)
-
-
-Source Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.084                  3.084  5       
-{osc_cnt_102__i4/CK   osc_cnt_102__i3/CK}
-                                                             CLOCK PIN        0.000                  3.084  1       
-
-
-Data Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-osc_cnt_102__i3/CK->osc_cnt_102__i3/Q     SLICE_R8C2B        CLK_TO_Q1_DELAY  0.779                  3.863  2       
-n2_adj_33                                                    NET DELAY        0.712                  4.575  2       
-i577_2_lut_3_lut/C->i577_2_lut_3_lut/Z    SLICE_R8C2B        D1_TO_F1_DELAY   0.252                  4.827  1       
-osc_cnt_c_N_28[2]                                            NET DELAY        0.000                  4.827  1       
-osc_cnt_102__i3/D                                            ENDPOINT         0.000                  4.827  1       
-
-
-Destination Clock Path
-Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-                                                             CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.084                  3.084  5       
-{osc_cnt_102__i4/CK   osc_cnt_102__i3/CK}
-                                                             CLOCK PIN        0.000                  3.084  1       
-                                                             Uncertainty      0.000                  3.084  
-                                                             Hold time        0.000                  3.084  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -3.084  
-Arrival Time                                                                                         4.827  
-----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Path Slack  (Passed)                                                                                 1.743  
-
-
-
-
-++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin       : timing/x_104__i1/Q  (SLICE_R14C4B)
-Path End         : timing/x_104__i1/D  (SLICE_R14C4B)
+Path Begin       : timing/x_94__i9/Q  (SLICE_R19C7B)
+Path End         : timing/x_94__i9/D  (SLICE_R19C7B)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1356,46 +889,538 @@ Path Slack       : 1.913 ns  (Passed)
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{timing/x_104__i1/CK   timing/x_104__i2/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+timing/x_94__i9/CK                                           CLOCK PIN        0.000                  6.014  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-timing/x_104__i1/CK->timing/x_104__i1/Q   SLICE_R14C4B       CLK_TO_Q0_DELAY  0.779                  7.015  2       
-timing/x[1]                                                  NET DELAY        0.882                  7.897  2       
-timing/x_104_add_4_3/C0->timing/x_104_add_4_3/S0
-                                          SLICE_R14C4B       C0_TO_F0_DELAY   0.252                  8.149  1       
-timing/n45[1]                                                NET DELAY        0.000                  8.149  1       
-timing/x_104__i1/D                                           ENDPOINT         0.000                  8.149  1       
+timing/x_94__i9/CK->timing/x_94__i9/Q     SLICE_R19C7B       CLK_TO_Q0_DELAY  0.779                  6.793  5       
+timing/x[9]                                                  NET DELAY        0.882                  7.675  5       
+timing/x_94_add_4_11/C0->timing/x_94_add_4_11/S0
+                                          SLICE_R19C7B       C0_TO_F0_DELAY   0.252                  7.927  1       
+timing/n45[9]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i9/D                                            ENDPOINT         0.000                  7.927  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
                                                              CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{timing/x_104__i1/CK   timing/x_104__i2/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-                                                             Uncertainty      0.000                  6.236  
-                                                             Hold time        0.000                  6.236  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+timing/x_94__i9/CK                                           CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -6.236  
-Arrival Time                                                                                         8.149  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Path Slack  (Passed)                                                                                 1.913  
+
+
+
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_94__i0/Q  (SLICE_R19C6A)
+Path End         : timing/x_94__i0/D  (SLICE_R19C6A)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 2
+Delay Ratio      : 46.1% (route), 53.9% (logic)
+Clock Skew       : 0.000 ns 
+Hold Constraint  : 0.000 ns 
+Path Slack       : 1.913 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+timing/x_94__i0/CK                                           CLOCK PIN        0.000                  6.014  1       
+
+
+Data Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+timing/x_94__i0/CK->timing/x_94__i0/Q     SLICE_R19C6A       CLK_TO_Q1_DELAY  0.779                  6.793  2       
+timing/x[0]                                                  NET DELAY        0.882                  7.675  2       
+timing/x_94_add_4_1/C1->timing/x_94_add_4_1/S1
+                                          SLICE_R19C6A       C1_TO_F1_DELAY   0.252                  7.927  1       
+timing/n45[0]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i0/D                                            ENDPOINT         0.000                  7.927  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+                                                             CONSTRAINT       0.000                  0.000  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+timing/x_94__i0/CK                                           CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Path Slack  (Passed)                                                                                 1.913  
+
+
+
+
+++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_94__i3/Q  (SLICE_R19C6C)
+Path End         : timing/x_94__i3/D  (SLICE_R19C6C)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 2
+Delay Ratio      : 46.1% (route), 53.9% (logic)
+Clock Skew       : 0.000 ns 
+Hold Constraint  : 0.000 ns 
+Path Slack       : 1.913 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i3/CK   timing/x_94__i4/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+
+
+Data Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+timing/x_94__i3/CK->timing/x_94__i3/Q     SLICE_R19C6C       CLK_TO_Q0_DELAY  0.779                  6.793  2       
+timing/x[3]                                                  NET DELAY        0.882                  7.675  2       
+timing/x_94_add_4_5/C0->timing/x_94_add_4_5/S0
+                                          SLICE_R19C6C       C0_TO_F0_DELAY   0.252                  7.927  1       
+timing/n45[3]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i3/D                                            ENDPOINT         0.000                  7.927  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+                                                             CONSTRAINT       0.000                  0.000  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i3/CK   timing/x_94__i4/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Path Slack  (Passed)                                                                                 1.913  
+
+
+
+
+++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_94__i4/Q  (SLICE_R19C6C)
+Path End         : timing/x_94__i4/D  (SLICE_R19C6C)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 2
+Delay Ratio      : 46.1% (route), 53.9% (logic)
+Clock Skew       : 0.000 ns 
+Hold Constraint  : 0.000 ns 
+Path Slack       : 1.913 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i3/CK   timing/x_94__i4/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+
+
+Data Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+timing/x_94__i4/CK->timing/x_94__i4/Q     SLICE_R19C6C       CLK_TO_Q1_DELAY  0.779                  6.793  3       
+timing/x[4]                                                  NET DELAY        0.882                  7.675  3       
+timing/x_94_add_4_5/C1->timing/x_94_add_4_5/S1
+                                          SLICE_R19C6C       C1_TO_F1_DELAY   0.252                  7.927  1       
+timing/n45[4]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i4/D                                            ENDPOINT         0.000                  7.927  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+                                                             CONSTRAINT       0.000                  0.000  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i3/CK   timing/x_94__i4/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Path Slack  (Passed)                                                                                 1.913  
+
+
+
+
+++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_94__i5/Q  (SLICE_R19C6D)
+Path End         : timing/x_94__i5/D  (SLICE_R19C6D)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 2
+Delay Ratio      : 46.1% (route), 53.9% (logic)
+Clock Skew       : 0.000 ns 
+Hold Constraint  : 0.000 ns 
+Path Slack       : 1.913 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i5/CK   timing/x_94__i6/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+
+
+Data Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+timing/x_94__i5/CK->timing/x_94__i5/Q     SLICE_R19C6D       CLK_TO_Q0_DELAY  0.779                  6.793  3       
+timing/x[5]                                                  NET DELAY        0.882                  7.675  3       
+timing/x_94_add_4_7/C0->timing/x_94_add_4_7/S0
+                                          SLICE_R19C6D       C0_TO_F0_DELAY   0.252                  7.927  1       
+timing/n45[5]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i5/D                                            ENDPOINT         0.000                  7.927  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+                                                             CONSTRAINT       0.000                  0.000  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i5/CK   timing/x_94__i6/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Path Slack  (Passed)                                                                                 1.913  
+
+
+
+
+++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_94__i6/Q  (SLICE_R19C6D)
+Path End         : timing/x_94__i6/D  (SLICE_R19C6D)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 2
+Delay Ratio      : 46.1% (route), 53.9% (logic)
+Clock Skew       : 0.000 ns 
+Hold Constraint  : 0.000 ns 
+Path Slack       : 1.913 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i5/CK   timing/x_94__i6/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+
+
+Data Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+timing/x_94__i6/CK->timing/x_94__i6/Q     SLICE_R19C6D       CLK_TO_Q1_DELAY  0.779                  6.793  4       
+timing/x[6]                                                  NET DELAY        0.882                  7.675  4       
+timing/x_94_add_4_7/C1->timing/x_94_add_4_7/S1
+                                          SLICE_R19C6D       C1_TO_F1_DELAY   0.252                  7.927  1       
+timing/n45[6]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i6/D                                            ENDPOINT         0.000                  7.927  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+                                                             CONSTRAINT       0.000                  0.000  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i5/CK   timing/x_94__i6/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Path Slack  (Passed)                                                                                 1.913  
+
+
+
+
+++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_94__i7/Q  (SLICE_R19C7A)
+Path End         : timing/x_94__i7/D  (SLICE_R19C7A)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 2
+Delay Ratio      : 46.1% (route), 53.9% (logic)
+Clock Skew       : 0.000 ns 
+Hold Constraint  : 0.000 ns 
+Path Slack       : 1.913 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i7/CK   timing/x_94__i8/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+
+
+Data Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+timing/x_94__i7/CK->timing/x_94__i7/Q     SLICE_R19C7A       CLK_TO_Q0_DELAY  0.779                  6.793  5       
+timing/x[7]                                                  NET DELAY        0.882                  7.675  5       
+timing/x_94_add_4_9/C0->timing/x_94_add_4_9/S0
+                                          SLICE_R19C7A       C0_TO_F0_DELAY   0.252                  7.927  1       
+timing/n45[7]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i7/D                                            ENDPOINT         0.000                  7.927  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+                                                             CONSTRAINT       0.000                  0.000  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i7/CK   timing/x_94__i8/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Path Slack  (Passed)                                                                                 1.913  
+
+
+
+
+++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_94__i8/Q  (SLICE_R19C7A)
+Path End         : timing/x_94__i8/D  (SLICE_R19C7A)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 2
+Delay Ratio      : 46.1% (route), 53.9% (logic)
+Clock Skew       : 0.000 ns 
+Hold Constraint  : 0.000 ns 
+Path Slack       : 1.913 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i7/CK   timing/x_94__i8/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+
+
+Data Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+timing/x_94__i8/CK->timing/x_94__i8/Q     SLICE_R19C7A       CLK_TO_Q1_DELAY  0.779                  6.793  5       
+timing/x[8]                                                  NET DELAY        0.882                  7.675  5       
+timing/x_94_add_4_9/C1->timing/x_94_add_4_9/S1
+                                          SLICE_R19C7A       C1_TO_F1_DELAY   0.252                  7.927  1       
+timing/n45[8]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i8/D                                            ENDPOINT         0.000                  7.927  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+                                                             CONSTRAINT       0.000                  0.000  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i7/CK   timing/x_94__i8/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Path Slack  (Passed)                                                                                 1.913  
+
+
+
+
+++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : timing/x_94__i1/Q  (SLICE_R19C6B)
+Path End         : timing/x_94__i1/D  (SLICE_R19C6B)
+Source Clock     : clk_pixel (R)
+Destination Clock: clk_pixel (R)
+Logic Level      : 2
+Delay Ratio      : 46.1% (route), 53.9% (logic)
+Clock Skew       : 0.000 ns 
+Hold Constraint  : 0.000 ns 
+Path Slack       : 1.913 ns  (Passed)
+
+
+Source Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i1/CK   timing/x_94__i2/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+
+
+Data Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+timing/x_94__i1/CK->timing/x_94__i1/Q     SLICE_R19C6B       CLK_TO_Q0_DELAY  0.779                  6.793  2       
+timing/x[1]                                                  NET DELAY        0.882                  7.675  2       
+timing/x_94_add_4_3/C0->timing/x_94_add_4_3/S0
+                                          SLICE_R19C6B       C0_TO_F0_DELAY   0.252                  7.927  1       
+timing/n45[1]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i1/D                                            ENDPOINT         0.000                  7.927  1       
+
+
+Destination Clock Path
+Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+                                                             CONSTRAINT       0.000                  0.000  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i1/CK   timing/x_94__i2/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
+----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
 Path Slack  (Passed)                                                                                 1.913  
 
@@ -1404,8 +1429,8 @@ Path Slack  (Passed)                                                            
 
 ++++ Path 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin       : timing/x_104__i2/Q  (SLICE_R14C4B)
-Path End         : timing/x_104__i2/D  (SLICE_R14C4B)
+Path Begin       : timing/x_94__i2/Q  (SLICE_R19C6B)
+Path End         : timing/x_94__i2/D  (SLICE_R19C6B)
 Source Clock     : clk_pixel (R)
 Destination Clock: clk_pixel (R)
 Logic Level      : 2
@@ -1418,46 +1443,46 @@ Path Slack       : 1.913 ns  (Passed)
 Source Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{timing/x_104__i1/CK   timing/x_104__i2/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i1/CK   timing/x_94__i2/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
 
 
 Data Path
 Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-timing/x_104__i2/CK->timing/x_104__i2/Q   SLICE_R14C4B       CLK_TO_Q1_DELAY  0.779                  7.015  2       
-timing/x[2]                                                  NET DELAY        0.882                  7.897  2       
-timing/x_104_add_4_3/C1->timing/x_104_add_4_3/S1
-                                          SLICE_R14C4B       C1_TO_F1_DELAY   0.252                  8.149  1       
-timing/n45[2]                                                NET DELAY        0.000                  8.149  1       
-timing/x_104__i2/D                                           ENDPOINT         0.000                  8.149  1       
+timing/x_94__i2/CK->timing/x_94__i2/Q     SLICE_R19C6B       CLK_TO_Q1_DELAY  0.779                  6.793  2       
+timing/x[2]                                                  NET DELAY        0.882                  7.675  2       
+timing/x_94_add_4_3/C1->timing/x_94_add_4_3/S1
+                                          SLICE_R19C6B       C1_TO_F1_DELAY   0.252                  7.927  1       
+timing/n45[2]                                                NET DELAY        0.000                  7.927  1       
+timing/x_94__i2/D                                            ENDPOINT         0.000                  7.927  1       
 
 
 Destination Clock Path
 Name                                      Cell/Site Name     Delay Name       Incr   Arrival/Required Time  Fanout  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
                                                              CONSTRAINT       0.000                  0.000  1       
-pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  5       
-pll/clk_12mhz                                                NET DELAY        3.002                  3.002  5       
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL
-                                          PLL_PLL_R13C32                      0.000                  3.002  13      
-pll/pll_inst/REFERENCECLK->pll/pll_inst/OUTGLOBAL (TOTAL_ADJUSTMENTS)
-                                          PLL_PLL_R13C32                      0.150                  3.152  13      
-pll/clk_pixel                                                NET DELAY        3.084                  6.236  13      
-{timing/x_104__i1/CK   timing/x_104__i2/CK}
-                                                             CLOCK PIN        0.000                  6.236  1       
-                                                             Uncertainty      0.000                  6.236  
-                                                             Hold time        0.000                  6.236  
+pll.hf_osc/CLKHF                          HFOSC_HFOSC_R1C32  CLOCK LATENCY    0.000                  0.000  3       
+pll/pll_ip/lscc_pll_inst/clk_12mhz                           NET DELAY        2.780                  2.780  3       
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL
+                                          PLL_PLL_R13C32                      0.000                  2.780  11      
+pll/pll_ip/lscc_pll_inst/u_PLL_B/REFERENCECLK->pll/pll_ip/lscc_pll_inst/u_PLL_B/OUTGLOBAL (TOTAL_ADJUSTMENTS)
+                                          PLL_PLL_R13C32                      0.150                  2.930  11      
+pll/pll_ip/lscc_pll_inst/clk_pixel                           NET DELAY        3.084                  6.014  11      
+{timing/x_94__i1/CK   timing/x_94__i2/CK}
+                                                             CLOCK PIN        0.000                  6.014  1       
+                                                             Uncertainty      0.000                  6.014  
+                                                             Hold time        0.000                  6.014  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
-Required Time                                                                                       -6.236  
-Arrival Time                                                                                         8.149  
+Required Time                                                                                       -6.014  
+Arrival Time                                                                                         7.927  
 ----------------------------------------  -----------------  ---------------  -----  ---------------------  ------  
 Path Slack  (Passed)                                                                                 1.913  
 

@@ -63,12 +63,6 @@ module vga_top(
 	assign vsync = vs;
 	
 	// testing claude's feedback - debugging to verify if pll works
-	assign led_lock = 1'b0;
-	
-	logic [3:0] osc_cnt, pix_cnt;
-	always_ff @(posedge clk_12mhz) osc_cnt <= osc_cnt + 1'b1;
-	always_ff @(posedge clk_pixel) pix_cnt <= pix_cnt + 1'b1;
-	assign dbg_osc = osc_cnt[3];
-	assign dbg_pix = pix_cnt[3];
+	assign led_lock = locked;
 	
 endmodule

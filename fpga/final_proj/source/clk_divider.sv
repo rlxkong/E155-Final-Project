@@ -17,7 +17,7 @@ module clk_divider (
 	HSOSC #(.CLKHF_DIV(2'b10))
 		hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(clk_12mhz));
 	
-    // Instantiate the Phase-Locked Loop (PLL) primitive
+    /*// Instantiate the Phase-Locked Loop (PLL) primitive
     // 12 MHz x 67 / 2^5 = 25.125 MHz
     PLL_B #(
         .FEEDBACK_PATH("SIMPLE"),
@@ -58,5 +58,14 @@ module clk_divider (
 		.INTFBOUT(pll_feedback),
 		.SDO()
     );
+	*/
+	
+	pll_25 pll_ip (
+		.ref_clk_i(clk_12mhz),
+		.rst_n_i(1'b1),
+		.outcore_o(),
+		.outglobal_o(clk_25mhz),
+		.lock_o(locked)
+	);
 
 endmodule
