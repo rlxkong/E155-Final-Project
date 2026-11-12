@@ -1,2 +1,4 @@
 ###File created by Lattice CPE. Do not modify.###
 set_hierarchy_separator /
+create_clock -name {clk_12mhz} -period 83.333 [get_ports clk_12mhz]
+##Original File: ../source/vga_timing.sdc

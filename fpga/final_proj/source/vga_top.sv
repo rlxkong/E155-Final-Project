@@ -28,7 +28,7 @@ module vga_top(
         .locked(locked)
     );
 
-    assign timing_reset = ~reset_n | ~locked;
+    assign timing_reset = reset_n & locked;
 
     // instantiate pixel coordinates of scan
     vga_window_timing timing(

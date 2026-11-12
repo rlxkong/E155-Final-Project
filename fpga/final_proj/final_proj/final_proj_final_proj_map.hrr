@@ -3,22 +3,22 @@ Report for cell vga_top
    Instance path: vga_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         52        100.0
-                               LUTGATE	         28        100.0
+                                  LUT4	         53        100.0
+                               LUTGATE	         29        100.0
                                 LUTCCU	         24        100.0
                                  IOBUF	          7        100.0
                                 PFUREG	         20        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
                            clk_divider	          1         0.0
-                     vga_window_timing	          1        90.4
+                     vga_window_timing	          1        92.5
 ---------------------------------------------------
 Report for cell vga_window_timing
    Instance path: vga_top/timing
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         47        90.4
-                               LUTGATE	         23        82.1
+                                  LUT4	         49        92.5
+                               LUTGATE	         25        86.2
                                 LUTCCU	         24        100.0
                                 PFUREG	         20        100.0
 ---------------------------------------------------

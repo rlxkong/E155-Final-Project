@@ -4,7 +4,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2026 Lattice Semiconductor Corporation,  All rights reserved.
-Wed Nov 11 17:48:26 2026
+Wed Nov 11 20:26:57 2026
 
 
 Command: bitgen -w -gui -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml -freq 0 final_proj_final_proj.udb C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/final_proj/final_proj_final_proj 
