@@ -8,15 +8,15 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Wed Nov 11 15:59:26 2026
+Mapped on: Wed Nov 11 17:03:24 2026
 
 Design Information
 ------------------
 
 Command line:   map -i final_proj_final_proj_syn.udb -o
      final_proj_final_proj_map.udb -mp final_proj_final_proj.mrp -hierrpt -gui
-     -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/
-     promote.xml
+     -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/p
+     romote.xml
 
 Design Summary
 --------------

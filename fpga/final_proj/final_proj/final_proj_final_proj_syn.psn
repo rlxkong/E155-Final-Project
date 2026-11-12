@@ -1,5 +1,5 @@
 POSTSYN: Post Synthesis Process Radiant Software (64-bit) 2026.1.0.37.0
-Command Line: postsyn -a iCE40UP -p iCE40UP5K -t SG48 -sp High-Performance_1.2V -oc Industrial -top -w -o final_proj_final_proj_syn.udb -ldc final_proj_final_proj.ldc -gui -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml final_proj_final_proj.vm 
+Command Line: postsyn -a iCE40UP -p iCE40UP5K -t SG48 -sp High-Performance_1.2V -oc Industrial -top -w -o final_proj_final_proj_syn.udb -ldc final_proj_final_proj.ldc -gui -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml final_proj_final_proj.vm 
    Architecture:     iCE40UP
    Device:           iCE40UP5K
    Package:          SG48

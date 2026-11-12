@@ -33,7 +33,6 @@
 -path "C:/lscc/radiant/2026.1/ispfpga/ice40tp/data"
 -path "."
 -path ".."
--path "../../src"
 -path "../source"
 
 # PMI Library Files
