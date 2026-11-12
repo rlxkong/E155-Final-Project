@@ -1,27 +1,27 @@
 ----------------------------------------------------------------------
 Report for cell vga_top.TECH
-Register bits:  20 of 5280 (0.379%)
-I/O cells:      7
+Register bits:  45 of 5280 (0.852%)
+I/O cells:      9
                                   Cell usage:
                                cell     count   Res Usage(%)
-                               CCU2        12          100.0
-                            FD1P3XZ        20          100.0
+                               CCU2        25          100.0
+                            FD1P3XZ        45          100.0
                                  IB         2          100.0
-                               LUT4        27          100.0
-                                 OB         5          100.0
+                               LUT4        26          100.0
+                                 OB         7          100.0
                               PLL_B         1          100.0
 SUB MODULES
                         clk_divider         1
                   vga_window_timing         1
-                              TOTAL        69
+                              TOTAL       108
 ----------------------------------------------------------------------
 Report for cell vga_window_timing.v1
 Instance Path : timing
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2        12          100.0
-                            FD1P3XZ        20          100.0
-                               LUT4        25           92.6
+                                FA2        12           48.0
+                            FD1P3XZ        20           44.4
+                               LUT4        25           96.2
                               TOTAL        57
 ----------------------------------------------------------------------
 Report for cell clk_divider.v1

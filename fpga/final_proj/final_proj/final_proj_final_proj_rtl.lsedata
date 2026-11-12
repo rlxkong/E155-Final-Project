@@ -1,8 +1,8 @@
 <top name = "vga_top"  library = "work"  arch = ""  entry = "Verilog">
 
 <clocks>
-    <clockitem name = "clk_pixel"  type = "net" />
     <clockitem name = "clk_12mhz"  type = "port" />
+    <clockitem name = "clk_pixel"  type = "net" />
 </clocks>
 
 <!--

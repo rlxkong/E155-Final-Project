@@ -11,7 +11,8 @@ module vga_top(
     output logic vsync,
     output logic r,
     output logic g,
-    output logic b
+    output logic b,
+	output logic led_lock, led_blink
 );
 	
 	
@@ -20,7 +21,16 @@ module vga_top(
     logic [9:0] x, y;
     logic       hs, vs, video_on;	
 	logic [2:0] color_input;
-
+	
+	// testing claude's feedback
+	assign led_lock = locked;
+	
+	logic [24:0] cnt;
+	always_ff @(posedge clk_pixel) cnt <= cnt + 1;
+	assign led_blink = cnt[24];
+	
+	
+	
     // instantiate pixel clock (25Mhz)
     clk_divider pll(
         .clk_12mhz(clk_12mhz),
