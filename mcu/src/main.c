@@ -2,180 +2,62 @@
 File: Final_Proj.c
 Author: Rebecca Kong and Emily Ing
 Email: rkong@hmc.edu and eing@hmc.edu
-Date: 11/8/26
+Date: 11/16/26
 */
 
-#include "STM32L432KC.h"
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "main.h"
+#include "stm32l432xx.h"
+#include "adc.h"
+#include "joystick.h"
+#include "spi_link.h"
 
-/////////////////////////////////////////////////////////////////
-// Provided Constants and Functions
-/////////////////////////////////////////////////////////////////
+// ============================================================================
+// MIDPOINT TEST MODE SELECTOR:
+//   Set to 1 for Milestone 11/16 (sweeps dot automatically across VGA via SPI)
+//   Set to 0 for Milestone 11/17 (joystick controls dot position in real time)
+// ============================================================================
+#define TEST_MODE_SPI_SWEEP 0
 
-//Defining the web page in two chunks: everything before the current time, and everything after the current time
-char* webpageStart = "<!DOCTYPE html><html><head><title>E155 Web Server Demo Webpage</title>\
-	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\
-	</head>\
-	<body><h1>E155 Web Server Demo Webpage</h1>";
-char* ledStr = "<p>LED Control:</p>\
-  <form action=\"ledon\"><input type=\"submit\" value=\"Turn the LED on!\"></form>\
-	<form action=\"ledoff\"><input type=\"submit\" value=\"Turn the LED off!\"></form>";
-char* tempResStr = "<p>Temperature Resolution Control:</p>\
-  <form action=\"8\"><input type=\"submit\" value=\"8-bits\"></form>\
-	<form action=\"9\"><input type=\"submit\" value=\"9-bits\"></form>\
-  <form action=\"10\"><input type=\"submit\" value=\"10-bits\"></form>\
-	<form action=\"11\"><input type=\"submit\" value=\"11-bits\"></form>\
-  <form action=\"12\"><input type=\"submit\" value=\"12-bits\"></form>";
-char* webpageEnd   = "</body></html>";
-
-//determines whether a given character sequence is in a char array request, returning 1 if present, -1 if not present
-int inString(char request[], char des[]) {
-	if (strstr(request, des) != NULL) {return 1;}
-	return -1;
+// Initializes TIM2 as a free-running 1 MHz (1 us per tick) microsecond timer
+static void timerInit(void) {
+    RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
+    // Assuming default 4 MHz MSI clock on reset -> PSC = 3 gives 1 MHz (adjust if SYSCLK = 80 MHz -> PSC = 79)
+    TIM2->PSC = (SystemCoreClock / 1000000U) - 1U;
+    TIM2->ARR = 0xFFFFFFFF;
+    TIM2->EGR = TIM_EGR_UG;
+    TIM2->CR1 = TIM_CR1_CEN;
 }
-
-int updateLEDStatus(char request[])
-{
-	int led_status = 0;
-	// The request has been received. now process to determine whether to turn the LED on or off
-	if (inString(request, "ledoff")==1) {
-		digitalWrite(LED_PIN, PIO_LOW);
-		led_status = 0;
-	}
-	else if (inString(request, "ledon")==1) {
-		digitalWrite(LED_PIN, PIO_HIGH);
-		led_status = 1;
-	}
-
-	return led_status;
-}
-
-int updateResConfig(char request[], char currentConfig)
-{
-  // changes the config sent to the sensor based on user selected configuration
-  char config = currentConfig;
-
-  // set resolution based on user input (r2 r1 r0)
-  if(inString(request, "/REQ:8")==1){
-    config = 0b11100000;
-  }
-  else if(inString(request, "/REQ:9")==1){
-    config = 0b11100010;
-  }
-  else if(inString(request, "/REQ:10")==1){
-    config = 0b11100100;
-  }
-  else if(inString(request, "/REQ:11")==1){
-    config = 0b11100110;
-  }
-  else if(inString(request, "/REQ:12")==1){
-    config = 0b11101000;
-  }
-
-  return config;
-}
-
-/////////////////////////////////////////////////////////////////
-// Solution Functions
-/////////////////////////////////////////////////////////////////
 
 int main(void) {
-  configureFlash();
-  configureClock();    //default is 80Mhz
+    SystemCoreClockUpdate(); // Ensure SystemCoreClock matches current clock tree
+    timerInit();
+    adcInit();
+    spiLinkInit();
 
-  gpioEnable(GPIO_PORT_A);
-  gpioEnable(GPIO_PORT_B);
-  gpioEnable(GPIO_PORT_C);
+    PlayerState player;
+    joystickInitState(&player);
 
-  pinMode(LED_PIN, GPIO_OUTPUT);
-  
-  RCC->APB2ENR |= (RCC_APB2ENR_TIM15EN);
-  initTIM(TIM15);
-  
-  USART_TypeDef * USART = initUSART(USART1_ID, 125000);
+    uint32_t last_frame_us = TIM2->CNT;
+    const uint32_t FRAME_PERIOD_US = 16667; // 60 Hz frame rate (~16.67 ms per tick)
 
-  // Initialize SPI
-  // DS1722 max clk rate is 5MHz (DS1722 datasheet pg.11)
-  // SCLK = fPLCK/br --> 80Mhz/2^(5+1) = 1.25 MHz
-  // clock phase 1 (CPHA) based on DS1722 datasheet pg. 7
-  initSPI(0b101, 0, 1);
-  // Initialize temperature sensor (DS1722)
-  initDS1722();
+    while (1) {
+        // Wait until 16.67 ms has elapsed to maintain a steady 60 Hz update rate
+        if ((TIM2->CNT - last_frame_us) >= FRAME_PERIOD_US) {
+            last_frame_us += FRAME_PERIOD_US;
 
-  // Initialize resolution
-  char resConfig = 0b11100010;
-  // Initalize buffers for text to be written into
-  char resStr[20];
-  char tempStr[20]; 
-  char requestStr[20];
+#if TEST_MODE_SPI_SWEEP
+            // Milestone 11/16: Sweep dot horizontally across screen to verify SPI -> VGA link
+            player.dot_x += 2;
+            if (player.dot_x > (SCREEN_W - DOT_SIZE)) {
+                player.dot_x = 0;
+            }
+#else
+            // Milestone 11/14 & 11/17: Read joystick ADC and move dot
+            // Pass 0 for 1-joystick X-axis check (High Risk Item), or 1 to enable both axes
+            joystickUpdate(&player, 0);
+#endif
 
-  while(1) {
-    /* Wait for ESP8266 to send a request.
-    Requests take the form of '/REQ:<tag>\n', with TAG begin <= 10 characters.
-    Therefore the request[] array must be able to contain 18 characters.
-    */
-
-    // Receive web request from the ESP
-    char request[BUFF_LEN] = "                  "; // initialize to known value
-    int charIndex = 0;
-  
-    // Keep going until you get end of line character
-    while(inString(request, "\n") == -1) {
-      // Wait for a complete request to be transmitted before processing
-      while(!(USART->ISR & USART_ISR_RXNE));
-      request[charIndex++] = readChar(USART);
+            // Send updated 48-bit packet to the FPGA over SPI
+            spiSendPacket48((uint16_t)player.dot_x, (uint16_t)player.dot_y, 60, 0);
+        }
     }
-
-    // Add SPI code here for reading temperature
-    // Set temperature resolution based on user input
-    char newConfig = updateResConfig(request, resConfig);
-
-    if (newConfig != resConfig){
-      resConfig = newConfig;
-      // set the DS1722 configuration from user input from MCU
-      writeDS1722(resConfig);
-    }
-
-    // read the temperature from DS1722
-    float temp = readDS1722();
-  
-    // Update string with current LED state
-    int led_status = updateLEDStatus(request);
-
-    // convert temperature and configuration into string to print
-    sprintf(tempStr, "%f C", temp);
-    sprintf(resStr, "Resolution: 0x%02X", (unsigned char)resConfig);
-    sprintf(requestStr, "Request: %s", request);
-
-    char ledStatusStr[20];
-    if (led_status == 1)
-      sprintf(ledStatusStr,"LED is on!");
-    else if (led_status == 0)
-      sprintf(ledStatusStr,"LED is off!");
-
-    // finally, transmit the webpage over UART
-    sendString(USART, webpageStart); // webpage header code
-    sendString(USART, ledStr); // button for controlling LED
-    sendString(USART, tempResStr); // button for controlling resolution
-
-    sendString(USART, "<h2>LED Status</h2>");
-    sendString(USART, "<p>");
-    sendString(USART, ledStatusStr);
-    sendString(USART, "</p>");
-
-    sendString(USART, "<h2>Temperature</h2>");
-    sendString(USART, "<p>");
-    sendString(USART, tempStr);
-    sendString(USART, "</p>");
-
-    sendString(USART, "<h2>Resolution</h2>");
-    sendString(USART, "<p>");
-    sendString(USART, resStr);
-    sendString(USART, "</p>");
-  
-    sendString(USART, webpageEnd);
-  }
 }
