@@ -1,58 +1,33 @@
 // Emily Ing & Rebecca Kong
 // eing@g.hmc.edu & rkong@g.hmc.edu
 // Date of creation: 11/16/2026
-// Summary: Generates countdown in top right corner of VGA display
+// Summary: Generates M:SS countdown in top right corner of VGA display
 
 module vga_countdown(
     input  logic [9:0] x,
     input  logic [9:0] y,
-    input  logic [3:0] count,    // Current digit (0-9) from your counter module
-    output logic       countdown // 1 when current pixel (x, y) is part of the digit
+    input  logic [3:0] min,       // Minutes digit (0-9)
+    input  logic [3:0] sec_tens,  // Seconds tens digit (0-5)
+    input  logic [3:0] sec_ones,  // Seconds ones digit (0-9)
+    output logic       countdown  // 1 when (x, y) is part of any digit or colon
 );
 
-    // Top-right corner bounding box for a 640x480 display
-    localparam logic [9:0] X0 = 10'd590; // Left edge (leaves 21px margin on right)
-    localparam logic [9:0] Y0 = 10'd20;  // Top edge (leaves 20px margin on top)
-    localparam logic [9:0] W  = 10'd29;  // Digit width
-    localparam logic [9:0] H  = 10'd49;  // Digit height
-    localparam logic [9:0] T  = 10'd5;   // Segment stroke thickness
+    localparam logic [9:0] Y0 = 10'd20; // Top margin for all characters
 
-    logic [6:0] seg; // {a, b, c, d, e, f, g}
-    logic seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g;
+    logic min_on, sec_tens_on, sec_ones_on, colon_on;
 
-    // Decode current digit into active 7-segment lines
-    always_comb begin
-        case (count)
-            4'd0:    seg = 7'b1111110;
-            4'd1:    seg = 7'b0110000;
-            4'd2:    seg = 7'b1101101;
-            4'd3:    seg = 7'b1111001;
-            4'd4:    seg = 7'b0110011;
-            4'd5:    seg = 7'b1011011;
-            4'd6:    seg = 7'b1011111;
-            4'd7:    seg = 7'b1110000;
-            4'd8:    seg = 7'b1111111;
-            4'd9:    seg = 7'b1111011;
-            default: seg = 7'b0000000;
-        endcase
-    end
+    // Instantiate 3 digits side-by-side in the top-right corner (25x45 px each)
+    vga_digit_display #(.X0(10'd523), .Y0(Y0)) u_min      (.x(x), .y(y), .digit(min),      .pixel_on(min_on));
+    vga_digit_display #(.X0(10'd562), .Y0(Y0)) u_sec_tens (.x(x), .y(y), .digit(sec_tens), .pixel_on(sec_tens_on));
+    vga_digit_display #(.X0(10'd595), .Y0(Y0)) u_sec_ones (.x(x), .y(y), .digit(sec_ones), .pixel_on(sec_ones_on));
 
-    // Define pixel regions for each segment
-    assign seg_a = (x >= X0)         && (x < X0 + W)     && (y >= Y0)          && (y < Y0 + T);      // Top
-    assign seg_b = (x >= X0 + W - T) && (x < X0 + W)     && (y >= Y0)          && (y < Y0 + 10'd27); // Top-right
-    assign seg_c = (x >= X0 + W - T) && (x < X0 + W)     && (y >= Y0 + 10'd22) && (y < Y0 + H);      // Bottom-right
-    assign seg_d = (x >= X0)         && (x < X0 + W)     && (y >= Y0 + H - T)  && (y < Y0 + H);      // Bottom
-    assign seg_e = (x >= X0)         && (x < X0 + T)     && (y >= Y0 + 10'd22) && (y < Y0 + H);      // Bottom-left
-    assign seg_f = (x >= X0)         && (x < X0 + T)     && (y >= Y0)          && (y < Y0 + 10'd27); // Top-left
-    assign seg_g = (x >= X0)         && (x < X0 + W)     && (y >= Y0 + 10'd22) && (y < Y0 + 10'd27); // Middle
+    // Two 5x5 dots for the colon between x = 548 and x = 562
+    assign colon_on = (x >= 10'd553) && (x < 10'd558) &&
+                      (((y >= Y0 + 10'd12) && (y < Y0 + 10'd17)) ||
+                       ((y >= Y0 + 10'd28) && (y < Y0 + 10'd33)));
 
-    // Assert output pixel if (x, y) falls inside an active segment
-    assign countdown = (seg[6] & seg_a) |
-                       (seg[5] & seg_b) |
-                       (seg[4] & seg_c) |
-                       (seg[3] & seg_d) |
-                       (seg[2] & seg_e) |
-                       (seg[1] & seg_f) |
-                       (seg[0] & seg_g);
+    assign countdown = min_on | colon_on | sec_tens_on | sec_ones_on;
 
 endmodule
+
+
