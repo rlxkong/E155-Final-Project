@@ -1,6 +1,6 @@
 Lattice Timing Report -  Setup  and Hold, Version Radiant Software (64-bit) 2026.1.0.37.0
 
-Mon Nov 16 20:26:27 2026
+Mon Nov 16 23:04:15 2026
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -76,23 +76,20 @@ Clocked but unconstrained timing end points
 -------------------------------------------------------------------
          Listing 10 End Points          |           Type           
 -------------------------------------------------------------------
-timing/x_94__i2/D                       |    No arrival or required
-timing/x_94__i1/D                       |    No arrival or required
-{timing/x_94__i1/SR   timing/x_94__i2/SR}                           
-                                        |    No arrival or required
-timing/x_94__i8/D                       |    No arrival or required
-timing/x_94__i7/D                       |    No arrival or required
-{timing/x_94__i7/SR   timing/x_94__i8/SR}                           
-                                        |    No arrival or required
-timing/x_94__i6/D                       |    No arrival or required
-timing/x_94__i5/D                       |    No arrival or required
-{timing/x_94__i5/SR   timing/x_94__i6/SR}                           
-                                        |    No arrival or required
-timing/x_94__i4/D                       |    No arrival or required
+test/spr_x_i5/D                         |    No arrival or required
+test/spr_x_i4/D                         |    No arrival or required
+{test/spr_x_i4/SP   test/spr_x_i5/SP}   |    No arrival or required
+{test/spr_x_i4/SR   test/spr_x_i5/SR}   |    No arrival or required
+test/spr_x_i3/D                         |    No arrival or required
+test/spr_x_i2/D                         |    No arrival or required
+{test/spr_x_i2/SP   test/spr_x_i3/SP}   |    No arrival or required
+{test/spr_x_i2/SR   test/spr_x_i3/SR}   |    No arrival or required
+test/spr_x_i1/D                         |    No arrival or required
+test/spr_x_i1/SP                        |    No arrival or required
 -------------------------------------------------------------------
                                         |                          
 Number of unconstrained timing end poin |                          
-ts                                      |                        36
+ts                                      |                        56
                                         |                          
 -------------------------------------------------------------------
 

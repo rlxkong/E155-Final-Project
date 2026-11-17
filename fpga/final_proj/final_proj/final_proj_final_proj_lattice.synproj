@@ -45,8 +45,12 @@
 -sver "../source/clk_divider.sv"
 -sver "../source/vga_top.sv"
 -sver "../source/vga_window_timing.sv"
--sver "../source/vga_color_logic.sv"
 -ver "../pll_25/rtl/pll_25.v"
+-sver "../source/vga_renderer.sv"
+-sver "../source/vga_player.sv"
+-sver "../source/vga_countdown.sv"
+-sver "../source/moving_sprite_test.sv"
+-sver "../source/vga_digit_display.sv"
 -path ".."
 -top vga_top
 # Output Configuration

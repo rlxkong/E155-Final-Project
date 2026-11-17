@@ -15,12 +15,14 @@ module vga_top(
 	output logic led_lock, dbg_osc, dbg_pix
 );
 	
+    logic        clk_pixel, locked;
+    logic        timing_reset;
+    logic [9:0]  x, y;
+    logic        hs, vs, video_on;	
+	logic [2:0]  color_input;
 	
-    logic       clk_pixel, locked;
-    logic       timing_reset;
-    logic [9:0] x, y;
-    logic       hs, vs, video_on;	
-	logic [2:0] color_input;
+	logic [9:0]  player_posx, playerposy;
+	logic [11:0] countdown;
 	
     // instantiate pixel clock (25Mhz)
     clk_divider pll(
@@ -30,6 +32,17 @@ module vga_top(
     );
 
     assign timing_reset = reset_n & locked;
+	
+	// testing moving
+	moving_sprite_test test(
+		.clk(clk_pixel),
+		.reset_n(timing_reset),
+		.x(x),
+		.y(y),
+		.spr_x(player_posx),
+		.spr_y(player_posy),
+		.time_bcd(countdown)
+	);
 
     // instantiate pixel coordinates of scan
     vga_window_timing timing(
@@ -42,24 +55,23 @@ module vga_top(
         .video_on(video_on)
     );
 	
-	// hardcoding colors to test on vga
+	/*// hardcoding colors to test on vga
 	assign color_input[2] = (x < 320) ? 1'b1 : 1'b0; // red
     assign color_input[1] = (y < 160) ? 1'b1 : 1'b0; // green
-	assign color_input[0] = (y >= 320) ? 1'b1 : 1'b0; // blue
+	assign color_input[0] = (y >= 320) ? 1'b1 : 1'b0; // blue*/
 	
 	// instantiate color logic module
-	vga_color_logic colorlogic(
-		  //.clk(clk_pixel), 
-		  //.reset_n(reset_n),
-		  .video_on(video_on),
-		  .color_input(color_input),
-		  .r(r),
-		  .g(g),
-		  .b(b)
+	vga_renderer sprites(
+		.x(x),
+		.y(y),
+		.video_on(video_on),
+		.player_x(player_posx),
+		.player_y(player_posy),
+		.time_left(countdown),
+		.r(r),
+		.g(g),
+		.b(b)
 	);
-	
-	// countdown hardcoded
-	
 	
 	// assign hsync and vsync
 	assign hsync = hs;

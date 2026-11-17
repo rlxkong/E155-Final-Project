@@ -1,0 +1,50 @@
+// Emily Ing & Rebecca Kong
+// eing@g.hmc.edu & rkong@g.hmc.edu
+// Date of creation: 11/16/2026
+// Summary: 
+
+
+module vga_renderer(
+    input  logic [9:0]  x, y,
+	input  logic 	    video_on,			// on in visible area frame
+	input  logic [9:0]  player_x, player_y, 	// sprite position
+	input  logic [11:0] time_left, 			// gives the time left in countdown m:ss
+    output logic 	    r, g, b
+);
+
+	logic		player_on, timer_on;
+	logic [2:0] color;					// {r, g, b}
+	logic [3:0] min, t_sec, o_sec;
+	
+	assign {min, t_sec, o_sec} = timer_left;
+	
+	vga_player dot(
+		.x(x), 
+		.y(y),
+		.player_x(player_x),
+		.player_y(player_y),
+		.player_on(player_on)
+	);
+	
+	vga_countdown timer(
+		.x(x),
+		.y(y),
+		.min(timer_left),
+		.sec_tens(t_sec),
+		.sec_ones(o_sec),
+		.countdown(timer_on)
+	);
+	
+	// determines priority of what is drawn
+	always_comb begin
+		if		(!video_on) 	color = 3'b000;		// blanking
+		else if	(timer_on)		color = 3'b111;		// timer on top
+		else if (player_on)		color = 3'b100;		// player dot
+		// walls				color = 3'b111;		// walls
+		else					color = 3'b000;		// background
+	end
+	
+	assign {r, g, b} = color;
+	
+endmodule
+	
