@@ -4,8 +4,8 @@
 // Summary: Clock divider for the crystal clock.
 
 module clk_divider (
-    //input  logic clk_12mhz,   // 12 MHz input from the UPduino board
-	output logic clk_12mhz,
+    input  logic clk_12mhz,   // 12 MHz input from the UPduino board
+	//output logic clk_12mhz,
     output logic clk_25mhz,   // 25.125 MHz output for the VGA pixel clock
     output logic locked       // high once the PLL is stable
 );
@@ -14,12 +14,12 @@ module clk_divider (
 	
 	// Test using internal oscillator instead of crystal oscillator
 	// Internal oscillator : 48 MHz / 4 = 12 MHz
-	HSOSC #(.CLKHF_DIV(2'b10))
-		hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(clk_12mhz));
+	/*HSOSC #(.CLKHF_DIV(2'b10))
+		hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(clk_12mhz));*/
 	
-    /*// Instantiate the Phase-Locked Loop (PLL) primitive
+    // Instantiate the Phase-Locked Loop (PLL) primitive
     // 12 MHz x 67 / 2^5 = 25.125 MHz
-    PLL_B #(
+    /*PLL_B #(
         .FEEDBACK_PATH("SIMPLE"),
         .DIVR("0"),             // DIVR = 0, reference clock divider
         .DIVF("66"),            // DIVF = 66, feedback divider (automatically adds 1)
@@ -57,8 +57,8 @@ module clk_divider (
 		.OUTCOREB(),
 		.INTFBOUT(pll_feedback),
 		.SDO()
-    );
-	*/
+    );*/
+	
 	
 	pll_25 pll_ip (
 		.ref_clk_i(clk_12mhz),

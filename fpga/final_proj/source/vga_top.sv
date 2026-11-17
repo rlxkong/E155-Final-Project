@@ -5,7 +5,7 @@
 //          and drives the VGA connector pins.
 
 module vga_top(
-    //input logic clk_12mhz,
+    input logic clk_12mhz,
     input logic reset_n,
     output logic hsync,
     output logic vsync,
@@ -16,7 +16,7 @@ module vga_top(
 );
 	
 	
-    logic       clk_12mhz, clk_pixel, locked;
+    logic       clk_pixel, locked;
     logic       timing_reset;
     logic [9:0] x, y;
     logic       hs, vs, video_on;	

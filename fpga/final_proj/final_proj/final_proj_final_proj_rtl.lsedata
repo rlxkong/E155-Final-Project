@@ -1,11 +1,11 @@
 <top name = "vga_top"  library = "work"  arch = ""  entry = "Verilog">
 
 <clocks>
-    <clockitem name = "clk_12mhz"  type = "net" />
+    <clockitem name = "clk_12mhz"  type = "port" />
     <clockitem name = "clk_pixel"  type = "net" />
-    <clockitem name = "pll/pll_ip/lscc_pll_inst/outcoreb_o"  type = "net" />
     <clockitem name = "pll/pll_ip/lscc_pll_inst/outglobalb_o"  type = "net" />
     <clockitem name = "pll/pll_ip/outcore_o"  type = "net" />
+    <clockitem name = "pll/pll_ip/lscc_pll_inst/outcoreb_o"  type = "net" />
 </clocks>
 
 <!--

@@ -1,13 +1,12 @@
 ----------------------------------------------------------------------
 Report for cell vga_top.TECH
 Register bits:  20 of 5280 (0.379%)
-I/O cells:      9
+I/O cells:      10
                                   Cell usage:
                                cell     count   Res Usage(%)
                                CCU2        12          100.0
                             FD1P3XZ        20          100.0
-                         HSOSC_CORE         1          100.0
-                                 IB         1          100.0
+                                 IB         2          100.0
                                LUT4        30          100.0
                                  OB         8          100.0
                               PLL_B         1          100.0
@@ -31,12 +30,11 @@ Report for cell clk_divider.v1
 Instance Path : pll
                                   Cell usage:
                                cell     count   Res Usage(%)
-                         HSOSC_CORE         1          100.0
                               PLL_B         1          100.0
 SUB MODULES
                              pll_25         1
 pll_25_ipgen_lscc_pll(DIVR="0",DIVF="66",DIVQ="5",FILTER_RANGE="1",PLLOUT_SELECT_PORTA="GENCLK",PLLOUT_SELECT_PORTB="GENCLK",FREQUENCY_PIN_REFERENCECLK="12.000000")         1
-                              TOTAL         4
+                              TOTAL         3
 ----------------------------------------------------------------------
 Report for cell pll_25.v1
 Instance Path : pll.pll_ip

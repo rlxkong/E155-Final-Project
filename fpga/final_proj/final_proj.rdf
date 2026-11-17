@@ -18,6 +18,9 @@
         <Source name="source/vga_frame_tb.sv" type="Verilog" type_short="Verilog" excluded="TRUE">
             <Options VerilogStandard="System Verilog"/>
         </Source>
+        <Source name="pll_25/pll_25.ipx" type="IPX_Module" type_short="IPX">
+            <Options/>
+        </Source>
         <Source name="source/vga_timing.sdc" type="Pre-Synthesis Constraints File" type_short="SDC" excluded="TRUE">
             <Options module_filename="source/vga_top.sv"/>
         </Source>

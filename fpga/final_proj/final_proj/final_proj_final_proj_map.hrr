@@ -6,7 +6,7 @@ Report for cell vga_top
                                   LUT4	         57        100.0
                                LUTGATE	         33        100.0
                                 LUTCCU	         24        100.0
-                                 IOBUF	          9        100.0
+                                 IOBUF	         10        100.0
                                 PFUREG	         20        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
