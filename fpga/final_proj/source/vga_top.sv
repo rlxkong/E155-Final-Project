@@ -58,6 +58,9 @@ module vga_top(
 		  .b(b)
 	);
 	
+	// countdown hardcoded
+	
+	
 	// assign hsync and vsync
 	assign hsync = hs;
 	assign vsync = vs;
