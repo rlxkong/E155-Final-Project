@@ -11,8 +11,7 @@ module vga_top(
     output logic vsync,
     output logic r,
     output logic g,
-    output logic b,
-	output logic led_lock, dbg_osc, dbg_pix
+    output logic b
 );
 	
     logic        clk_pixel, locked;
@@ -76,8 +75,5 @@ module vga_top(
 	// assign hsync and vsync
 	assign hsync = hs;
 	assign vsync = vs;
-	
-	// testing claude's feedback - debugging to verify if pll works
-	assign led_lock = locked;
-	
+
 endmodule
