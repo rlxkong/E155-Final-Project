@@ -21,7 +21,7 @@ module vga_top(
     logic        hs, vs, video_on;	
 	logic [2:0]  color_input;
 	
-	logic [9:0]  player_posx, playerposy;
+	logic [9:0]  player_posx, player_posy;
 	logic [11:0] countdown;
 	
     // instantiate pixel clock (25Mhz)

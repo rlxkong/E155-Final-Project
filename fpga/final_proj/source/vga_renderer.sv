@@ -16,7 +16,7 @@ module vga_renderer(
 	logic [2:0] color;					// {r, g, b}
 	logic [3:0] min, t_sec, o_sec;
 	
-	assign {min, t_sec, o_sec} = timer_left;
+	assign {min, t_sec, o_sec} = time_left;
 	
 	vga_player dot(
 		.x(x), 
@@ -29,7 +29,7 @@ module vga_renderer(
 	vga_countdown timer(
 		.x(x),
 		.y(y),
-		.min(timer_left),
+		.min(min),
 		.sec_tens(t_sec),
 		.sec_ones(o_sec),
 		.countdown(timer_on)
