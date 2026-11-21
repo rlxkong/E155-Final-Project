@@ -1,0 +1,1 @@
+qrun -clean -f "C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/testbenches/fpga_spi_top_tb/fpga_spi_top_tb.f"

@@ -1,0 +1,284 @@
+# //  Questa Lattice OEM Edition-64
+# //  Version 2025.2 win64 May 31 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# do C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/testbenches/fpga_spi_top_tb/fpga_spi_top_tb.vdo
+# ** Note: (qrun-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# Creating library 'qrun.out/work'.
+# Questa Lattice OEM Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+# 
+# 
+# Start time: 00:46:02 on Nov 21,2026
+# 
+# vlog -reportprogress 300 -L work -sv -L pmi_work -L ovi_ice40up C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi_top.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_maze_ram.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi_top_tb.sv -work qrun.out/work -statslog qrun.out/stats_log -csession=incr 
+# 
+# ** Note: (vlog-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# 
+# -- Compiling module fpga_spi
+# 
+# -- Compiling module fpga_spi_top
+# 
+# -- Compiling module fpga_maze_ram
+# 
+# -- Compiling module fpga_spi_top_tb
+# 
+# 
+# 
+# Top level modules:
+# 
+# 	fpga_spi_top_tb
+# 
+# End time: 00:46:02 on Nov 21,2026, Elapsed time: 0:00:00
+# 
+# Errors: 0, Warnings: 0
+# 
+# Questa Lattice OEM Edition-64 vopt 2025.2 Compiler 2025.05 May 31 2025
+# 
+# 
+# ** Warning: (vopt-10908) Some optimizations are turned off because the +acc switch is in effect.
+# 
+# Start time: 00:46:03 on Nov 21,2026
+# 
+# vopt -reportprogress 300 -L work "+acc" "+noacc+pmi_work.*" "+noacc+ovi_ice40up.*" -L pmi_work -L ovi_ice40up fpga_spi_top_tb -suppress vopt-7033 -work qrun.out/work -statslog qrun.out/stats_log -csession=incr -o qrun_opt -csessionid=3 
+# 
+# ** Note: (vopt-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# 
+# 
+# 
+# Top level modules:
+# 
+# 	fpga_spi_top_tb
+# 
+# 
+# 
+# Analyzing design...
+# 
+# -- Loading module fpga_spi_top_tb
+# 
+# -- Loading module fpga_spi_top
+# 
+# -- Loading module fpga_spi
+# 
+# -- Loading module fpga_maze_ram
+# 
+# ** Warning: (vopt-2108) Cannot find module '*' specified in +noacc option.
+# 
+# ** Warning: (vopt-2108) Cannot find module '*' specified in +noacc option.
+# 
+# Optimizing 4 design-units (inlining 0/4 module instances):
+# 
+# -- Optimizing module fpga_spi_top_tb(fast)
+# 
+# -- Optimizing module fpga_spi(fast)
+# 
+# -- Optimizing module fpga_spi_top(fast)
+# 
+# -- Optimizing module fpga_maze_ram(fast)
+# 
+# Optimized design name is qrun_opt
+# 
+# End time: 00:46:04 on Nov 21,2026, Elapsed time: 0:00:01
+# 
+# Errors: 0, Warnings: 3
+# 
+vsim -L work -L pmi_work -L ovi_ice40up -lib qrun.out/work -wlf vsim.wlf -gui -do {view wave} -do {add wave /*} -do {run -all} -statslog qrun.out/stats_log qrun_opt -suppress vsim-7033,vsim-8630,3009,3389 -appendlog -l qrun.log
+# //  Questa Lattice OEM Edition-64
+# //  Version 2025.2 win64 May 31 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# do C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/testbenches/fpga_spi_top_tb/fpga_spi_top_tb.vdo
+# ** Note: (qrun-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# Deleting directory qrun.out...
+# Creating library 'qrun.out/work'.
+# Questa Lattice OEM Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+# 
+# 
+# Start time: 00:51:57 on Nov 21,2026
+# 
+# vlog -reportprogress 300 -L work -sv -L pmi_work -L ovi_ice40up C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi_top.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_maze_ram.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi_top_tb.sv -work qrun.out/work -statslog qrun.out/stats_log -csession=incr 
+# 
+# ** Note: (vlog-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# 
+# -- Compiling module fpga_spi
+# 
+# -- Compiling module fpga_spi_top
+# 
+# -- Compiling module fpga_maze_ram
+# 
+# -- Compiling module fpga_spi_top_tb
+# 
+# 
+# 
+# Top level modules:
+# 
+# 	fpga_spi_top_tb
+# 
+# End time: 00:51:57 on Nov 21,2026, Elapsed time: 0:00:00
+# 
+# Errors: 0, Warnings: 0
+# 
+# Questa Lattice OEM Edition-64 vopt 2025.2 Compiler 2025.05 May 31 2025
+# 
+# 
+# ** Warning: (vopt-10908) Some optimizations are turned off because the +acc switch is in effect.
+# 
+# Start time: 00:51:57 on Nov 21,2026
+# 
+# vopt -reportprogress 300 -L work "+acc" "+noacc+pmi_work.*" "+noacc+ovi_ice40up.*" -L pmi_work -L ovi_ice40up fpga_spi_top_tb -suppress vopt-7033 -work qrun.out/work -statslog qrun.out/stats_log -csession=incr -o qrun_opt -csessionid=3 
+# 
+# ** Note: (vopt-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# 
+# 
+# 
+# Top level modules:
+# 
+# 	fpga_spi_top_tb
+# 
+# 
+# 
+# Analyzing design...
+# 
+# -- Loading module fpga_spi_top_tb
+# 
+# -- Loading module fpga_spi_top
+# 
+# -- Loading module fpga_spi
+# 
+# -- Loading module fpga_maze_ram
+# 
+# ** Warning: (vopt-2108) Cannot find module '*' specified in +noacc option.
+# 
+# ** Warning: (vopt-2108) Cannot find module '*' specified in +noacc option.
+# 
+# Optimizing 4 design-units (inlining 0/4 module instances):
+# 
+# -- Optimizing module fpga_spi_top_tb(fast)
+# 
+# -- Optimizing module fpga_spi(fast)
+# 
+# -- Optimizing module fpga_spi_top(fast)
+# 
+# -- Optimizing module fpga_maze_ram(fast)
+# 
+# Optimized design name is qrun_opt
+# 
+# End time: 00:51:58 on Nov 21,2026, Elapsed time: 0:00:01
+# 
+# Errors: 0, Warnings: 3
+# 
+vsim -L work -L pmi_work -L ovi_ice40up -lib qrun.out/work -wlf vsim.wlf -gui -do {view wave} -do {add wave /*} -do {run -all} -statslog qrun.out/stats_log qrun_opt -suppress vsim-7033,vsim-8630,3009,3389 -appendlog -l qrun.log
+# //  Questa Lattice OEM Edition-64
+# //  Version 2025.2 win64 May 31 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# do C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/testbenches/fpga_spi_top_tb/fpga_spi_top_tb.vdo
+# ** Note: (qrun-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# Deleting directory qrun.out...
+# Creating library 'qrun.out/work'.
+# Questa Lattice OEM Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+# 
+# 
+# Start time: 00:56:14 on Nov 21,2026
+# 
+# vlog -reportprogress 300 -L work -sv -L pmi_work -L ovi_ice40up C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi_top.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_maze_ram.sv C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/source/final_proj/fpga_spi_top_tb.sv -work qrun.out/work -statslog qrun.out/stats_log -csession=incr 
+# 
+# ** Note: (vlog-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# 
+# -- Compiling module fpga_spi
+# 
+# -- Compiling module fpga_spi_top
+# 
+# -- Compiling module fpga_maze_ram
+# 
+# -- Compiling module fpga_spi_top_tb
+# 
+# 
+# 
+# Top level modules:
+# 
+# 	fpga_spi_top_tb
+# 
+# End time: 00:56:14 on Nov 21,2026, Elapsed time: 0:00:00
+# 
+# Errors: 0, Warnings: 0
+# 
+# Questa Lattice OEM Edition-64 vopt 2025.2 Compiler 2025.05 May 31 2025
+# 
+# 
+# ** Warning: (vopt-10908) Some optimizations are turned off because the +acc switch is in effect.
+# 
+# Start time: 00:56:14 on Nov 21,2026
+# 
+# vopt -reportprogress 300 -L work "+acc" "+noacc+pmi_work.*" "+noacc+ovi_ice40up.*" -L pmi_work -L ovi_ice40up fpga_spi_top_tb -suppress vopt-7033 -work qrun.out/work -statslog qrun.out/stats_log -csession=incr -o qrun_opt -csessionid=3 
+# 
+# ** Note: (vopt-220) 'C:/lscc/radiant/2026.1/questasim/win64/../modelsim.ini' is used as the ini file.
+# 
+# 
+# 
+# Top level modules:
+# 
+# 	fpga_spi_top_tb
+# 
+# 
+# 
+# Analyzing design...
+# 
+# -- Loading module fpga_spi_top_tb
+# 
+# -- Loading module fpga_spi_top
+# 
+# -- Loading module fpga_spi
+# 
+# -- Loading module fpga_maze_ram
+# 
+# ** Warning: (vopt-2108) Cannot find module '*' specified in +noacc option.
+# 
+# ** Warning: (vopt-2108) Cannot find module '*' specified in +noacc option.
+# 
+# Optimizing 4 design-units (inlining 0/4 module instances):
+# 
+# -- Optimizing module fpga_spi_top_tb(fast)
+# 
+# -- Optimizing module fpga_spi(fast)
+# 
+# -- Optimizing module fpga_spi_top(fast)
+# 
+# -- Optimizing module fpga_maze_ram(fast)
+# 
+# Optimized design name is qrun_opt
+# 
+# End time: 00:56:15 on Nov 21,2026, Elapsed time: 0:00:01
+# 
+# Errors: 0, Warnings: 3
+# 
+vsim -L work -L pmi_work -L ovi_ice40up -lib qrun.out/work -wlf vsim.wlf -gui -do {view wave} -do {add wave /*} -do {run -all} -statslog qrun.out/stats_log qrun_opt -suppress vsim-7033,vsim-8630,3009,3389 -appendlog -l qrun.log

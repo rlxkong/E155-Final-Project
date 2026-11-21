@@ -1,0 +1,4 @@
+1 8 fpga_spi 4 fast 96 C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/testbenches/fpga_spi_top_tb/qrun.out/work 0 0 0 0 95 0
+1 13 fpga_maze_ram 4 fast 96 C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/testbenches/fpga_spi_top_tb/qrun.out/work 0 0 0 0 29 0
+1 12 fpga_spi_top 4 fast 96 C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/testbenches/fpga_spi_top_tb/qrun.out/work 0 0 131072 0 91 0
+1 15 fpga_spi_top_tb 4 fast 96 C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/testbenches/fpga_spi_top_tb/qrun.out/work 0 0 0 0 455 0

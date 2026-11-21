@@ -1,14 +1,14 @@
 ----------------------------------------------------------------------
 Report for cell vga_top.TECH
-Register bits:  30 of 5280 (0.568%)
-I/O cells:      10
+Register bits:  58 of 5280 (1.098%)
+I/O cells:      7
                                   Cell usage:
                                cell     count   Res Usage(%)
-                               CCU2        27          100.0
-                            FD1P3XZ        30          100.0
+                               CCU2        46          100.0
+                            FD1P3XZ        58          100.0
                                  IB         2          100.0
-                               LUT4       134          100.0
-                                 OB         8          100.0
+                               LUT4       236          100.0
+                                 OB         5          100.0
                               PLL_B         1          100.0
 SUB MODULES
                         clk_divider         1
@@ -18,10 +18,65 @@ pll_25_ipgen_lscc_pll(DIVR="0",DIVF="66",DIVQ="5",FILTER_RANGE="1",PLLOUT_SELECT
                       vga_countdown         1
 vga_digit_display(X0=10'b1000001011,Y0=10'b010100)         1
 vga_digit_display(X0=10'b1000110010,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1001010011,Y0=10'b010100)         1
                          vga_player         1
                        vga_renderer         1
                   vga_window_timing         1
-                              TOTAL       212
+                              TOTAL       359
+----------------------------------------------------------------------
+Report for cell vga_renderer.v1
+Instance Path : sprites
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2        10           21.7
+                               LUT4       115           48.7
+SUB MODULES
+                      vga_countdown         1
+vga_digit_display(X0=10'b1000001011,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1000110010,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1001010011,Y0=10'b010100)         1
+                         vga_player         1
+                              TOTAL       130
+----------------------------------------------------------------------
+Report for cell vga_countdown.v1
+Instance Path : sprites.timer
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4        89           37.7
+SUB MODULES
+vga_digit_display(X0=10'b1000001011,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1000110010,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1001010011,Y0=10'b010100)         1
+                              TOTAL        92
+----------------------------------------------------------------------
+Report for cell vga_digit_display(X0=10'b1000110010,Y0=10'b010100).v1
+Instance Path : sprites.timer.u_sec_tens
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4        11            4.7
+                              TOTAL        11
+----------------------------------------------------------------------
+Report for cell vga_digit_display(X0=10'b1001010011,Y0=10'b010100).v1
+Instance Path : sprites.timer.u_sec_ones
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4        15            6.4
+                              TOTAL        15
+----------------------------------------------------------------------
+Report for cell vga_digit_display(X0=10'b1000001011,Y0=10'b010100).v1
+Instance Path : sprites.timer.u_min
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4        47           19.9
+                              TOTAL        47
+----------------------------------------------------------------------
+Report for cell vga_player.v1
+Instance Path : sprites.dot
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2        10           21.7
+                               LUT4        24           10.2
+                              TOTAL        34
 ----------------------------------------------------------------------
 Report for cell clk_divider.v1
 Instance Path : pll
@@ -53,61 +108,16 @@ Report for cell moving_sprite_test.v1
 Instance Path : test
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2        10           37.0
-                            FD1P3XZ        10           33.3
-                               LUT4        27           20.1
-                              TOTAL        47
+                                FA2        24           52.2
+                            FD1P3XZ        38           65.5
+                               LUT4        70           29.7
+                              TOTAL       132
 ----------------------------------------------------------------------
 Report for cell vga_window_timing.v1
 Instance Path : timing
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2        12           44.4
-                            FD1P3XZ        20           66.7
-                               LUT4        33           24.6
-                              TOTAL        65
-----------------------------------------------------------------------
-Report for cell vga_renderer.v1
-Instance Path : sprites
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                                FA2         5           18.5
-                               LUT4        62           46.3
-SUB MODULES
-                      vga_countdown         1
-vga_digit_display(X0=10'b1000001011,Y0=10'b010100)         1
-vga_digit_display(X0=10'b1000110010,Y0=10'b010100)         1
-                         vga_player         1
-                              TOTAL        71
-----------------------------------------------------------------------
-Report for cell vga_countdown.v1
-Instance Path : sprites.timer
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                               LUT4        45           33.6
-SUB MODULES
-vga_digit_display(X0=10'b1000001011,Y0=10'b010100)         1
-vga_digit_display(X0=10'b1000110010,Y0=10'b010100)         1
-                              TOTAL        47
-----------------------------------------------------------------------
-Report for cell vga_digit_display(X0=10'b1000110010,Y0=10'b010100).v1
-Instance Path : sprites.timer.u_sec_tens
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                               LUT4         6            4.5
-                              TOTAL         6
-----------------------------------------------------------------------
-Report for cell vga_digit_display(X0=10'b1000001011,Y0=10'b010100).v1
-Instance Path : sprites.timer.u_min
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                               LUT4        23           17.2
-                              TOTAL        23
-----------------------------------------------------------------------
-Report for cell vga_player.v1
-Instance Path : sprites.dot
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                                FA2         5           18.5
-                               LUT4        15           11.2
-                              TOTAL        20
+                                FA2        12           26.1
+                            FD1P3XZ        20           34.5
+                               LUT4        38           16.1
+                              TOTAL        70

@@ -1,6 +1,6 @@
 Lattice Timing Report -  Setup  and Hold, Version Radiant Software (64-bit) 2026.1.0.37.0
 
-Mon Nov 16 23:04:15 2026
+Sat Nov 21 00:55:23 2026
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -8,7 +8,7 @@ Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2026 Lattice Semiconductor Corporation,  All rights reserved.
 
-Command line:    timing -sethld -v 10 -u 10 -endpoints 10 -nperend 1 -sp High-Performance_1.2V -hsp m -pwrprd -html -rpt final_proj_final_proj.twr final_proj_final_proj.udb -gui -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml
+Command line:    timing -sethld -v 10 -u 10 -endpoints 10 -nperend 1 -sp High-Performance_1.2V -hsp m -pwrprd -html -rpt final_proj_final_proj.twr final_proj_final_proj.udb -gui -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/promote.xml
 
 -----------------------------------------
 Design:          vga_top
@@ -76,20 +76,20 @@ Clocked but unconstrained timing end points
 -------------------------------------------------------------------
          Listing 10 End Points          |           Type           
 -------------------------------------------------------------------
+test/spr_x_i9/D                         |    No arrival or required
+test/spr_x_i8/D                         |    No arrival or required
+{test/spr_x_i8/SP   test/spr_x_i9/SP}   |    No arrival or required
+{test/spr_x_i8/SR   test/spr_x_i9/SR}   |    No arrival or required
+test/spr_x_i7/D                         |    No arrival or required
+test/spr_x_i6/D                         |    No arrival or required
+{test/spr_x_i6/SP   test/spr_x_i7/SP}   |    No arrival or required
+{test/spr_x_i6/SR   test/spr_x_i7/SR}   |    No arrival or required
 test/spr_x_i5/D                         |    No arrival or required
 test/spr_x_i4/D                         |    No arrival or required
-{test/spr_x_i4/SP   test/spr_x_i5/SP}   |    No arrival or required
-{test/spr_x_i4/SR   test/spr_x_i5/SR}   |    No arrival or required
-test/spr_x_i3/D                         |    No arrival or required
-test/spr_x_i2/D                         |    No arrival or required
-{test/spr_x_i2/SP   test/spr_x_i3/SP}   |    No arrival or required
-{test/spr_x_i2/SR   test/spr_x_i3/SR}   |    No arrival or required
-test/spr_x_i1/D                         |    No arrival or required
-test/spr_x_i1/SP                        |    No arrival or required
 -------------------------------------------------------------------
                                         |                          
 Number of unconstrained timing end poin |                          
-ts                                      |                        56
+ts                                      |                       114
                                         |                          
 -------------------------------------------------------------------
 

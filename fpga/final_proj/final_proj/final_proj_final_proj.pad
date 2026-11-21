@@ -6,7 +6,7 @@ Performance Grade:      High-Performance_1.2V
 PACKAGE:          SG48
 Package Status:                     Preliminary    Version 1.5
 
-Mon Nov 16 23:04:13 2026
+Sat Nov 21 00:55:20 2026
 
 Pinout by Port Name:
 +-----------+----------+--------------+-------+------------------------------------------+
@@ -14,11 +14,8 @@ Pinout by Port Name:
 +-----------+----------+--------------+-------+------------------------------------------+
 | b         | 19/1     | LVCMOS33_OUT | PL22B | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 | clk_12mhz | 20/1     | LVCMOS33_IN  | PL20B | DRIVE:NA IO_TYPE:LVCMOS33 PULLMODE:100K  |
-| dbg_osc   | 45/2     | LVCMOS33_OUT | PL8B  | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
-| dbg_pix   | 46/2     | LVCMOS33_OUT | PL6A  | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 | g         | 21/1     | LVCMOS33_OUT | PL19B | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 | hsync     | 13/1     | LVCMOS33_OUT | PL20A | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
-| led_lock  | 42/0     | LVCMOS33_OUT | PR9A  | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 | r         | 10/1     | LVCMOS33_OUT | PL17A | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
 | reset_n   | 43/0     | LVCMOS33_IN  | PR10A | DRIVE:NA IO_TYPE:LVCMOS33 PULLMODE:100K  |
 | vsync     | 12/1     | LVCMOS33_OUT | PL19A | DRIVE:8mA IO_TYPE:LVCMOS33 PULLMODE:NA   |
@@ -30,7 +27,6 @@ Vccio by Bank:
 +------+-------+
 | 0    | 3.3V  |
 | 1    | 3.3V  |
-| 2    | 3.3V  |
 +------+-------+
 
 Pinout by Pin Number:
@@ -69,11 +65,11 @@ Pinout by Pin Number:
 | 39/0     |                     |            |              | PR5A  | RGB0             |
 | 40/0     |                     |            |              | PR6A  | RGB1             |
 | 41/0     |                     |            |              | PR7A  | RGB2             |
-| 42/0     | led_lock            | LOCATED    | LVCMOS33_OUT | PR9A  |                  |
+| 42/0     |     unused, PULL:UP |            |              | PR9A  |                  |
 | 43/0     | reset_n             | LOCATED    | LVCMOS33_IN  | PR10A |                  |
 | 44/2     |     unused, PULL:UP |            |              | PL7B  | PCLKT2_0         |
-| 45/2     | dbg_osc             | LOCATED    | LVCMOS33_OUT | PL8B  |                  |
-| 46/2     | dbg_pix             | LOCATED    | LVCMOS33_OUT | PL6A  |                  |
+| 45/2     |     unused, PULL:UP |            |              | PL8B  |                  |
+| 46/2     |     unused, PULL:UP |            |              | PL6A  |                  |
 | 47/2     |     unused, PULL:UP |            |              | PL7A  |                  |
 | 48/2     |     unused, PULL:UP |            |              | PL8A  |                  |
 | PL6B/2   |     unused, PULL:UP |            |              | PL6B  |                  |
@@ -100,11 +96,8 @@ Locate Constraints for each Pin:
 
 ldc_set_location -site {19} [ get_ports {b} ]
 ldc_set_location -site {20} [ get_ports {clk_12mhz} ]
-ldc_set_location -site {45} [ get_ports {dbg_osc} ]
-ldc_set_location -site {46} [ get_ports {dbg_pix} ]
 ldc_set_location -site {21} [ get_ports {g} ]
 ldc_set_location -site {13} [ get_ports {hsync} ]
-ldc_set_location -site {42} [ get_ports {led_lock} ]
 ldc_set_location -site {10} [ get_ports {r} ]
 ldc_set_location -site {43} [ get_ports {reset_n} ]
 ldc_set_location -site {12} [ get_ports {vsync} ]
@@ -115,5 +108,5 @@ ldc_set_location -site {12} [ get_ports {vsync} ]
 
 Copyright (c) 2002-2024 Lattice Semiconductor Corporation,  All rights reserved.
 
-Mon Nov 16 23:04:13 2026
+Sat Nov 21 00:55:20 2026
 

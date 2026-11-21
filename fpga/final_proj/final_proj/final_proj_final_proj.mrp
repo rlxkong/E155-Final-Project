@@ -8,34 +8,34 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Mon Nov 16 23:04:06 2026
+Mapped on: Sat Nov 21 00:55:13 2026
 
 Design Information
 ------------------
 
-Command line:   map -pdc C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc -i final_proj_final_proj_syn.udb -o
+Command line:   map -pdc C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc -i final_proj_final_proj_syn.udb -o
      final_proj_final_proj_map.udb -mp final_proj_final_proj.mrp -hierrpt -gui
-     -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/
-     promote.xml
+     -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/p
+     romote.xml
 
 Design Summary
 --------------
 
-   Number of slice registers:  30 out of  5280 (1%)
+   Number of slice registers:  58 out of  5280 (1%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:           191 out of  5280 (4%)
-      Number of logic LUT4s:             137
-      Number of ripple logic:             27 (54 LUT4s)
-   Number of IO sites used:   10 out of 39 (26%)
-      Number of IO sites used for general PIO: 10
+   Number of LUT4s:           330 out of  5280 (6%)
+      Number of logic LUT4s:             238
+      Number of ripple logic:             46 (92 LUT4s)
+   Number of IO sites used:   7 out of 39 (18%)
+      Number of IO sites used for general PIO: 7
       Number of IO sites used for I3C: 0 out of 2 (0%)
       (note: If I3C is not used, its site can be used as general PIO)
-      Number of IO sites used for PIO+I3C: 10 out of 36 (28%)
+      Number of IO sites used for PIO+I3C: 7 out of 36 (19%)
       Number of IO sites used for OD+RGB IO buffers: 0 out of 3 (0%)
       (note: If RGB LED drivers are not used, sites can be used as OD outputs,
        see TN1288 iCE40 LED Driver Usage Guide)
-      Number of IO sites used for PIO+I3C+OD+RGB: 10 out of 39 (26%)
+      Number of IO sites used for PIO+I3C+OD+RGB: 7 out of 39 (18%)
    Number of DSPs:             0 out of 8 (0%)
    Number of I2Cs:             0 out of 2 (0%)
    Number of High Speed OSCs:  0 out of 1 (0%)
@@ -50,16 +50,16 @@ Design Summary
    Number of PLLs:             1 out of 1 (100%)
    Number of Clocks:  2
       Net clk_12mhz_c: 1 loads, 1 rising, 0 falling (Driver: Port clk_12mhz)
-      Net clk_pixel: 22 loads, 22 rising, 0 falling (Driver: Pin
+      Net clk_pixel: 50 loads, 50 rising, 0 falling (Driver: Pin
      pll.pll_ip.lscc_pll_inst.u_PLL_B/OUTGLOBAL)
-   Number of Clock Enables:  2
-      Net test.n1044: 5 loads, 5 SLICEs
-      Net timing.n1443: 10 loads, 10 SLICEs
-   Number of LSRs:  2
-      Net timing_reset: 15 loads, 15 SLICEs
-      Net timing.n1443: 6 loads, 6 SLICEs
-   Top 10 highest fanout non-clock nets:
-      Net x[4]: 18 loads
+   Number of Clock Enables:  8
+      Net n1686: 9 loads, 9 SLICEs
+      Net n1673: 5 loads, 5 SLICEs
+      Net n1670: 4 loads, 4 SLICEs
+      Net n1689: 6 loads, 6 SLICEs
+      Net test.n4695: 1 loads, 1 SLICEs
+      Net test.n4697: 2 loads, 2 SLICEs
+      Net test.n1663: 5 loads, 5 SLICEs
 
                                     Page 1
 
@@ -69,39 +69,74 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net timing_reset: 17 loads
-      Net x[5]: 17 loads
-      Net timing.n1443: 16 loads
-      Net x[2]: 15 loads
-      Net x[3]: 15 loads
-      Net x[9]: 14 loads
+      Net timing.n118: 10 loads, 10 SLICEs
+   Number of LSRs:  3
+      Net timing_reset: 41 loads, 41 SLICEs
+      Net test.n4679: 1 loads, 1 SLICEs
+      Net timing.n118: 6 loads, 6 SLICEs
+   Top 10 highest fanout non-clock nets:
+      Net timing_reset: 48 loads
+      Net x[3]: 18 loads
+      Net x[4]: 17 loads
+      Net timing.n118: 16 loads
+      Net x[5]: 15 loads
+      Net x[6]: 15 loads
       Net y[5]: 14 loads
-      Net x[0]: 13 loads
-      Net x[1]: 13 loads
+      Net x[9]: 13 loads
+      Net countdown[0]: 12 loads
+      Net countdown[6]: 12 loads
 
 
 
 
 
-   Number of warnings:  0
+   Number of warnings:  12
    Number of criticals: 0
    Number of errors:    0
 
 Design Errors/Criticals/Warnings
 --------------------------------
 
-   No error, critical, or warning presents.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (7) : No port matched 'led_lock'.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (8) : No port matched 'dbg_osc'.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (9) : No port matched 'dbg_pix'.
+WARNING <1027013> - map: No port matched 'led_lock'.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (7) : Can't resolve object 'led_lock' in constraint
+     'ldc_set_location -site {42} [get_ports led_lock]'.
+WARNING <1027013> - map: No port matched 'dbg_osc'.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (8) : Can't resolve object 'dbg_osc' in constraint
+     'ldc_set_location -site {45} [get_ports dbg_osc]'.
+WARNING <1027013> - map: No port matched 'dbg_pix'.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (9) : Can't resolve object 'dbg_pix' in constraint
+     'ldc_set_location -site {46} [get_ports dbg_pix]'.
+WARNING <1011001> - map: Remove invalid constraint 'ldc_set_location -site {42}
+     [get_ports led_lock]'.
+WARNING <1011001> - map: Remove invalid constraint 'ldc_set_location -site {45}
+     [get_ports dbg_osc]'.
+WARNING <1011001> - map: Remove invalid constraint 'ldc_set_location -site {46}
+     [get_ports dbg_pix]'.
 
 IO (PIO) Attributes
 -------------------
 
 +---------------------+-----------+-----------+-------+-------+-----------+
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
+
+                                    Page 2
+
+
+
+
+
+IO (PIO) Attributes (cont)
+--------------------------
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| dbg_osc             | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| led_lock            | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | clk_12mhz           | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -117,8 +152,11 @@ IO (PIO) Attributes
 +---------------------+-----------+-----------+-------+-------+-----------+
 | b                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| dbg_pix             | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
+
+Removed logic
+-------------
+
+Block clk_12mhz_pad.vlo_inst was optimized away.
 
 PLL Summary
 -----------
@@ -127,15 +165,6 @@ PLL 1:                                 Pin/Node Value
   PLL Instance Name:                            pll/pll_ip/lscc_pll_inst/u_PLL_B
   Input Reference Clock:               PIN      clk_12mhz_c
   Output Clock(CoreA):                          NONE
-
-                                    Page 2
-
-
-
-
-
-PLL Summary (cont)
-------------------
   Output Clock(GlobalA):               NODE     clk_pixel
   Output Clock(CoreB):                          NONE
   Output Clock(GlobalB):                        NONE
@@ -164,6 +193,13 @@ PLL Summary (cont)
   EXTERNAL_DIVIDE_FACTOR:                       NONE
   TEST Mode:                                    0
 
+
+                                    Page 3
+
+
+
+
+
 ASIC Components
 ---------------
 
@@ -174,15 +210,19 @@ Constraint Summary
 ------------------
 
    Total number of constraints: 12
-   Total number of constraints dropped: 0
+   Total number of constraints dropped: 3
+   Dropped constraints are:
+     ldc_set_location -site {42} [get_ports led_lock]
+     ldc_set_location -site {45} [get_ports dbg_osc]
+     ldc_set_location -site {46} [get_ports dbg_pix]
 
 Run Time and Memory Usage
 -------------------------
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 68 MB
-Checksum -- map: 2bbba02bc3ed9f58747dda50777399c888c41ef
+   Peak Memory Usage: 71 MB
+Checksum -- map: a396d1b5add18900bd5838a65ff75a2e97143c46
 
 
 
@@ -194,7 +234,33 @@ Checksum -- map: 2bbba02bc3ed9f58747dda50777399c888c41ef
 
 
 
-                                    Page 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 4
 
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
