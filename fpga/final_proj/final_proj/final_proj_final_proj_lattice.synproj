@@ -57,6 +57,7 @@
 -sver "../source/final_proj/fpga_spi_top.sv"
 -sver "../source/final_proj/fpga_maze_ram.sv"
 -sver "../source/final_proj/fpga_spi_top_tb.sv"
+-sver "../source/final_proj/vga_maze.sv"
 -path ".."
 -top vga_top
 # Output Configuration

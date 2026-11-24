@@ -18,6 +18,6 @@ Constraint Summary:
 Writing output file 'final_proj_final_proj_syn.udb'.
 POSTSYN finished successfully.
 Total CPU Time: 0 secs 
-Total REAL Time: 0 secs 
-Peak Memory Usage: 45 MB
-Checksum -- postsyn: de824c00847f51c6adfd81e7eca889495a0fb3
+Total REAL Time: 3 secs 
+Peak Memory Usage: 42 MB
+Checksum -- postsyn: f50fe91a6ed29f8ae9292a22d7a77975876068a1

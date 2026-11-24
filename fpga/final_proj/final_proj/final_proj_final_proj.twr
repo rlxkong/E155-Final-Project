@@ -1,6 +1,6 @@
 Lattice Timing Report -  Setup  and Hold, Version Radiant Software (64-bit) 2026.1.0.37.0
 
-Sat Nov 21 00:55:23 2026
+Tue Nov 24 02:13:27 2026
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -76,20 +76,20 @@ Clocked but unconstrained timing end points
 -------------------------------------------------------------------
          Listing 10 End Points          |           Type           
 -------------------------------------------------------------------
-test/spr_x_i9/D                         |    No arrival or required
-test/spr_x_i8/D                         |    No arrival or required
-{test/spr_x_i8/SP   test/spr_x_i9/SP}   |    No arrival or required
-{test/spr_x_i8/SR   test/spr_x_i9/SR}   |    No arrival or required
-test/spr_x_i7/D                         |    No arrival or required
-test/spr_x_i6/D                         |    No arrival or required
-{test/spr_x_i6/SP   test/spr_x_i7/SP}   |    No arrival or required
-{test/spr_x_i6/SR   test/spr_x_i7/SR}   |    No arrival or required
-test/spr_x_i5/D                         |    No arrival or required
-test/spr_x_i4/D                         |    No arrival or required
+timing/x__i4/D                          |    No arrival or required
+timing/x__i3/D                          |    No arrival or required
+{timing/x__i3/SR   timing/x__i4/SR}     |    No arrival or required
+timing/x__i0/D                          |    No arrival or required
+timing/x__i0/SR                         |    No arrival or required
+timing/x__i6/D                          |    No arrival or required
+timing/x__i5/D                          |    No arrival or required
+{timing/x__i5/SR   timing/x__i6/SR}     |    No arrival or required
+timing/x__i2/D                          |    No arrival or required
+timing/x__i1/D                          |    No arrival or required
 -------------------------------------------------------------------
                                         |                          
 Number of unconstrained timing end poin |                          
-ts                                      |                       114
+ts                                      |                        30
                                         |                          
 -------------------------------------------------------------------
 

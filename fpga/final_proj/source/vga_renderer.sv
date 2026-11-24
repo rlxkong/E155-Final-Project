@@ -15,8 +15,22 @@ module vga_renderer(
 	logic		player_on, timer_on;
 	logic [2:0] color;					// {r, g, b}
 	logic [3:0] min, t_sec, o_sec;
+	logic 		clk;
+	logic [7:0] vga_raddr, vga_rdata;
+	logic [47:0] game_state;
 	
 	assign {min, t_sec, o_sec} = time_left;
+	
+	vga_maze maze(
+		.clk(clk),
+		.x(x),
+		.y(y),
+		.video_on(video_on),
+		.vga_raddr(vga_raddr),
+		.vga_rdata(vga_rdata),
+		.game_state(game_state),
+		.rgb(color)
+	);
 	
 	vga_player dot(
 		.x(x), 
@@ -36,13 +50,13 @@ module vga_renderer(
 	);
 	
 	// determines priority of what is drawn
-	always_comb begin
+	/*always_comb begin
 		if		(!video_on) 	color = 3'b000;		// blanking
 		else if	(timer_on)		color = 3'b111;		// timer on top
 		else if (player_on)		color = 3'b100;		// player dot
 		// walls				color = 3'b111;		// walls
 		else					color = 3'b000;		// background
-	end
+	end */
 	
 	assign {r, g, b} = color;
 	

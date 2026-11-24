@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Sat Nov 21 00:55:13 2026
+Mapped on: Tue Nov 24 02:13:09 2026
 
 Design Information
 ------------------
@@ -22,11 +22,11 @@ Command line:   map -pdc C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
 Design Summary
 --------------
 
-   Number of slice registers:  58 out of  5280 (1%)
+   Number of slice registers:  20 out of  5280 (<1%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:           330 out of  5280 (6%)
-      Number of logic LUT4s:             238
-      Number of ripple logic:             46 (92 LUT4s)
+   Number of LUT4s:            84 out of  5280 (2%)
+      Number of logic LUT4s:              50
+      Number of ripple logic:             17 (34 LUT4s)
    Number of IO sites used:   7 out of 39 (18%)
       Number of IO sites used for general PIO: 7
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -36,7 +36,7 @@ Design Summary
       (note: If RGB LED drivers are not used, sites can be used as OD outputs,
        see TN1288 iCE40 LED Driver Usage Guide)
       Number of IO sites used for PIO+I3C+OD+RGB: 7 out of 39 (18%)
-   Number of DSPs:             0 out of 8 (0%)
+   Number of DSPs:             1 out of 8 (13%)
    Number of I2Cs:             0 out of 2 (0%)
    Number of High Speed OSCs:  0 out of 1 (0%)
    Number of Low Speed OSCs:   0 out of 1 (0%)
@@ -46,20 +46,20 @@ Design Summary
    Number of SRAMs:            0 out of 4 (0%)
    Number of WARMBOOTs:        0 out of 1 (0%)
    Number of SPIs:             0 out of 2 (0%)
-   Number of EBRs:             0 out of 30 (0%)
+   Number of EBRs:             1 out of 30 (3%)
    Number of PLLs:             1 out of 1 (100%)
    Number of Clocks:  2
       Net clk_12mhz_c: 1 loads, 1 rising, 0 falling (Driver: Port clk_12mhz)
-      Net clk_pixel: 50 loads, 50 rising, 0 falling (Driver: Pin
+      Net clk_pixel: 17 loads, 17 rising, 0 falling (Driver: Pin
      pll.pll_ip.lscc_pll_inst.u_PLL_B/OUTGLOBAL)
-   Number of Clock Enables:  8
-      Net n1686: 9 loads, 9 SLICEs
-      Net n1673: 5 loads, 5 SLICEs
-      Net n1670: 4 loads, 4 SLICEs
-      Net n1689: 6 loads, 6 SLICEs
-      Net test.n4695: 1 loads, 1 SLICEs
-      Net test.n4697: 2 loads, 2 SLICEs
-      Net test.n1663: 5 loads, 5 SLICEs
+   Number of Clock Enables:  2
+      Net hsync_pad.vcc: 3 loads, 0 SLICEs
+      Net n81: 5 loads, 5 SLICEs
+   Number of LSRs:  2
+      Net n81: 4 loads, 4 SLICEs
+      Net timing_reset: 5 loads, 5 SLICEs
+   Top 10 highest fanout non-clock nets:
+      Net tile_y_0__N_44: 13 loads
 
                                     Page 1
 
@@ -69,22 +69,15 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net timing.n118: 10 loads, 10 SLICEs
-   Number of LSRs:  3
-      Net timing_reset: 41 loads, 41 SLICEs
-      Net test.n4679: 1 loads, 1 SLICEs
-      Net timing.n118: 6 loads, 6 SLICEs
-   Top 10 highest fanout non-clock nets:
-      Net timing_reset: 48 loads
-      Net x[3]: 18 loads
-      Net x[4]: 17 loads
-      Net timing.n118: 16 loads
-      Net x[5]: 15 loads
-      Net x[6]: 15 loads
-      Net y[5]: 14 loads
-      Net x[9]: 13 loads
-      Net countdown[0]: 12 loads
-      Net countdown[6]: 12 loads
+      Net n19: 11 loads
+      Net locked: 10 loads
+      Net reset_n_c: 10 loads
+      Net n81: 9 loads
+      Net hsync_pad.vcc: 8 loads
+      Net sprites.maze.n7: 8 loads
+      Net timing_reset: 5 loads
+      Net y[4]: 4 loads
+      Net y[5]: 4 loads
 
 
 
@@ -127,6 +120,13 @@ IO (PIO) Attributes
 
 +---------------------+-----------+-----------+-------+-------+-----------+
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
+|                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
++---------------------+-----------+-----------+-------+-------+-----------+
+| clk_12mhz           | INPUT     |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| reset_n             | INPUT     |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| hsync               | OUTPUT    |           |       |       |           |
 
                                     Page 2
 
@@ -136,13 +136,6 @@ IO (PIO) Attributes
 
 IO (PIO) Attributes (cont)
 --------------------------
-|                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| clk_12mhz           | INPUT     |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| reset_n             | INPUT     |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| hsync               | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | vsync               | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -193,6 +186,13 @@ PLL 1:                                 Pin/Node Value
   EXTERNAL_DIVIDE_FACTOR:                       NONE
   TEST Mode:                                    0
 
+ASIC Components
+---------------
+
+Instance Name: pll/pll_ip/lscc_pll_inst/u_PLL_B
+         Type: PLL
+Instance Name: sprites/maze/mult_13
+         Type: DSP
 
                                     Page 3
 
@@ -200,11 +200,10 @@ PLL 1:                                 Pin/Node Value
 
 
 
-ASIC Components
----------------
-
-Instance Name: pll/pll_ip/lscc_pll_inst/u_PLL_B
-         Type: PLL
+ASIC Components (cont)
+----------------------
+Instance Name: sprites/maze/vga_raddr_0__I_0
+         Type: EBR
 
 Constraint Summary
 ------------------
@@ -220,9 +219,10 @@ Run Time and Memory Usage
 -------------------------
 
    Total CPU Time: 0 secs
-   Total REAL Time: 0 secs
-   Peak Memory Usage: 71 MB
-Checksum -- map: a396d1b5add18900bd5838a65ff75a2e97143c46
+   Total REAL Time: 3 secs
+   Peak Memory Usage: 66 MB
+Checksum -- map: e6288490a96d05b37d14da99d993090fa5410479
+
 
 
 

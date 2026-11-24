@@ -3,70 +3,18 @@ Report for cell vga_top
    Instance path: vga_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	        330        100.0
-                               LUTGATE	        238        100.0
-                                LUTCCU	         92        100.0
+                                  LUT4	         84        100.0
+                               LUTGATE	         50        100.0
+                                LUTCCU	         34        100.0
                                  IOBUF	          7        100.0
-                                PFUREG	         58        100.0
+                                PFUREG	         20        100.0
+                                   EBR	          1        100.0
+                                   DSP	          1        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
                            clk_divider	          1         0.0
-                    moving_sprite_test	          1        34.8
-                          vga_renderer	          1        40.3
-                     vga_window_timing	          1        18.5
----------------------------------------------------
-Report for cell vga_renderer
-   Instance path: vga_top/sprites
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	        133        40.3
-                               LUTGATE	        113        47.5
-                                LUTCCU	         20        21.7
-SUB MODULES
-                                  cell	      count    LUT4 Usage(%)
-                         vga_countdown	          1        26.4
-                            vga_player	          1        13.3
----------------------------------------------------
-Report for cell vga_countdown
-   Instance path: vga_top/sprites/timer
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	         87        26.4
-                               LUTGATE	         87        36.6
-SUB MODULES
-                                  cell	      count    LUT4 Usage(%)
-vga_digit_display(X0=10'b1000001011,Y0=10'b010100)	          1        13.6
-vga_digit_display(X0=10'b1000110010,Y0=10'b010100)	          1         3.3
-vga_digit_display(X0=10'b1001010011,Y0=10'b010100)	          1         4.5
----------------------------------------------------
-Report for cell vga_digit_display(X0=10'b1000110010,Y0=10'b010100)
-   Instance path: vga_top/sprites/timer/u_sec_tens
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	         11         3.3
-                               LUTGATE	         11         4.6
----------------------------------------------------
-Report for cell vga_digit_display(X0=10'b1001010011,Y0=10'b010100)
-   Instance path: vga_top/sprites/timer/u_sec_ones
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	         15         4.5
-                               LUTGATE	         15         6.3
----------------------------------------------------
-Report for cell vga_digit_display(X0=10'b1000001011,Y0=10'b010100)
-   Instance path: vga_top/sprites/timer/u_min
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	         45        13.6
-                               LUTGATE	         45        18.9
----------------------------------------------------
-Report for cell vga_player
-   Instance path: vga_top/sprites/dot
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	         44        13.3
-                               LUTGATE	         24        10.1
-                                LUTCCU	         20        21.7
+                          vga_renderer	          1        34.5
+                     vga_window_timing	          1        59.5
 ---------------------------------------------------
 Report for cell clk_divider
    Instance path: vga_top/pll
@@ -89,20 +37,34 @@ Report for cell pll_25_ipgen_lscc_pll(DIVR="0",DIVF="66",DIVQ="5",FILTER_RANGE="
                      Cell usage:
                                   cell	      count    Res Usage(%)
 ---------------------------------------------------
-Report for cell moving_sprite_test
-   Instance path: vga_top/test
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	        115        34.8
-                               LUTGATE	         67        28.2
-                                LUTCCU	         48        52.2
-                                PFUREG	         38        65.5
----------------------------------------------------
 Report for cell vga_window_timing
    Instance path: vga_top/timing
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         61        18.5
-                               LUTGATE	         37        15.5
-                                LUTCCU	         24        26.1
-                                PFUREG	         20        34.5
+                                  LUT4	         50        59.5
+                               LUTGATE	         26        52.0
+                                LUTCCU	         24        70.6
+                                PFUREG	         20        100.0
+---------------------------------------------------
+Report for cell vga_renderer
+   Instance path: vga_top/sprites
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         29        34.5
+                               LUTGATE	         19        38.0
+                                LUTCCU	         10        29.4
+                                   EBR	          1        100.0
+                                   DSP	          1        100.0
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+                              vga_maze	          1        34.5
+---------------------------------------------------
+Report for cell vga_maze
+   Instance path: vga_top/sprites/maze
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         29        34.5
+                               LUTGATE	         19        38.0
+                                LUTCCU	         10        29.4
+                                   EBR	          1        100.0
+                                   DSP	          1        100.0
