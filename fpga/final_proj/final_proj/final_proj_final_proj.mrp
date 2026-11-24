@@ -8,25 +8,27 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Tue Nov 24 02:13:09 2026
+Mapped on: Tue Nov 24 15:18:42 2026
 
 Design Information
 ------------------
 
-Command line:   map -pdc C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
-     final_proj/vga_pins.pdc -i final_proj_final_proj_syn.udb -o
+Command line:   map -pdc C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc -i final_proj_final_proj_syn.udb -o
      final_proj_final_proj_map.udb -mp final_proj_final_proj.mrp -hierrpt -gui
-     -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/p
-     romote.xml
+     -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/
+     promote.xml
 
 Design Summary
 --------------
 
-   Number of slice registers:  20 out of  5280 (<1%)
+   Number of slice registers: 126 out of  5280 (2%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:            84 out of  5280 (2%)
-      Number of logic LUT4s:              50
-      Number of ripple logic:             17 (34 LUT4s)
+   Number of LUT4s:           324 out of  5280 (6%)
+      Number of logic LUT4s:             205
+      Number of inserted feedthru LUT4s:  28
+      Number of replicated LUT4s:          1
+      Number of ripple logic:             45 (90 LUT4s)
    Number of IO sites used:   7 out of 39 (18%)
       Number of IO sites used for general PIO: 7
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -48,18 +50,16 @@ Design Summary
    Number of SPIs:             0 out of 2 (0%)
    Number of EBRs:             1 out of 30 (3%)
    Number of PLLs:             1 out of 1 (100%)
-   Number of Clocks:  2
-      Net clk_12mhz_c: 1 loads, 1 rising, 0 falling (Driver: Port clk_12mhz)
-      Net clk_pixel: 17 loads, 17 rising, 0 falling (Driver: Pin
+   Number of Clocks:  3
+      Net clk_pixel: 100 loads, 100 rising, 0 falling (Driver: Pin
      pll.pll_ip.lscc_pll_inst.u_PLL_B/OUTGLOBAL)
-   Number of Clock Enables:  2
-      Net hsync_pad.vcc: 3 loads, 0 SLICEs
-      Net n81: 5 loads, 5 SLICEs
-   Number of LSRs:  2
-      Net n81: 4 loads, 4 SLICEs
-      Net timing_reset: 5 loads, 5 SLICEs
-   Top 10 highest fanout non-clock nets:
-      Net tile_y_0__N_44: 13 loads
+      Net spi_sck: 19 loads, 19 rising, 0 falling (Driver: Pin test.spi_sck_c/Q)
+      Net clk_12mhz_c: 1 loads, 1 rising, 0 falling (Driver: Port clk_12mhz)
+   Number of Clock Enables:  18
+      Net spi.n1576: 8 loads, 8 SLICEs
+      Net spi.n1583: 5 loads, 5 SLICEs
+      Net spi.n510: 5 loads, 5 SLICEs
+      Net spi.ram_we: 1 loads, 0 SLICEs
 
                                     Page 1
 
@@ -69,15 +69,39 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net n19: 11 loads
-      Net locked: 10 loads
-      Net reset_n_c: 10 loads
-      Net n81: 9 loads
-      Net hsync_pad.vcc: 8 loads
-      Net sprites.maze.n7: 8 loads
-      Net timing_reset: 5 loads
-      Net y[4]: 4 loads
-      Net y[5]: 4 loads
+      Net g_pad.vcc: 3 loads, 0 SLICEs
+      Net spi.spi_inst.n1482: 8 loads, 8 SLICEs
+      Net n2145: 7 loads, 7 SLICEs
+      Net n514: 5 loads, 5 SLICEs
+      Net n2232: 8 loads, 8 SLICEs
+      Net n2243: 6 loads, 6 SLICEs
+      Net n2156: 11 loads, 11 SLICEs
+      Net n1600: 5 loads, 5 SLICEs
+      Net n1569: 4 loads, 4 SLICEs
+      Net n1584: 3 loads, 3 SLICEs
+      Net test.n1487: 1 loads, 1 SLICEs
+      Net test.n4024: 1 loads, 1 SLICEs
+      Net test.n1480: 1 loads, 1 SLICEs
+      Net test.n1502: 1 loads, 1 SLICEs
+   Number of LSRs:  7
+      Net spi.cs_sync[1]: 13 loads, 13 SLICEs
+      Net spi_cs: 19 loads, 19 SLICEs
+      Net timing_reset: 49 loads, 49 SLICEs
+      Net n514: 3 loads, 3 SLICEs
+      Net n1526: 4 loads, 4 SLICEs
+      Net test.n3918: 1 loads, 1 SLICEs
+      Net test.n3974: 1 loads, 1 SLICEs
+   Top 10 highest fanout non-clock nets:
+      Net timing_reset: 56 loads
+      Net tile_y_0__N_139: 26 loads
+      Net g_pad.vcc: 21 loads
+      Net locked: 21 loads
+      Net reset_n_c: 21 loads
+      Net spi_cs: 21 loads
+      Net spi.cs_sync[1]: 17 loads
+      Net test.n612: 16 loads
+      Net n15: 14 loads
+      Net n165: 13 loads
 
 
 
@@ -90,23 +114,32 @@ Design Summary (cont)
 Design Errors/Criticals/Warnings
 --------------------------------
 
-WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
-     final_proj/vga_pins.pdc (7) : No port matched 'led_lock'.
-WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
-     final_proj/vga_pins.pdc (8) : No port matched 'dbg_osc'.
-WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
-     final_proj/vga_pins.pdc (9) : No port matched 'dbg_pix'.
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (7) : No port matched 'led_lock'.
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (8) : No port matched 'dbg_osc'.
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (9) : No port matched 'dbg_pix'.
 WARNING <1027013> - map: No port matched 'led_lock'.
-WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
-     final_proj/vga_pins.pdc (7) : Can't resolve object 'led_lock' in constraint
-     'ldc_set_location -site {42} [get_ports led_lock]'.
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (7) : Can't resolve object 'led_lock' in
+     constraint 'ldc_set_location -site {42} [get_ports led_lock]'.
 WARNING <1027013> - map: No port matched 'dbg_osc'.
-WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
-     final_proj/vga_pins.pdc (8) : Can't resolve object 'dbg_osc' in constraint
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (8) : Can't resolve object 'dbg_osc' in constraint
+
+                                    Page 2
+
+
+
+
+
+Design Errors/Criticals/Warnings (cont)
+---------------------------------------
      'ldc_set_location -site {45} [get_ports dbg_osc]'.
 WARNING <1027013> - map: No port matched 'dbg_pix'.
-WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
-     final_proj/vga_pins.pdc (9) : Can't resolve object 'dbg_pix' in constraint
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (9) : Can't resolve object 'dbg_pix' in constraint
      'ldc_set_location -site {46} [get_ports dbg_pix]'.
 WARNING <1011001> - map: Remove invalid constraint 'ldc_set_location -site {42}
      [get_ports led_lock]'.
@@ -122,28 +155,19 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
+| g                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| b                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| r                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
 | clk_12mhz           | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | reset_n             | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | hsync               | OUTPUT    |           |       |       |           |
-
-                                    Page 2
-
-
-
-
-
-IO (PIO) Attributes (cont)
---------------------------
 +---------------------+-----------+-----------+-------+-------+-----------+
 | vsync               | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| r                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| g                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| b                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
 Removed logic
@@ -169,6 +193,15 @@ PLL 1:                                 Pin/Node Value
   LATCH signal:                                 GND
   Lock Signal:                         NODE     sig_000.FeedThruLUT
   Input Clock Frequency (MHz):                  NA
+
+                                    Page 3
+
+
+
+
+
+PLL Summary (cont)
+------------------
   Reference Divider:                            0
   Feedback Divider:                             66
   VCO Divider:                                  5
@@ -189,21 +222,12 @@ PLL 1:                                 Pin/Node Value
 ASIC Components
 ---------------
 
+Instance Name: spi/ram_inst/ram_waddr_0__I_0
+         Type: EBR
 Instance Name: pll/pll_ip/lscc_pll_inst/u_PLL_B
          Type: PLL
 Instance Name: sprites/maze/mult_13
          Type: DSP
-
-                                    Page 3
-
-
-
-
-
-ASIC Components (cont)
-----------------------
-Instance Name: sprites/maze/vga_raddr_0__I_0
-         Type: EBR
 
 Constraint Summary
 ------------------
@@ -219,33 +243,9 @@ Run Time and Memory Usage
 -------------------------
 
    Total CPU Time: 0 secs
-   Total REAL Time: 3 secs
-   Peak Memory Usage: 66 MB
-Checksum -- map: e6288490a96d05b37d14da99d993090fa5410479
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   Total REAL Time: 2 secs
+   Peak Memory Usage: 70 MB
+Checksum -- map: a6aff10ca3525f3d9d5156bf68c33b8afb041965
 
 
 

@@ -3,18 +3,57 @@ Report for cell vga_top
    Instance path: vga_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         84        100.0
-                               LUTGATE	         50        100.0
-                                LUTCCU	         34        100.0
+                                  LUT4	        324        100.0
+                               LUTGATE	        234        100.0
+                                LUTCCU	         90        100.0
                                  IOBUF	          7        100.0
-                                PFUREG	         20        100.0
+                                PFUREG	        126        100.0
                                    EBR	          1        100.0
                                    DSP	          1        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
                            clk_divider	          1         0.0
-                          vga_renderer	          1        34.5
-                     vga_window_timing	          1        59.5
+                          fpga_spi_top	          1        11.4
+                    moving_sprite_test	          1        43.2
+                          vga_renderer	          1        10.8
+                     vga_window_timing	          1        19.8
+---------------------------------------------------
+Report for cell fpga_spi_top
+   Instance path: vga_top/spi
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         37        11.4
+                               LUTGATE	         17         7.3
+                                LUTCCU	         20        22.2
+                                PFUREG	         49        38.9
+                                   EBR	          1        100.0
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+                         fpga_maze_ram	          1         0.0
+                              fpga_spi	          1         2.5
+---------------------------------------------------
+Report for cell fpga_spi
+   Instance path: vga_top/spi/spi_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	          8         2.5
+                               LUTGATE	          8         3.4
+                                PFUREG	         24        19.0
+---------------------------------------------------
+Report for cell fpga_maze_ram
+   Instance path: vga_top/spi/ram_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                   EBR	          1        100.0
+---------------------------------------------------
+Report for cell vga_window_timing
+   Instance path: vga_top/timing
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         64        19.8
+                               LUTGATE	         40        17.1
+                                LUTCCU	         24        26.7
+                                PFUREG	         20        15.9
 ---------------------------------------------------
 Report for cell clk_divider
    Instance path: vga_top/pll
@@ -37,34 +76,34 @@ Report for cell pll_25_ipgen_lscc_pll(DIVR="0",DIVF="66",DIVQ="5",FILTER_RANGE="
                      Cell usage:
                                   cell	      count    Res Usage(%)
 ---------------------------------------------------
-Report for cell vga_window_timing
-   Instance path: vga_top/timing
+Report for cell moving_sprite_test
+   Instance path: vga_top/test
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         50        59.5
-                               LUTGATE	         26        52.0
-                                LUTCCU	         24        70.6
-                                PFUREG	         20        100.0
+                                  LUT4	        140        43.2
+                               LUTGATE	        104        44.4
+                                LUTCCU	         36        40.0
+                                PFUREG	         54        42.9
 ---------------------------------------------------
 Report for cell vga_renderer
    Instance path: vga_top/sprites
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         29        34.5
-                               LUTGATE	         19        38.0
-                                LUTCCU	         10        29.4
-                                   EBR	          1        100.0
+                                  LUT4	         35        10.8
+                               LUTGATE	         25        10.7
+                                LUTCCU	         10        11.1
+                                PFUREG	          3         2.4
                                    DSP	          1        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
-                              vga_maze	          1        34.5
+                              vga_maze	          1        10.8
 ---------------------------------------------------
 Report for cell vga_maze
    Instance path: vga_top/sprites/maze
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         29        34.5
-                               LUTGATE	         19        38.0
-                                LUTCCU	         10        29.4
-                                   EBR	          1        100.0
+                                  LUT4	         35        10.8
+                               LUTGATE	         25        10.7
+                                LUTCCU	         10        11.1
+                                PFUREG	          3         2.4
                                    DSP	          1        100.0

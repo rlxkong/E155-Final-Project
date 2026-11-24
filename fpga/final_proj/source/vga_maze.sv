@@ -82,8 +82,8 @@ module vga_maze (
     logic [7:0] active_byte;
     logic       is_wall;
 
-    assign active_byte = hardcoded_rdata;   // Hard-coded FPGA test maze
-    // assign active_byte = vga_rdata;      // Live maze loaded over SPI from MCU
+    // assign active_byte = hardcoded_rdata;   // Hard-coded FPGA test maze
+    assign active_byte = vga_rdata;      // Live maze loaded over SPI from MCU
 
     assign is_wall = active_byte[7 - bit_idx_d];
 

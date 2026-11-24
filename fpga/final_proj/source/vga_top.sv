@@ -23,6 +23,11 @@ module vga_top(
 	logic [9:0]  player_posx, player_posy;
 	logic [11:0] countdown;
 	
+	// SPI testing signals 
+	logic        spi_sck, spi_sdi, spi_cs, spi_sdo;
+	logic [7:0]  vga_raddr, vga_rdata;
+	logic [47:0] game_state;
+	
     // instantiate pixel clock (25Mhz)
     clk_divider pll(
         .clk_12mhz(clk_12mhz),
@@ -40,8 +45,23 @@ module vga_top(
 		.y(y),
 		.spr_x(player_posx),
 		.spr_y(player_posy),
-		.time_bcd(countdown)
+		.time_bcd(countdown),
+		.spi_sck(spi_sck),
+		.spi_sdi(spi_sdi),
+		.spi_cs(spi_cs)
 	);
+
+	// instantiate spi reciever
+	fpga_spi_top spi(
+		.clk(clk_pixel),
+		.sck(spi_sck),
+		.sdi(spi_sdi),
+		.sdo(spi_sdo),
+		.cs(spi_cs),
+		.vga_raddr(vga_raddr),
+		.vga_rdata(vga_rdata),
+		.game_state(game_state)
+	);	
 
     // instantiate pixel coordinates of scan
     vga_window_timing timing(
@@ -53,20 +73,19 @@ module vga_top(
         .vsync(vs),
         .video_on(video_on)
     );
-	
-	/*// hardcoding colors to test on vga
-	assign color_input[2] = (x < 320) ? 1'b1 : 1'b0; // red
-    assign color_input[1] = (y < 160) ? 1'b1 : 1'b0; // green
-	assign color_input[0] = (y >= 320) ? 1'b1 : 1'b0; // blue*/
-	
+		
 	// instantiate color logic module
 	vga_renderer sprites(
+		.clk(clk_pixel),
 		.x(x),
 		.y(y),
 		.video_on(video_on),
 		.player_x(player_posx),
 		.player_y(player_posy),
 		.time_left(countdown),
+		.vga_raddr(vga_raddr),
+		.vga_rdata(vga_rdata),
+		.game_state(game_state),
 		.r(r),
 		.g(g),
 		.b(b)

@@ -36,7 +36,6 @@
 -path ".."
 -path "../source"
 -path "../pll_25"
--path "../source/final_proj"
 
 # PMI Library Files
 -ver "C:/lscc/radiant/2026.1/ip/pmi/pmi_iCE40UP.v"
@@ -53,11 +52,10 @@
 -sver "../source/vga_digit_display.sv"
 -sver "../source/vga_player.sv"
 -sver "../source/vga_renderer.sv"
--sver "../source/final_proj/fpga_spi.sv"
--sver "../source/final_proj/fpga_spi_top.sv"
--sver "../source/final_proj/fpga_maze_ram.sv"
--sver "../source/final_proj/fpga_spi_top_tb.sv"
--sver "../source/final_proj/vga_maze.sv"
+-sver "../source/fpga_maze_ram.sv"
+-sver "../source/fpga_spi.sv"
+-sver "../source/fpga_spi_top.sv"
+-sver "../source/vga_maze.sv"
 -path ".."
 -top vga_top
 # Output Configuration
