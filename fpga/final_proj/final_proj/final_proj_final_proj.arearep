@@ -1,14 +1,14 @@
 ----------------------------------------------------------------------
 Report for cell vga_top.TECH
-Register bits:  126 of 5280 (2.386%)
+Register bits:  141 of 5280 (2.670%)
 I/O cells:      7
                                   Cell usage:
                                cell     count   Res Usage(%)
-                              EBR_B         1          100.0
-                               CCU2        45          100.0
-                            FD1P3XZ       126          100.0
+                              EBR_B         2          100.0
+                               CCU2        70          100.0
+                            FD1P3XZ       141          100.0
                                  IB         2          100.0
-                               LUT4       203          100.0
+                               LUT4       369          100.0
                               MAC16         1          100.0
                                  OB         5          100.0
                               PLL_B         1          100.0
@@ -20,46 +20,23 @@ SUB MODULES
                  moving_sprite_test         1
                              pll_25         1
 pll_25_ipgen_lscc_pll(DIVR="0",DIVF="66",DIVQ="5",FILTER_RANGE="1",PLLOUT_SELECT_PORTA="GENCLK",PLLOUT_SELECT_PORTB="GENCLK",FREQUENCY_PIN_REFERENCECLK="12.000000")         1
+                      vga_countdown         1
+vga_digit_display(X0=10'b1000001011,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1000110010,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1001010011,Y0=10'b010100)         1
                            vga_maze         1
+                         vga_player         1
                        vga_renderer         1
                   vga_window_timing         1
-                              TOTAL       394
-----------------------------------------------------------------------
-Report for cell fpga_spi_top.v1
-Instance Path : spi
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                              EBR_B         1          100.0
-                                FA2        10           22.2
-                            FD1P3XZ        49           38.9
-                               LUT4        18            8.9
-SUB MODULES
-                      fpga_maze_ram         1
-                           fpga_spi         1
-                              TOTAL        80
-----------------------------------------------------------------------
-Report for cell fpga_spi.v1
-Instance Path : spi.spi_inst
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                            FD1P3XZ        24           19.0
-                               LUT4         9            4.4
-                              TOTAL        33
-----------------------------------------------------------------------
-Report for cell fpga_maze_ram.v1
-Instance Path : spi.ram_inst
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                              EBR_B         1          100.0
-                              TOTAL         1
+                              TOTAL       606
 ----------------------------------------------------------------------
 Report for cell vga_window_timing.v1
 Instance Path : timing
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2        12           26.7
-                            FD1P3XZ        20           15.9
-                               LUT4        43           21.2
+                                FA2        12           17.1
+                            FD1P3XZ        20           14.2
+                               LUT4        43           11.7
                               TOTAL        75
 ----------------------------------------------------------------------
 Report for cell clk_divider.v1
@@ -92,29 +69,103 @@ Report for cell moving_sprite_test.v1
 Instance Path : test
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2        18           40.0
-                            FD1P3XZ        54           42.9
-                               LUT4       113           55.7
-                              TOTAL       185
+                              EBR_B         1           50.0
+                                FA2        33           47.1
+                            FD1P3XZ        69           48.9
+                               LUT4       148           40.1
+                              TOTAL       251
+----------------------------------------------------------------------
+Report for cell fpga_spi_top.v1
+Instance Path : spi
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              EBR_B         1           50.0
+                                FA2        10           14.3
+                            FD1P3XZ        49           34.8
+                               LUT4        20            5.4
+SUB MODULES
+                      fpga_maze_ram         1
+                           fpga_spi         1
+                              TOTAL        82
+----------------------------------------------------------------------
+Report for cell fpga_spi.v1
+Instance Path : spi.spi_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ        24           17.0
+                               LUT4         9            2.4
+                              TOTAL        33
+----------------------------------------------------------------------
+Report for cell fpga_maze_ram.v1
+Instance Path : spi.ram_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              EBR_B         1           50.0
+                              TOTAL         1
 ----------------------------------------------------------------------
 Report for cell vga_renderer.v1
 Instance Path : sprites
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2         5           11.1
-                            FD1P3XZ         3            2.4
-                               LUT4        25           12.3
+                                FA2        15           21.4
+                            FD1P3XZ         3            2.1
+                               LUT4       141           38.2
                               MAC16         1          100.0
 SUB MODULES
+                      vga_countdown         1
+vga_digit_display(X0=10'b1000001011,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1000110010,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1001010011,Y0=10'b010100)         1
                            vga_maze         1
-                              TOTAL        35
+                         vga_player         1
+                              TOTAL       166
+----------------------------------------------------------------------
+Report for cell vga_countdown.v1
+Instance Path : sprites.timer
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4        90           24.4
+SUB MODULES
+vga_digit_display(X0=10'b1000001011,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1000110010,Y0=10'b010100)         1
+vga_digit_display(X0=10'b1001010011,Y0=10'b010100)         1
+                              TOTAL        93
+----------------------------------------------------------------------
+Report for cell vga_digit_display(X0=10'b1000110010,Y0=10'b010100).v1
+Instance Path : sprites.timer.u_sec_tens
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4        16            4.3
+                              TOTAL        16
+----------------------------------------------------------------------
+Report for cell vga_digit_display(X0=10'b1001010011,Y0=10'b010100).v1
+Instance Path : sprites.timer.u_sec_ones
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4        17            4.6
+                              TOTAL        17
+----------------------------------------------------------------------
+Report for cell vga_digit_display(X0=10'b1000001011,Y0=10'b010100).v1
+Instance Path : sprites.timer.u_min
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4        36            9.8
+                              TOTAL        36
 ----------------------------------------------------------------------
 Report for cell vga_maze.v1
 Instance Path : sprites.maze
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2         5           11.1
-                            FD1P3XZ         3            2.4
-                               LUT4        25           12.3
+                                FA2         5            7.1
+                            FD1P3XZ         3            2.1
+                               LUT4        27            7.3
                               MAC16         1          100.0
+                              TOTAL        36
+----------------------------------------------------------------------
+Report for cell vga_player.v1
+Instance Path : sprites.dot
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2        10           14.3
+                               LUT4        24            6.5
                               TOTAL        34

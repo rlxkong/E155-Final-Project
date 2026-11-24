@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Tue Nov 24 15:18:42 2026
+Mapped on: Tue Nov 24 15:50:45 2026
 
 Design Information
 ------------------
@@ -22,13 +22,13 @@ Command line:   map -pdc C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
 Design Summary
 --------------
 
-   Number of slice registers: 126 out of  5280 (2%)
+   Number of slice registers: 141 out of  5280 (3%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:           324 out of  5280 (6%)
-      Number of logic LUT4s:             205
+   Number of LUT4s:           548 out of  5280 (10%)
+      Number of logic LUT4s:             371
       Number of inserted feedthru LUT4s:  28
-      Number of replicated LUT4s:          1
-      Number of ripple logic:             45 (90 LUT4s)
+      Number of replicated LUT4s:          9
+      Number of ripple logic:             70 (140 LUT4s)
    Number of IO sites used:   7 out of 39 (18%)
       Number of IO sites used for general PIO: 7
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -48,18 +48,18 @@ Design Summary
    Number of SRAMs:            0 out of 4 (0%)
    Number of WARMBOOTs:        0 out of 1 (0%)
    Number of SPIs:             0 out of 2 (0%)
-   Number of EBRs:             1 out of 30 (3%)
+   Number of EBRs:             2 out of 30 (7%)
    Number of PLLs:             1 out of 1 (100%)
    Number of Clocks:  3
-      Net clk_pixel: 100 loads, 100 rising, 0 falling (Driver: Pin
+      Net clk_pixel: 112 loads, 112 rising, 0 falling (Driver: Pin
      pll.pll_ip.lscc_pll_inst.u_PLL_B/OUTGLOBAL)
-      Net spi_sck: 19 loads, 19 rising, 0 falling (Driver: Pin test.spi_sck_c/Q)
       Net clk_12mhz_c: 1 loads, 1 rising, 0 falling (Driver: Port clk_12mhz)
-   Number of Clock Enables:  18
-      Net spi.n1576: 8 loads, 8 SLICEs
-      Net spi.n1583: 5 loads, 5 SLICEs
-      Net spi.n510: 5 loads, 5 SLICEs
-      Net spi.ram_we: 1 loads, 0 SLICEs
+      Net spi_sck: 19 loads, 19 rising, 0 falling (Driver: Pin test.spi_sck_c/Q)
+   Number of Clock Enables:  20
+      Net n2528: 4 loads, 4 SLICEs
+      Net n2501: 5 loads, 5 SLICEs
+      Net n2498: 4 loads, 4 SLICEs
+      Net n7163: 2 loads, 2 SLICEs
 
                                     Page 1
 
@@ -69,39 +69,43 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net g_pad.vcc: 3 loads, 0 SLICEs
-      Net spi.spi_inst.n1482: 8 loads, 8 SLICEs
-      Net n2145: 7 loads, 7 SLICEs
-      Net n514: 5 loads, 5 SLICEs
-      Net n2232: 8 loads, 8 SLICEs
-      Net n2243: 6 loads, 6 SLICEs
-      Net n2156: 11 loads, 11 SLICEs
-      Net n1600: 5 loads, 5 SLICEs
-      Net n1569: 4 loads, 4 SLICEs
-      Net n1584: 3 loads, 3 SLICEs
-      Net test.n1487: 1 loads, 1 SLICEs
-      Net test.n4024: 1 loads, 1 SLICEs
-      Net test.n1480: 1 loads, 1 SLICEs
-      Net test.n1502: 1 loads, 1 SLICEs
-   Number of LSRs:  7
-      Net spi.cs_sync[1]: 13 loads, 13 SLICEs
+      Net n2515: 3 loads, 3 SLICEs
+      Net n2508: 7 loads, 7 SLICEs
+      Net n444: 5 loads, 5 SLICEs
+      Net n2514: 6 loads, 6 SLICEs
+      Net hsync_pad.vcc: 6 loads, 0 SLICEs
+      Net test.n7165: 1 loads, 1 SLICEs
+      Net test.n2483: 5 loads, 5 SLICEs
+      Net test.n2331: 1 loads, 1 SLICEs
+      Net test.n2344: 1 loads, 1 SLICEs
+      Net test.n2534: 9 loads, 9 SLICEs
+      Net test.n6788: 1 loads, 1 SLICEs
+      Net spi.n426: 5 loads, 5 SLICEs
+      Net spi.n3209: 5 loads, 5 SLICEs
+      Net spi.n3208: 8 loads, 8 SLICEs
+      Net spi.ram_we: 1 loads, 0 SLICEs
+      Net spi.spi_inst.n2326: 8 loads, 8 SLICEs
+   Number of LSRs:  9
+      Net n1822: 4 loads, 4 SLICEs
+      Net timing_reset: 48 loads, 48 SLICEs
+      Net n444: 3 loads, 3 SLICEs
+      Net test.n7123: 1 loads, 1 SLICEs
+      Net test.n2438: 1 loads, 1 SLICEs
+      Net test.n6558: 1 loads, 1 SLICEs
+      Net test.n6686: 1 loads, 1 SLICEs
       Net spi_cs: 19 loads, 19 SLICEs
-      Net timing_reset: 49 loads, 49 SLICEs
-      Net n514: 3 loads, 3 SLICEs
-      Net n1526: 4 loads, 4 SLICEs
-      Net test.n3918: 1 loads, 1 SLICEs
-      Net test.n3974: 1 loads, 1 SLICEs
+      Net spi.cs_sync[1]: 13 loads, 13 SLICEs
    Top 10 highest fanout non-clock nets:
-      Net timing_reset: 56 loads
-      Net tile_y_0__N_139: 26 loads
-      Net g_pad.vcc: 21 loads
-      Net locked: 21 loads
-      Net reset_n_c: 21 loads
-      Net spi_cs: 21 loads
+      Net timing_reset: 75 loads
+      Net hsync_pad.vcc: 27 loads
+      Net locked: 23 loads
+      Net n165: 23 loads
+      Net reset_n_c: 23 loads
+      Net spi_cs: 20 loads
+      Net x[9]: 20 loads
+      Net tile_y_0__N_157: 19 loads
       Net spi.cs_sync[1]: 17 loads
-      Net test.n612: 16 loads
-      Net n15: 14 loads
-      Net n165: 13 loads
+      Net x[4]: 17 loads
 
 
 
@@ -123,10 +127,6 @@ WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
 WARNING <1027013> - map: No port matched 'led_lock'.
 WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
      /final_proj/vga_pins.pdc (7) : Can't resolve object 'led_lock' in
-     constraint 'ldc_set_location -site {42} [get_ports led_lock]'.
-WARNING <1027013> - map: No port matched 'dbg_osc'.
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (8) : Can't resolve object 'dbg_osc' in constraint
 
                                     Page 2
 
@@ -136,6 +136,10 @@ WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
 
 Design Errors/Criticals/Warnings (cont)
 ---------------------------------------
+     constraint 'ldc_set_location -site {42} [get_ports led_lock]'.
+WARNING <1027013> - map: No port matched 'dbg_osc'.
+WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
+     /final_proj/vga_pins.pdc (8) : Can't resolve object 'dbg_osc' in constraint
      'ldc_set_location -site {45} [get_ports dbg_osc]'.
 WARNING <1027013> - map: No port matched 'dbg_pix'.
 WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
@@ -155,12 +159,6 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| g                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| b                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| r                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
 | clk_12mhz           | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | reset_n             | INPUT     |           |       |       |           |
@@ -168,6 +166,12 @@ IO (PIO) Attributes
 | hsync               | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | vsync               | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| r                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| g                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| b                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
 Removed logic
@@ -189,10 +193,6 @@ PLL 1:                                 Pin/Node Value
        pll.pll_ip.lscc_pll_inst.feedback_w
   Internal Feedback output:            NODE
        pll.pll_ip.lscc_pll_inst.feedback_w
-  BYPASS signal:                                GND
-  LATCH signal:                                 GND
-  Lock Signal:                         NODE     sig_000.FeedThruLUT
-  Input Clock Frequency (MHz):                  NA
 
                                     Page 3
 
@@ -202,6 +202,10 @@ PLL 1:                                 Pin/Node Value
 
 PLL Summary (cont)
 ------------------
+  BYPASS signal:                                GND
+  LATCH signal:                                 GND
+  Lock Signal:                         NODE     sig_000.FeedThruLUT
+  Input Clock Frequency (MHz):                  NA
   Reference Divider:                            0
   Feedback Divider:                             66
   VCO Divider:                                  5
@@ -222,10 +226,12 @@ PLL Summary (cont)
 ASIC Components
 ---------------
 
-Instance Name: spi/ram_inst/ram_waddr_0__I_0
-         Type: EBR
 Instance Name: pll/pll_ip/lscc_pll_inst/u_PLL_B
          Type: PLL
+Instance Name: test/mux_80
+         Type: EBR
+Instance Name: spi/ram_inst/ram_waddr_0__I_0
+         Type: EBR
 Instance Name: sprites/maze/mult_13
          Type: DSP
 
@@ -243,15 +249,9 @@ Run Time and Memory Usage
 -------------------------
 
    Total CPU Time: 0 secs
-   Total REAL Time: 2 secs
-   Peak Memory Usage: 70 MB
-Checksum -- map: a6aff10ca3525f3d9d5156bf68c33b8afb041965
-
-
-
-
-
-
+   Total REAL Time: 0 secs
+   Peak Memory Usage: 73 MB
+Checksum -- map: dbbf218a29c277e2a772f746d07b8c3f29b0ddd1
 
 
 
