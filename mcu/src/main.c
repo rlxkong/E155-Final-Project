@@ -44,36 +44,51 @@ const uint8_t maze_level1[150] = {
 
 // Initialize SPI1 in Mode 0 (CPOL=0, CPHA=0, 8-bit MSB first) on PA4..PA7
 void spi1_init(void) {
-    // 1. Enable GPIOA and SPI1 peripheral clocks
+    // 1. Turn on clocks for GPIOA and SPI1
     RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
     RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
-    // 2. Configure PA4 (CS) as manual push-pull output, initialized HIGH (idle)
-    GPIOA->MODER &= ~(3U << (4 * 2));
-    GPIOA->MODER |=  (1U << (4 * 2));   // 01 = General-purpose output
-    GPIOA->BSRR   =  GPIO_BSRR_BS4;     // Set PA4 = 1 (CS inactive)
+    // 2. PA4 (CS): Set to Output (01 at bit 8) and drive HIGH
+    GPIOA->MODER &= ~(0b11 << 8);       // PA4
+    GPIOA->MODER |=  (0b01 << 8);       // 01 = General-purpose output
+    GPIOA->BSRR   =  (0b1  << 4);       // Set PA4 = 1 (CS idle high)
 
-    // 3. Configure PA5 (SCK), PA6 (MISO), PA7 (MOSI) as Alternate Function AF5
-    GPIOA->MODER &= ~((3U << (5 * 2)) | (3U << (6 * 2)) | (3U << (7 * 2)));
-    GPIOA->MODER |=  ((2U << (5 * 2)) | (2U << (6 * 2)) | (2U << (7 * 2))); // 10 = AF
+    // 3. PA5 (SCK), PA6 (MISO), PA7 (MOSI): Set to Alternate Function (10)
+    GPIOA->MODER &= ~(0b11 << 10);      // Clear PA5 (bits 11:10)
+    GPIOA->MODER |=  (0b10 << 10);      // 10 = Alternate Function
 
-    GPIOA->AFR[0] &= ~((0xFU << (5 * 4)) | (0xFU << (6 * 4)) | (0xFU << (7 * 4)));
-    GPIOA->AFR[0] |=  ((5U   << (5 * 4)) | (5U   << (6 * 4)) | (5U   << (7 * 4))); // AF5
+    GPIOA->MODER &= ~(0b11 << 12);      // Clear PA6 (bits 13:12)
+    GPIOA->MODER |=  (0b10 << 12);      // 10 = Alternate Function
 
-    // High-speed slew rate on SCK and MOSI for clean edges
-    GPIOA->OSPEEDR |= (3U << (5 * 2)) | (3U << (7 * 2));
+    GPIOA->MODER &= ~(0b11 << 14);      // Clear PA7 (bits 15:14)
+    GPIOA->MODER |=  (0b10 << 14);      // 10 = Alternate Function
 
-    // 4. Configure SPI1: Master mode, Mode 0 (CPOL=0, CPHA=0), f_PCLK / 32 (<= 2.5 MHz)
-    SPI1->CR1 = 0;
-    SPI1->CR1 |= SPI_CR1_MSTR             // Master mode
-              |  SPI_CR1_SSM              // Software slave management
-              |  SPI_CR1_SSI              // Internal slave select = 1
-              |  (4U << SPI_CR1_BR_Pos);  // Baud rate = f_PCLK / 32 (2.5 MHz @ 80 MHz SYSCLK)
+    // 4. Connect PA5, PA6, PA7 to SPI1 (AF5 = 0101)
+    GPIOA->AFR[0] &= ~(0b1111 << 20);   // Clear PA5 (bits 23:20)
+    GPIOA->AFR[0] |=  (0b0101 << 20);   // 0101 = AF5 (SPI1_SCK)
 
-    // 8-bit data size (DS = 0b0111) and 8-bit RX FIFO threshold (FRXTH = 1)
-    SPI1->CR2 = (7U << SPI_CR2_DS_Pos) | SPI_CR2_FRXTH;
+    GPIOA->AFR[0] &= ~(0b1111 << 24);   // Clear PA6 (bits 27:24)
+    GPIOA->AFR[0] |=  (0b0101 << 24);   // 0101 = AF5 (SPI1_MISO)
 
-    // Enable SPI1
+    GPIOA->AFR[0] &= ~(0b1111 << 28);   // Clear PA7 (bits 31:28)
+    GPIOA->AFR[0] |=  (0b0101 << 28);   // 0101 = AF5 (SPI1_MOSI)
+
+    // 5. Very high edge speed (11) on SCK (PA5) and MOSI (PA7)
+    // need this because it controls the slew rate (how fast the pin's internal transistors
+    // slam voltage from 0V to 3.3 V and back down)
+    // setting to very high speed (0b11) opens the pin's drive transistors so that
+    // sck and mosi snap vertically between the voltage range
+    GPIOA->OSPEEDR |= (0b11 << 10) | (0b11 << 14);
+
+    // 6. Configure SPI1: Master mode, Mode 0, baud rate = /32 (BR = 100 at bit 3)
+    SPI1->CR1 = SPI_CR1_MSTR | SPI_CR1_SSM | SPI_CR1_SSI | (0b100 << 3);
+
+    // 7. 8-bit data size (DS = 0111 at bit 8) + 8-bit RX threshold (FRXTH = 1 at bit 12)
+    // controls packet size and receive buffer
+    // DS | FRXTH (defaults to 16-bit mode, so it waits for 2 bytes before raising RXNE flag. but spi1_transfer sends 1 byte at a time so we need to set FRXTH to what we have here)
+    SPI1->CR2 = (0b0111 << 8) | (0b1 << 12);
+
+    // 8. Turn SPI1 ON
     SPI1->CR1 |= SPI_CR1_SPE;
 }
 
