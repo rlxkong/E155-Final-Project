@@ -8,16 +8,16 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Tue Nov 24 15:50:45 2026
+Mapped on: Tue Nov 24 15:53:12 2026
 
 Design Information
 ------------------
 
-Command line:   map -pdc C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc -i final_proj_final_proj_syn.udb -o
+Command line:   map -pdc C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc -i final_proj_final_proj_syn.udb -o
      final_proj_final_proj_map.udb -mp final_proj_final_proj.mrp -hierrpt -gui
-     -msgset C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga/final_proj/
-     promote.xml
+     -msgset C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/final_proj/p
+     romote.xml
 
 Design Summary
 --------------
@@ -118,15 +118,15 @@ Design Summary (cont)
 Design Errors/Criticals/Warnings
 --------------------------------
 
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (7) : No port matched 'led_lock'.
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (8) : No port matched 'dbg_osc'.
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (9) : No port matched 'dbg_pix'.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (7) : No port matched 'led_lock'.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (8) : No port matched 'dbg_osc'.
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (9) : No port matched 'dbg_pix'.
 WARNING <1027013> - map: No port matched 'led_lock'.
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (7) : Can't resolve object 'led_lock' in
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (7) : Can't resolve object 'led_lock' in constraint
 
                                     Page 2
 
@@ -136,14 +136,14 @@ WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
 
 Design Errors/Criticals/Warnings (cont)
 ---------------------------------------
-     constraint 'ldc_set_location -site {42} [get_ports led_lock]'.
+     'ldc_set_location -site {42} [get_ports led_lock]'.
 WARNING <1027013> - map: No port matched 'dbg_osc'.
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (8) : Can't resolve object 'dbg_osc' in constraint
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (8) : Can't resolve object 'dbg_osc' in constraint
      'ldc_set_location -site {45} [get_ports dbg_osc]'.
 WARNING <1027013> - map: No port matched 'dbg_pix'.
-WARNING <1026001> - map: C:/Users/rkong/Documents/GitHub/E155-Final-Project/fpga
-     /final_proj/vga_pins.pdc (9) : Can't resolve object 'dbg_pix' in constraint
+WARNING <1026001> - map: C:/Users/eing/Documents/GitHub/E155-Final-Project/fpga/
+     final_proj/vga_pins.pdc (9) : Can't resolve object 'dbg_pix' in constraint
      'ldc_set_location -site {46} [get_ports dbg_pix]'.
 WARNING <1011001> - map: Remove invalid constraint 'ldc_set_location -site {42}
      [get_ports led_lock]'.
@@ -251,7 +251,7 @@ Run Time and Memory Usage
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
    Peak Memory Usage: 73 MB
-Checksum -- map: dbbf218a29c277e2a772f746d07b8c3f29b0ddd1
+Checksum -- map: 12e800fb9c777079b475e51c40e89844729d8e75
 
 
 
