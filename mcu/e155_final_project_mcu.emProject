@@ -65,7 +65,9 @@
         <file file_name="lib/adc.h" />
         <file file_name="lib/joystick.c" />
         <file file_name="lib/joystick.h" />
-        <file file_name="lib/spi_link.c" />
+        <file file_name="lib/spi_link.c">
+          <configuration Name="Debug" build_exclude_from_build="Yes" />
+        </file>
         <file file_name="lib/STM32L432KC.h" />
         <file file_name="lib/STM32L432KC_FLASH.c" />
         <file file_name="lib/STM32L432KC_FLASH.h" />
