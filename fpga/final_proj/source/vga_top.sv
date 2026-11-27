@@ -7,6 +7,10 @@
 module vga_top(
     input logic clk_12mhz,
     input logic reset_n,
+	input logic spi_sck,
+	input logic spi_sdi,
+	input logic spi_cs,
+	input logic spi_sdo,
     output logic hsync,
     output logic vsync,
     output logic r,
@@ -18,15 +22,14 @@ module vga_top(
     logic        timing_reset;
     logic [9:0]  x, y;
     logic        hs, vs, video_on;	
-	logic [2:0]  color_input;
 	
 	logic [9:0]  player_posx, player_posy;
 	logic [11:0] countdown;
+	logic [7:0]  flags; 		// place holder for win, pause, game over, etc.
 	
 	// SPI testing signals 
-	logic        spi_sck, spi_sdi, spi_cs, spi_sdo;
 	logic [7:0]  vga_raddr, vga_rdata;
-	logic [47:0] game_state;
+	logic [39:0] game_state;	// {player_x[9:0], player_y[9:0], timer[7:0], flags[7:0]}
 	
     // instantiate pixel clock (25Mhz)
     clk_divider pll(
@@ -75,7 +78,7 @@ module vga_top(
     );
 		
 	// instantiate color logic module
-	vga_renderer sprites(
+	vga_renderer driver(
 		.clk(clk_pixel),
 		.x(x),
 		.y(y),
@@ -85,7 +88,6 @@ module vga_top(
 		.time_left(countdown),
 		.vga_raddr(vga_raddr),
 		.vga_rdata(vga_rdata),
-		.game_state(game_state),
 		.r(r),
 		.g(g),
 		.b(b)
@@ -94,5 +96,8 @@ module vga_top(
 	// assign hsync and vsync
 	assign hsync = hs;
 	assign vsync = vs;
+
+	// unpack game state from MCU
+	assign {player_posx, player_posy, countdown, game_flags} = game_state;
 
 endmodule
